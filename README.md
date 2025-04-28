@@ -2,7 +2,7 @@
 > [![Maintenance](https://img.shields.io/maintenance/yes/2025.svg)]()
 
 # angular-template
-Template for angular projects
+Template for angular projects.
 
 ## Features
 
@@ -33,3 +33,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Tech Stack
 
 > What's inside ?
+> Angular
