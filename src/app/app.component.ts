@@ -1,10 +1,10 @@
-import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
