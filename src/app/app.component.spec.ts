@@ -1,6 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -24,5 +25,31 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain('angular-template app is running!');
+  });
+
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      imports: [
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+      ]
+    });
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppNavComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should compile', () => {
+    expect(component).toBeTruthy();
   });
 });
