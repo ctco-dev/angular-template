@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { catchError, exhaustMap, filter, map, of, withLatestFrom } from 'rxjs';
 import { PostsService } from '../posts.service';
-import { PostsApiActions, PostsPageActions } from './posts.actions';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import {
+  PostPageActions,
+  PostsApiActions,
+  PostsPageActions,
+} from './posts.actions';
+import { PostsState } from './posts.reducer';
+import { selectPostsLoaded } from './posts.selectors';
 
 @Injectable()
 export class PostsEffects {
   loadPosts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PostsPageActions.pageOpened),
+      ofType(PostsPageActions.pageOpened, PostPageActions.pageOpened),
+      withLatestFrom(this.store.select(selectPostsLoaded)),
+      filter((_, loaded) => !loaded),
       exhaustMap(() =>
         this.postsService.getPosts().pipe(
           map((posts) => PostsApiActions.postsLoadedSuccess({ posts })),
@@ -22,6 +31,7 @@ export class PostsEffects {
 
   constructor(
     private actions$: Actions,
+    private store: Store<PostsState>,
     private postsService: PostsService,
   ) {}
 }

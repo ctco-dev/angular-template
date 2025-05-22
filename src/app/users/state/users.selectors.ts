@@ -10,14 +10,22 @@ export const selectUsers = createSelector(
   reducer.selectUsers,
 );
 
-export const selectUsersDictionary = createSelector(
+export const selectUserById = (id: number) =>
+  createSelector(selectUsersEntities, (entities) => entities[id]);
+
+export const selectUsersEntities = createSelector(
   selectUsersState,
-  reducer.selectUsersDictionary,
+  reducer.selectUsersEntities,
 );
 
 export const selectUsersLoading = createSelector(
   selectUsersState,
   (state) => state.loading,
+);
+
+export const selectUsersLoaded = createSelector(
+  selectUsersState,
+  (state) => state.loaded,
 );
 
 export const selectUsersErrorMessage = createSelector(
