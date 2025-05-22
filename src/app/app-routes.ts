@@ -4,6 +4,8 @@ import { provideState } from '@ngrx/store';
 import { PostsService } from './posts/posts.service';
 import { PostsEffects } from './posts/state/posts.effects';
 import { postsFeature } from './posts/state/posts.reducer';
+import { UsersEffects } from './users/state/users.effects';
+import { usersFeature } from './users/state/users.reducer';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/posts', pathMatch: 'full' },
@@ -14,7 +16,8 @@ export const appRoutes: Routes = [
     providers: [
       PostsService,
       provideState(postsFeature),
-      provideEffects(PostsEffects),
+      provideState(usersFeature),
+      provideEffects(PostsEffects, UsersEffects),
     ],
   },
   {

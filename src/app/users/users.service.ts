@@ -1,22 +1,25 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
 import { inject, Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { Post } from './posts.model';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostsService {
-  private postsUrl = 'https://jsonplaceholder.typicode.com/posts';
+export class UsersService {
+  private usersUrl = 'https://jsonplaceholder.typicode.com/users';
+  constructor() {}
   private http = inject(HttpClient);
 
-  getPosts() {
+  getUsers() {
     return this.http
-      .get<Post[]>(this.postsUrl)
+      .get<User[]>(this.usersUrl)
       .pipe(catchError(this.handleError));
   }
 
   private handleError({ status }: HttpErrorResponse) {
+    // TODO: unify error handling
     return throwError(() => `${status}: An error occured.`);
   }
 }

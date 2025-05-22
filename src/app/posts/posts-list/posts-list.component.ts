@@ -1,16 +1,16 @@
 import { Component, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
+import { User } from 'src/app/users/user.model';
+import { PostDetailsComponent } from '../post-details/post-details.component';
 import { Post } from '../posts.model';
 
 @Component({
   selector: 'app-posts-list',
-  imports: [MatCardModule, MatButtonModule, RouterLink],
+  imports: [PostDetailsComponent],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.scss',
 })
 export class PostsListComponent {
   posts = input<Post[]>([]);
+  users = input<Record<string, User | undefined>>({});
   errorMessage = input<string>('');
 }

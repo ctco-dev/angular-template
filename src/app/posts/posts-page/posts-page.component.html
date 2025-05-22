@@ -1,5 +1,9 @@
 @if (loading()) {
   <p>Loading...</p>
 } @else {
-  <app-posts-list [posts]="posts()" [errorMessage]="errorMessage()" />
+  <app-posts-list
+    [posts]="posts()"
+    [users]="users()"
+    [errorMessage]="errorMessage()"
+  />
 }
