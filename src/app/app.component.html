@@ -1,2 +1,18 @@
-<app-site-header></app-site-header>
-<router-outlet></router-outlet>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  @for (route of routes; track route.url) {
+    <a
+      [routerLink]="route.url"
+      routerLinkActive
+      #rla="routerLinkActive"
+      mat-tab-link
+      [active]="rla.isActive"
+    >
+      {{ route.title }}
+    </a>
+  }
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <main class="main">
+    <router-outlet />
+  </main>
+</mat-tab-nav-panel>

@@ -16,7 +16,7 @@ export class PostsService {
   getPosts() {
     return this.http
       .get<Post[]>(this.postsUrl)
-      .pipe(delay(2000), catchError(this.handleError)); // TODO: Remove delay
+      .pipe(catchError(this.handleError));
   }
 
   private handleError({ status }: HttpErrorResponse) {
