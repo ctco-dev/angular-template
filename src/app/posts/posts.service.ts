@@ -1,23 +1,25 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { catchError, delay, throwError } from 'rxjs';
 import { Post } from './posts.model';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostsService {
-  private readonly postsUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private postsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-  private readonly http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   constructor() {}
 
-  // TODO: Error handling
   getPosts() {
-    return this.http.get<Post[]>(this.postsUrl).pipe(delay(2000)); // TODO: Remove delay
+    return this.http
+      .get<Post[]>(this.postsUrl)
+      .pipe(delay(2000), catchError(this.handleError)); // TODO: Remove delay
   }
 
-  posts = toSignal(this.getPosts(), { initialValue: [] });
+  private handleError({ status }: HttpErrorResponse) {
+    return throwError(() => `${status}: An error occured.`);
+  }
 }

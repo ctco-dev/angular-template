@@ -1,4 +1,9 @@
 import { Routes } from '@angular/router';
+import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
+import { PostsService } from './posts/posts.service';
+import { PostsEffects } from './posts/state/posts.effects';
+import { postsFeature } from './posts/state/posts.reducer';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/posts', pathMatch: 'full' },
@@ -6,6 +11,11 @@ export const appRoutes: Routes = [
     path: 'posts',
     loadChildren: () =>
       import('./posts/posts.routes').then((mod) => mod.routes),
+    providers: [
+      PostsService,
+      provideState(postsFeature),
+      provideEffects(PostsEffects),
+    ],
   },
   {
     path: 'guest-book',

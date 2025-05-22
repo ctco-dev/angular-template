@@ -9,4 +9,5 @@ import { Post } from '../posts.model';
 })
 export class PostsListComponent {
   posts = input<Post[]>([]);
+  errorMessage = input<string>('');
 }
