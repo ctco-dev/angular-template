@@ -25,22 +25,29 @@ export const usersFeature = createFeature({
   name: 'users',
   reducer: createReducer(
     initialState,
-    on(PostsPageActions.pageOpened, PostPageActions.pageOpened, (state) => ({
-      ...state,
-      loading: !state.loaded,
-      errorMessage: '',
-    })),
+    on(
+      PostsPageActions.pageOpened,
+      PostPageActions.pageOpened,
+      (state): UsersState => ({
+        ...state,
+        loading: !state.loaded,
+        errorMessage: '',
+      }),
+    ),
     on(UsersApiActions.usersLoadedSuccess, (state, { users }) =>
       adapter.addMany(users, {
         ...state,
         loading: false,
       }),
     ),
-    on(UsersApiActions.usersLoadedFail, (state, { message }) => ({
-      ...state,
-      loading: false,
-      errorMessage: message,
-    })),
+    on(
+      UsersApiActions.usersLoadedFail,
+      (state, { message }): UsersState => ({
+        ...state,
+        loading: false,
+        errorMessage: message,
+      }),
+    ),
   ),
 });
 

@@ -21,11 +21,15 @@ export const postsFeature = createFeature({
   name: 'posts',
   reducer: createReducer(
     initialState,
-    on(PostsPageActions.pageOpened, PostsPageActions.pageOpened, (state) => ({
-      ...state,
-      loading: !state.loaded,
-      errorMessage: '',
-    })),
+    on(
+      PostsPageActions.pageOpened,
+      PostsPageActions.pageOpened,
+      (state): PostsState => ({
+        ...state,
+        loading: !state.loaded,
+        errorMessage: '',
+      }),
+    ),
     on(PostsApiActions.postsLoadedSuccess, (state, { posts }) =>
       adapter.addMany(posts, {
         ...state,
@@ -33,11 +37,14 @@ export const postsFeature = createFeature({
         loaded: true,
       }),
     ),
-    on(PostsApiActions.postsLoadedFail, (state, { message }) => ({
-      ...state,
-      loading: false,
-      errorMessage: message,
-    })),
+    on(
+      PostsApiActions.postsLoadedFail,
+      (state, { message }): PostsState => ({
+        ...state,
+        loading: false,
+        errorMessage: message,
+      }),
+    ),
   ),
 });
 

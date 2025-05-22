@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
-import { catchError, exhaustMap, filter, map, of, withLatestFrom } from 'rxjs';
+import { catchError, exhaustMap, filter, map, of } from 'rxjs';
 import {
   PostPageActions,
   PostsPageActions,
 } from 'src/app/posts/state/posts.actions';
 import { UsersService } from '../users.service';
 import { UsersApiActions } from './users.actions';
-import { UsersState } from './users.reducer';
 import { selectUsersLoaded } from './users.selectors';
 
 @Injectable()
 export class UsersEffects {
-  loadPosts$ = createEffect(() =>
-    this.actions$.pipe(
+  loadPosts$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(PostsPageActions.pageOpened, PostPageActions.pageOpened),
-      withLatestFrom(this.store.select(selectUsersLoaded)),
+      concatLatestFrom(() => this.store.select(selectUsersLoaded)),
       filter((_, loaded) => !loaded),
       exhaustMap(() =>
         this.usersService.getUsers().pipe(
@@ -26,12 +26,12 @@ export class UsersEffects {
           ),
         ),
       ),
-    ),
-  );
+    );
+  });
 
   constructor(
     private actions$: Actions,
-    private store: Store<UsersState>,
+    private store: Store,
     private usersService: UsersService,
   ) {}
 }

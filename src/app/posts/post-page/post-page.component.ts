@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { selectUsersEntities } from 'src/app/users/state/users.selectors';
 import { PostDetailsComponent } from '../post-details/post-details.component';
 import { PostPageActions } from '../state/posts.actions';
-import { PostsState } from '../state/posts.reducer';
 import { selectPostById } from '../state/posts.selectors';
 
 @Component({
@@ -13,7 +12,7 @@ import { selectPostById } from '../state/posts.selectors';
   styleUrl: './post-page.component.scss',
 })
 export class PostPageComponent implements OnInit {
-  private store = inject(Store<PostsState>);
+  private store = inject(Store);
 
   post = this.store.selectSignal(selectPostById);
 
