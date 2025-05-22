@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { Post } from '../posts.model';
   imports: [MatCardModule, MatButtonModule, RouterLink, MatIcon],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostDetailsComponent {
   post = input.required<Post>();
