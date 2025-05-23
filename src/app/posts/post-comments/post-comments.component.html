@@ -1,0 +1,16 @@
+@if (comments().length > 0) {
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-list>
+        @for (comment of comments(); track comment.id) {
+          <mat-list-item>
+            <mat-icon matListItemIcon>comment</mat-icon>
+            <span matListItemTitle>{{ comment.name }}</span>
+            <span matListItemLine>{{ comment.email }}</span>
+            <span matListItemLine>{{ comment.body }} </span>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+}

@@ -1,3 +1,6 @@
 @if (post()) {
-  <app-post-details [post]="post()!" [user]="user()" [showActions]="false" />
+  <div class="post-page">
+    <app-post-details [post]="post()!" [user]="user()" [showActions]="false" />
+    <app-post-comments [comments]="(postComments$() | async) ?? []" />
+  </div>
 }

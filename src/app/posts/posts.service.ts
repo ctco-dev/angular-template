@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { Post } from './posts.model';
+import { Post, PostComment } from './posts.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,16 @@ export class PostsService {
     return this.http
       .get<Post[]>(this.postsUrl)
       .pipe(catchError(this.handleError));
+  }
+
+  getComments(postId: number) {
+    return this.http
+      .get<PostComment[]>(this.getCommentsUrl(postId))
+      .pipe(catchError(this.handleError));
+  }
+
+  private getCommentsUrl(postId: number) {
+    return `${this.postsUrl}/${postId}/comments`;
   }
 
   private handleError({ status }: HttpErrorResponse) {
