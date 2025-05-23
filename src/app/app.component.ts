@@ -12,14 +12,14 @@ import { map, Observable, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  imports: [ 
+  imports: [
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    RouterLink, 
+    RouterLink,
     RouterLinkActive,
     RouterOutlet],
   templateUrl: './app.component.html',

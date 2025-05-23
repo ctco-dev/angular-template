@@ -1,0 +1,11 @@
+<div class="card error-card" *ngIf="errorMessage() !== ''">
+  Error: {{ errorMessage() }}
+</div>
+<div *ngIf="!loading(); else loadingElement">
+  <div class="container">
+    <app-posts-list
+      [posts]="posts()">
+    </app-posts-list>
+  </div>
+</div>
+<ng-template #loadingElement>Loading...</ng-template>

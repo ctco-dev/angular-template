@@ -1,1 +1,12 @@
-<p>posts-list works!</p>
+<p>posts-list works:</p>
+<div *ngIf="posts?.length! > 0; else emptyElement">
+  <ul role="list">
+    <li *ngFor="let post of posts">
+      <div>
+        <p>1</p>
+        <p>{{ post.body }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+<ng-template #emptyElement>Empty...</ng-template>

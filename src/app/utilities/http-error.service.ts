@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,10 @@ import { Injectable } from '@angular/core';
 export class HttpErrorService {
   formatError(err: HttpErrorResponse): string {
     return this.httpErrorFormatter(err);
+  }
+
+  handleError(err: HttpErrorResponse) {
+    return throwError(() => `${this.formatError(err)}: error`);
   }
 
   private httpErrorFormatter(err: HttpErrorResponse): string {
