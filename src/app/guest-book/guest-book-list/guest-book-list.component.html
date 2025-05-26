@@ -2,7 +2,7 @@
   <ul class="list">
     @for (entry of entries(); track entry.id) {
       <li class="entry">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onClick(entry.author)">
           <mat-icon class="icon">person</mat-icon>
         </button>
         <div class="content">

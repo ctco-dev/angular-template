@@ -1,10 +1,10 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 import { selectUsersEntities } from 'src/app/users/state/users.selectors';
 import { PostCommentsComponent } from '../post-comments/post-comments.component';
 import { PostDetailsComponent } from '../post-details/post-details.component';
@@ -17,7 +17,6 @@ import { selectPostById } from '../state/posts.selectors';
   imports: [
     PostDetailsComponent,
     PostCommentsComponent,
-    AsyncPipe,
     RouterLink,
     MatButtonModule,
     MatIcon,
@@ -40,14 +39,13 @@ export class PostPageComponent implements OnInit {
     return this.users()[this.post()!.userId];
   });
 
-  // TODO: there should be a better way
-  postComments$ = computed(() => {
-    if (!this.post()) {
-      return of([]);
-    }
+  private postComments$ = toObservable(this.post).pipe(
+    filter((p) => Boolean(p)),
+    map((p) => p!.id),
+    switchMap((id) => this.postsService.getComments(id)),
+  );
 
-    return this.postsService.getComments(this.post()!.id);
-  });
+  postComments = toSignal(this.postComments$, { initialValue: [] });
 
   ngOnInit(): void {
     this.store.dispatch(PostPageActions.pageOpened());

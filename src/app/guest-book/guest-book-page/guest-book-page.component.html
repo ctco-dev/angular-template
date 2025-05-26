@@ -1,6 +1,9 @@
 <div class="page">
   <app-guest-book-form [saving]="saving()" (formSubmitted)="onSubmit($event)" />
   @if (!loading()) {
-    <app-guest-book-list [entries]="entries()" />
+    <app-guest-book-list
+      [entries]="entries()"
+      (authorClicked)="onAuthorClick($event)"
+    />
   }
 </div>

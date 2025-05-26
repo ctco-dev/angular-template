@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
 import { inject, Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { User } from './user.model';
 
 @Injectable({
@@ -12,10 +12,33 @@ export class UsersService {
   constructor() {}
   private http = inject(HttpClient);
 
-  getUsers() {
+  getUsers(): Observable<User[]> {
     return this.http
       .get<User[]>(this.usersUrl)
       .pipe(catchError(this.handleError));
+  }
+
+  getAvatarUrl(email: string): Observable<string> {
+    return from(this.getGravatarHash(email)).pipe(
+      map((hash) => {
+        return `https://0.gravatar.com/avatar/${hash}?size=256&d=wavatar`;
+      }),
+    );
+  }
+
+  private async getGravatarHash(email: string): Promise<string> {
+    const cleanEmail = email.trim().toLowerCase();
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode(cleanEmail);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+
+    return hashHex;
   }
 
   private handleError({ status }: HttpErrorResponse) {

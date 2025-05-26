@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatCard } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
-import { GuestBookEntry } from '../guest-book.model';
+import { GuestBookAuthor, GuestBookEntry } from '../guest-book.model';
 
 @Component({
   selector: 'app-guest-book-list',
@@ -13,4 +18,9 @@ import { GuestBookEntry } from '../guest-book.model';
 })
 export class GuestBookListComponent {
   entries = input<GuestBookEntry[]>([]);
+  authorClicked = output<GuestBookAuthor>();
+
+  onClick(author: GuestBookAuthor) {
+    this.authorClicked.emit(author);
+  }
 }

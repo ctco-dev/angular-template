@@ -61,13 +61,11 @@ export const guestBookFeature = createFeature({
     ),
     on(
       GuestBookApiActions.entrySavedSuccess,
-      (state, { entry }): GuestBookState => {
-        console.log(state, entry);
-        return adapter.addOne(entry, {
+      (state, { entry }): GuestBookState =>
+        adapter.addOne(entry, {
           ...state,
           saving: false,
-        });
-      },
+        }),
     ),
     // TODO: save error handling
   ),

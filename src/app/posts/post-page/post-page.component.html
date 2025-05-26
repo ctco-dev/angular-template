@@ -5,6 +5,6 @@
       Posts
     </a>
     <app-post-details [post]="post()!" [user]="user()" [showActions]="false" />
-    <app-post-comments [comments]="(postComments$() | async) ?? []" />
+    <app-post-comments [comments]="postComments()" />
   </div>
 }
