@@ -1,0 +1,55 @@
+<div class="blog-comment-container">
+  <div class="blog-details" *ngIf="blog">
+    <h2>{{ blog.title }}</h2>
+    <div class="blog-meta">
+      <span>By {{ blog.author }}</span>
+      <span class="date">{{ blog.date | date:'mediumDate' }}</span>
+    </div>
+    <div class="blog-content" [innerHTML]="blog.blogHtml"></div>
+  </div>
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <div *ngIf="comments.length === 0" class="no-comments">No comments yet. Be the first to comment!</div>
+    <ul>
+      <li *ngFor="let comment of comments" class="comment">
+        <div class="comment-header">
+          <span class="comment-author">{{ comment.name }}</span>
+          <span class="comment-date">{{ comment.date | date:'short' }}</span>
+        </div>
+        <div class="comment-message">{{ comment.message }}</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="add-comment-section">
+    <h3>Add a Comment</h3>
+    <form #commentForm="ngForm" (ngSubmit)="addComment()">
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="newComment.name"
+        placeholder="Your Name"
+        required
+        class="input"
+      />
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="newComment.email"
+        placeholder="Your Email"
+        required
+        class="input"
+      />
+      <textarea
+        name="message"
+        [(ngModel)]="newComment.message"
+        placeholder="Your Comment"
+        required
+        class="textarea"
+        rows="3"
+      ></textarea>
+      <button type="submit" [disabled]="!commentForm.form.valid" class="submit-btn">Post Comment</button>
+    </form>
+  </div>
+</div>

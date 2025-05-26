@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { IBlog } from './blog.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,7 @@ import { IBlog } from './blog.model';
 export class BlogService {
 
   constructor(private http: HttpClient) { }
-  /**
-   * Fetches the list of blogs from the server.
-   * @returns An Observable that emits an array of IBlog objects.
-   */
-  getBlogs(): Observable<IBlog[]> {
-    return this.http.get<IBlog[]>('/blogs');
+  getBlog(id: number): Observable<IBlog> {
+    return this.http.get<IBlog>(`/blogs/${id}`);
   }
 }
