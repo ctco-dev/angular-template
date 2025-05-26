@@ -1,0 +1,29 @@
+.site-header {
+  background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.1);
+}
+
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.tab {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.tab:hover,
+.tab.active {
+  background: #fff;
+  color: #4e54c8;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.15);
+}
