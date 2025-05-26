@@ -3,7 +3,7 @@
   <ul role="list">
     <li *ngFor="let post of posts">
       <div>
-        <p>1</p>
+        <p>{{ users ? users[post.userId!.toString()]?.username : '' }}</p>
         <p>{{ post.body }}</p>
       </div>
     </li>

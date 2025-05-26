@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, delay } from 'rxjs';
 import { Post } from './post';
 import { environment } from 'src/environments/environment';
 import { HttpErrorService } from '../utilities/http-error.service';
@@ -19,7 +19,7 @@ export class PostsService {
   getAll() {
     return this.http
       .get<Post[]>(this.postsUrl)
-      .pipe(catchError(this.errorHandler.handleError));
+      .pipe(delay(2000), catchError(this.errorHandler.handleError));
   }
 
   getById(id: number) {

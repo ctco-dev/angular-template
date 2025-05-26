@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../post';
 import { NgFor, NgIf } from '@angular/common';
+import { User } from 'src/app/users/user.model';
+import { Dictionary } from '@ngrx/entity';
 
 @Component({
   selector: 'app-posts-list',
@@ -10,4 +12,5 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class PostsListComponent {
   @Input() posts: Post[] | null = [];
+  @Input() users: Dictionary<User> | null = {};
 }
