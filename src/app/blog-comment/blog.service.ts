@@ -10,6 +10,6 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
   getBlog(id: number): Observable<IBlog> {
-    return this.http.get<IBlog>(`/blogs/${id}`);
+    return this.http.get<IBlog>(`/api/blogs/${id}`);
   }
 }

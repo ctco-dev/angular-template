@@ -14,6 +14,6 @@ export class BlogService {
    * @returns An Observable that emits an array of IBlog objects.
    */
   getBlogs(): Observable<IBlog[]> {
-    return this.http.get<IBlog[]>('/blogs');
+    return this.http.get<IBlog[]>('/api/blogs');
   }
 }

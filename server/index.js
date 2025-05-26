@@ -256,12 +256,12 @@ let comments = [
 ];
 
 // 1. Get all blogs
-app.get('/blogs', (req, res) => {
+app.get('/api/blogs', (req, res) => {
   res.json(blogs);
 });
 
 // 2. Get blog by id
-app.get('/blogs/:id', (req, res) => {
+app.get('/api/blogs/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
   const blog = blogs.find(b => b.id === id);
   if (!blog) {
@@ -271,7 +271,7 @@ app.get('/blogs/:id', (req, res) => {
 });
 
 // 3. Add a new blog
-app.post('/blogs', (req, res) => {
+app.post('/api/blogs', (req, res) => {
   const { title, blogHtml, author, date } = req.body;
   if (!title || !blogHtml || !author || !date) {
     return res.status(400).json({ error: 'Missing fields' });
@@ -288,14 +288,14 @@ app.post('/blogs', (req, res) => {
 });
 
 // 4. Get comments by blogId
-app.get('/blogs/:blogId/comments', (req, res) => {
+app.get('/api/blogs/:blogId/comments', (req, res) => {
   const blogId = parseInt(req.params.blogId, 10);
   const blogComments = comments.filter(c => c.blogId === blogId);
   res.json(blogComments);
 });
 
 // 5. Add comment by blogId
-app.post('/blogs/:blogId/comments', (req, res) => {
+app.post('/api/blogs/:blogId/comments', (req, res) => {
   const blogId = parseInt(req.params.blogId, 10);
   const { name, message, email, date } = req.body;
   if (!name || !message || !email || !date) {
@@ -314,7 +314,7 @@ app.post('/blogs/:blogId/comments', (req, res) => {
 });
 
 // 6. Delete comment by blogId and comment id
-app.delete('/blogs/:blogId/comments/:commentId', (req, res) => {
+app.delete('/api/blogs/:blogId/comments/:commentId', (req, res) => {
   const blogId = parseInt(req.params.blogId, 10);
   const commentId = parseInt(req.params.commentId, 10);
   const index = comments.findIndex(c => c.blogId === blogId && c.id === commentId);
