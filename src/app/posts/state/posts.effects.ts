@@ -29,6 +29,8 @@ export class PostsEffects {
     ),
   );
 
+  //loadComments$ = createEffect(()=>);
+
   constructor(
     private postsService: PostsService,
     private actions$: Actions

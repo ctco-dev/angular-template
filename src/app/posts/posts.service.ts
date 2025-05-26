@@ -27,4 +27,10 @@ export class PostsService {
       .get<Post>(`${this.postsUrl}/${id}`)
       .pipe(catchError(this.errorHandler.handleError));
   }
+
+  getCommentsById(id: number) {
+    return this.http
+      .get<Comment[]>(`${this.postsUrl}/${id}/comments`)
+      .pipe(catchError(this.errorHandler.handleError));
+  }
 }

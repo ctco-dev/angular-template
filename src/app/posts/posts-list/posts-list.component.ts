@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../post';
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { User } from 'src/app/users/user.model';
 import { Dictionary } from '@ngrx/entity';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-posts-list',
-  imports: [NgFor, NgIf],
+  imports: [NgIf, MatCardModule],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.scss'
 })
