@@ -1,0 +1,28 @@
+<div class="guest-book">
+  <h2>Guest Book</h2>
+
+  <!-- Entries List -->
+  <ul class="entries">
+    <li *ngFor="let entry of entries">
+      <strong>{{ entry.name }}</strong> ({{ entry.email }})<br>
+      <span>{{ entry.message }}</span>
+    </li>
+  </ul>
+
+  <!-- Add Entry Form -->
+  <form #guestForm="ngForm" (ngSubmit)="addEntry()" autocomplete="off">
+    <div>
+      <label for="name">Name*</label>
+      <input id="name" name="name" [(ngModel)]="newEntry.name" required>
+    </div>
+    <div>
+      <label for="email">Email*</label>
+      <input id="email" name="email" type="email" [(ngModel)]="newEntry.email" required>
+    </div>
+    <div>
+      <label for="message">Message*</label>
+      <textarea id="message" name="message" [(ngModel)]="newEntry.message" required minlength="20"></textarea>
+    </div>
+    <button type="submit" [disabled]="guestForm.invalid">Add Entry</button>
+  </form>
+</div>
