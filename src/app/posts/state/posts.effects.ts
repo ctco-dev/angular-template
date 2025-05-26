@@ -14,8 +14,8 @@ export class PostsEffects {
 
   loadPosts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PostsPageActions.loadPosts),
-      switchMap(() =>
+      ofType(PostsPageActions.loadPosts, PostsPageActions.loadPost),
+      exhaustMap(() =>
         this.postsService.getAll().pipe(
           map((posts) => {
             console.log('Posts data received') ;

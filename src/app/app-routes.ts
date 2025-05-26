@@ -6,14 +6,14 @@ import { provideState } from '@ngrx/store';
 import { postsFeature } from './posts/state/posts.reducer';
 import { provideEffects } from '@ngrx/effects';
 import { PostsEffects } from './posts/state/posts.effects';
-import { PostsPageComponent } from './posts/posts-page/posts-page.component';
 import { UsersEffects } from './users/state/users.effects';
 import { usersFeature } from './users/state/users.reducer';
 
 export const appRoutes: Routes = [
   {
     path: 'posts',
-    component: PostsPageComponent,
+    loadChildren: () =>
+      import('./posts/posts.routes').then((mod) => mod.routes),
     providers: [
       PostsService,
       provideState(postsFeature),

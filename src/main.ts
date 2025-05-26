@@ -5,6 +5,7 @@ import { AppComponent } from './app/app.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { routerReducer, provideRouterStore } from '@ngrx/router-store';
 import { environment } from './environments/environment.development';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
@@ -12,7 +13,10 @@ bootstrapApplication(AppComponent, {
     providers: [
       provideRouter(appRoutes),
       provideHttpClient(withInterceptorsFromDi()),
-      provideStore(),
+      provideStore({
+        router: routerReducer,
+      }),
+      provideRouterStore(),
       provideEffects(),
       provideStoreDevtools({
         maxAge: 25,

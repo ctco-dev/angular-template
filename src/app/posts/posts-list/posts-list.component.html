@@ -1,6 +1,6 @@
 <div *ngIf="posts?.length! > 0; else emptyElement">
 @for (post of posts; track post) {
-  <mat-card class="post-card-short" appearance="outlined">
+  <mat-card class="post-card-short" appearance="outlined" >
     <mat-card-header>
       <mat-card-title>{{ post.title }}</mat-card-title>
       <mat-card-subtitle>{{ users ? users[post.userId!.toString()]?.username : '' }}</mat-card-subtitle>
@@ -8,6 +8,9 @@
     <mat-card-content>
       <p>{{ post.body && post.body.length < 150 ? post.body : post.body.substring(0, 150) + '...' }}</p>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/posts', post.id]">READ</button>
+    </mat-card-actions>
   </mat-card>
 }
 </div>

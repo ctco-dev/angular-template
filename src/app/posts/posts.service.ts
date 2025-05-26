@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay } from 'rxjs';
 import { Post } from './post';
+import { Comment } from './comment';
 import { environment } from 'src/environments/environment';
 import { HttpErrorService } from '../utilities/http-error.service';
 

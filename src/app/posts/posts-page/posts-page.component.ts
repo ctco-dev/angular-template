@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, OnInit } from '@angular/core';
 import { PostsListComponent } from '../posts-list/posts-list.component';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import {
   selectPostErrorMessage,
@@ -8,7 +8,6 @@ import {
   selectPostsLoading,
 } from '../state/posts.selectors';
 import { PostsPageActions } from '../state/posts.actions';
-import { tap } from 'rxjs';
 import { selectUsers, selectUserEntities, selectUserLoading } from 'src/app/users/state/users.selectors';
 
 @Component({

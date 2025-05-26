@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { getRouterSelectors } from '@ngrx/router-store';
 import * as reducerPosts from './posts.reducer';
 
 export const selectPostsState =
@@ -22,4 +23,17 @@ export const selectPostsLoading = createSelector(
 export const selectPostErrorMessage = createSelector(
   selectPostsState,
   (state) => state.errorMessage,
+);
+
+export const { selectRouteParams } = getRouterSelectors();
+
+export const selectPostById = createSelector(
+  selectPostsEntities,
+  selectRouteParams,
+  (productEntities, { id }) => productEntities[id]
+);
+
+export const selectPostId = createSelector(
+  selectRouteParams,
+  ({ id }) => id ? Number(id) : -1
 );

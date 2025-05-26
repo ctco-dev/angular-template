@@ -5,6 +5,7 @@ export const PostsPageActions = createActionGroup({
   source: 'Posts Page',
   events: {
     'Load Posts': emptyProps(),
+    'Load Post': emptyProps(),
   },
 });
 
