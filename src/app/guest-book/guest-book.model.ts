@@ -1,4 +1,5 @@
 export interface GuestBookEntry {
+  id?: number;
   author: GuestBookAuthor;
   message: string;
 }

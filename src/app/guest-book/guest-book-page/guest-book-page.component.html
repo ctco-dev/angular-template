@@ -1,1 +1,4 @@
-<app-guest-book-form (formSubmitted)="onSubmit($event)" />
+<div class="page">
+  <app-guest-book-form [saving]="saving()" (formSubmitted)="onSubmit($event)" />
+  <app-guest-book-list [entries]="entries()" />
+</div>

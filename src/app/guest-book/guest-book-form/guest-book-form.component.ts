@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  input,
   output,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { MatCard } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { GuestBookEntry } from '../guest-book.model';
@@ -19,12 +21,14 @@ import { GuestBookEntry } from '../guest-book.model';
     MatInput,
     MatButton,
     MatError,
+    MatCard,
   ],
   templateUrl: './guest-book-form.component.html',
   styleUrl: './guest-book-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestBookFormComponent {
+  saving = input(false);
   formSubmitted = output<GuestBookEntry>();
 
   private fb = inject(FormBuilder);
@@ -49,6 +53,15 @@ export class GuestBookFormComponent {
   }
 
   onSubmit() {
+    if (!this.form.valid) {
+      return;
+    }
+
     this.formSubmitted.emit(this.form.getRawValue());
+
+    this.form.reset();
+    this.name.setErrors(null);
+    this.email.setErrors(null);
+    this.message.setErrors(null);
   }
 }

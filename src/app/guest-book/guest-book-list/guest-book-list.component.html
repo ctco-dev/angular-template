@@ -1,0 +1,9 @@
+<mat-card appearance="outlined">
+  <mat-list>
+    @for (entry of entries(); track entry.id) {
+      <mat-list-item>
+        {{ entry.author.name }}: {{ entry.message }}
+      </mat-list-item>
+    }
+  </mat-list>
+</mat-card>
