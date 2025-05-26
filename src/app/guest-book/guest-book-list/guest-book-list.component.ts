@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
 import { MatCard } from '@angular/material/card';
-import { MatList, MatListItem } from '@angular/material/list';
+import { MatIcon } from '@angular/material/icon';
 import { GuestBookEntry } from '../guest-book.model';
 
 @Component({
   selector: 'app-guest-book-list',
-  imports: [MatList, MatListItem, MatCard],
+  imports: [MatCard, MatIcon, MatIconButton],
   templateUrl: './guest-book-list.component.html',
   styleUrl: './guest-book-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

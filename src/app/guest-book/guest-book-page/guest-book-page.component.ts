@@ -6,6 +6,7 @@ import { GuestBookEntry } from '../guest-book.model';
 import { GuestBookPageActions } from '../state/guest-book.actions';
 import {
   selectGuestBookEntries,
+  selectGuestBookEntriesLoading,
   selectGuestBookEntrySaving,
 } from '../state/guest-book.selectors';
 
@@ -18,6 +19,7 @@ import {
 export class GuestBookPageComponent implements OnInit {
   private store = inject(Store);
   entries = this.store.selectSignal(selectGuestBookEntries);
+  loading = this.store.selectSignal(selectGuestBookEntriesLoading);
   saving = this.store.selectSignal(selectGuestBookEntrySaving);
 
   ngOnInit(): void {
