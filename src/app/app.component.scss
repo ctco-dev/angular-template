@@ -1,3 +1,25 @@
 .main {
   padding: 16px;
 }
+
+.sidenav {
+  width: 200px;
+  padding: 8px;
+  padding: 8px 0 8px 8px;
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    a {
+      display: flex;
+      justify-content: flex-start;
+
+      &.active {
+        background-color: var(--mat-sys-primary);
+        color: var(--mat-sys-surface);
+      }
+    }
+  }
+}

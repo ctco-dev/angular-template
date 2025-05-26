@@ -1,5 +1,9 @@
 @if (post()) {
   <div class="post-page">
+    <a class="posts-link" mat-button routerLink="/posts">
+      <mat-icon>arrow_back</mat-icon>
+      Posts
+    </a>
     <app-post-details [post]="post()!" [user]="user()" [showActions]="false" />
     <app-post-comments [comments]="(postComments$() | async) ?? []" />
   </div>

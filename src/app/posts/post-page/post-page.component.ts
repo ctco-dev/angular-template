@@ -1,5 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { selectUsersEntities } from 'src/app/users/state/users.selectors';
@@ -11,7 +14,14 @@ import { selectPostById } from '../state/posts.selectors';
 
 @Component({
   selector: 'app-post-page',
-  imports: [PostDetailsComponent, PostCommentsComponent, AsyncPipe],
+  imports: [
+    PostDetailsComponent,
+    PostCommentsComponent,
+    AsyncPipe,
+    RouterLink,
+    MatButtonModule,
+    MatIcon,
+  ],
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.scss',
 })

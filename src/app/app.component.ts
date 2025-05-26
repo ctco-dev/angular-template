@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { MatTabLink, MatTabNav, MatTabNavPanel } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,9 +14,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    MatTabNav,
-    MatTabNavPanel,
-    MatTabLink,
+    MatButtonModule,
+    MatSidenavContainer,
+    MatSidenav,
+    MatSidenavContent,
+    MatIcon,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -20,7 +28,8 @@ export class AppComponent {
     {
       url: '/posts',
       title: 'Posts',
+      icon: 'forum',
     },
-    { url: '/guest-book', title: 'Guest Book' },
+    { url: '/guest-book', title: 'Guest Book', icon: 'book' },
   ];
 }

@@ -1,18 +1,29 @@
-<nav mat-tab-nav-bar [tabPanel]="tabPanel">
-  @for (route of routes; track route.url) {
-    <a
-      [routerLink]="route.url"
-      routerLinkActive
-      #rla="routerLinkActive"
-      mat-tab-link
-      [active]="rla.isActive"
-    >
-      {{ route.title }}
-    </a>
-  }
-</nav>
-<mat-tab-nav-panel #tabPanel>
-  <main class="main">
-    <router-outlet />
-  </main>
-</mat-tab-nav-panel>
+<mat-sidenav-container>
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    opened
+    [fixedInViewport]="true"
+    [fixedTopGap]="8"
+  >
+    <div class="links">
+      @for (route of routes; track route.url) {
+        <a
+          mat-button
+          [class.mat-flat-button]="rla.isActive"
+          [routerLink]="route.url"
+          routerLinkActive="active"
+          #rla="routerLinkActive"
+        >
+          <mat-icon>{{ route.icon }}</mat-icon>
+          {{ route.title }}
+        </a>
+      }
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
