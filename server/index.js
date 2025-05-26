@@ -22,8 +22,7 @@ let blogs = [
   {
     id: 1,
     title: "Getting Started with Angular",
-    blogHtml: `<h2>Getting Started with Angular</h2>
-<p>Angular is a platform for building mobile and desktop web applications. It provides a way to structure your code and make it maintainable, scalable, and testable. To get started, install the Angular CLI using <code>npm install -g @angular/cli</code>. Then, create a new project with <code>ng new my-app</code> and serve it locally with <code>ng serve</code>. The CLI will scaffold your project structure, including modules, components, and services. Angular uses TypeScript, a superset of JavaScript, which brings strong typing and object-oriented features to your codebase. The framework encourages modular development and supports features like dependency injection, routing, and forms out of the box. As you build your first Angular app, you'll learn about components, templates, and data binding, which are the core building blocks of any Angular application.</p>
+    blogHtml: `<p>Angular is a platform for building mobile and desktop web applications. It provides a way to structure your code and make it maintainable, scalable, and testable. To get started, install the Angular CLI using <code>npm install -g @angular/cli</code>. Then, create a new project with <code>ng new my-app</code> and serve it locally with <code>ng serve</code>. The CLI will scaffold your project structure, including modules, components, and services. Angular uses TypeScript, a superset of JavaScript, which brings strong typing and object-oriented features to your codebase. The framework encourages modular development and supports features like dependency injection, routing, and forms out of the box. As you build your first Angular app, you'll learn about components, templates, and data binding, which are the core building blocks of any Angular application.</p>
 <ul>
   <li>Install Node.js and npm</li>
   <li>Install Angular CLI</li>
@@ -37,8 +36,7 @@ let blogs = [
   {
     id: 2,
     title: "Understanding Angular Components",
-    blogHtml: `<h2>Understanding Angular Components</h2>
-<p>Components are the fundamental building blocks of Angular applications. Each component consists of a TypeScript class, an HTML template, and optional CSS styles. The class contains the logic and data, while the template defines the view. Components are declared using the <code>@Component</code> decorator, which specifies the selector, template, and styles. You can create a new component using the Angular CLI with <code>ng generate component my-component</code>. Components can communicate with each other using input and output properties, allowing for modular and reusable code. Angular's change detection mechanism ensures that the view is always in sync with the underlying data. By organizing your application into components, you can manage complexity and improve maintainability.</p>
+    blogHtml: `<p>Components are the fundamental building blocks of Angular applications. Each component consists of a TypeScript class, an HTML template, and optional CSS styles. The class contains the logic and data, while the template defines the view. Components are declared using the <code>@Component</code> decorator, which specifies the selector, template, and styles. You can create a new component using the Angular CLI with <code>ng generate component my-component</code>. Components can communicate with each other using input and output properties, allowing for modular and reusable code. Angular's change detection mechanism ensures that the view is always in sync with the underlying data. By organizing your application into components, you can manage complexity and improve maintainability.</p>
 <ul>
   <li>Component class (logic and data)</li>
   <li>Template (view)</li>
@@ -52,8 +50,7 @@ let blogs = [
   {
     id: 3,
     title: "Angular Directives Explained",
-    blogHtml: `<h2>Angular Directives Explained</h2>
-<p>Directives in Angular are classes that add additional behavior to elements in your Angular applications. There are three types of directives: components, attribute directives, and structural directives. Attribute directives change the appearance or behavior of an element, component, or another directive. Structural directives change the DOM layout by adding and removing DOM elements. Common built-in directives include <code>*ngIf</code> for conditional rendering and <code>*ngFor</code> for iterating over lists. You can also create your own custom directives to encapsulate reusable logic. Directives are a powerful way to extend HTML and create dynamic, interactive applications.</p>
+    blogHtml: `<p>Directives in Angular are classes that add additional behavior to elements in your Angular applications. There are three types of directives: components, attribute directives, and structural directives. Attribute directives change the appearance or behavior of an element, component, or another directive. Structural directives change the DOM layout by adding and removing DOM elements. Common built-in directives include <code>*ngIf</code> for conditional rendering and <code>*ngFor</code> for iterating over lists. You can also create your own custom directives to encapsulate reusable logic. Directives are a powerful way to extend HTML and create dynamic, interactive applications.</p>
 <ul>
   <li>Attribute directives (e.g., ngClass, ngStyle)</li>
   <li>Structural directives (e.g., *ngIf, *ngFor)</li>
@@ -66,8 +63,7 @@ let blogs = [
   {
     id: 4,
     title: "Angular Services and Dependency Injection",
-    blogHtml: `<h2>Angular Services and Dependency Injection</h2>
-<p>Services in Angular are used to organize and share code across your app. They are typically used for data access, business logic, or shared state. Angular's dependency injection system makes it easy to provide and inject services where needed. To create a service, use the CLI command <code>ng generate service my-service</code>. You can then inject the service into components or other services using the constructor. Services are provided in the root injector by default, making them singletons throughout your app. This pattern promotes code reuse and separation of concerns.</p>
+    blogHtml: `<p>Services in Angular are used to organize and share code across your app. They are typically used for data access, business logic, or shared state. Angular's dependency injection system makes it easy to provide and inject services where needed. To create a service, use the CLI command <code>ng generate service my-service</code>. You can then inject the service into components or other services using the constructor. Services are provided in the root injector by default, making them singletons throughout your app. This pattern promotes code reuse and separation of concerns.</p>
 <ul>
   <li>Create services for shared logic</li>
   <li>Inject services using constructors</li>
@@ -80,8 +76,7 @@ let blogs = [
   {
     id: 5,
     title: "Routing in Angular Applications",
-    blogHtml: `<h2>Routing in Angular Applications</h2>
-<p>Routing allows you to navigate between different views or components in your Angular application. The Angular Router maps URL paths to components, enabling deep linking and navigation. To set up routing, import <code>RouterModule</code> and define your routes in the <code>app-routing.module.ts</code>. Use the <code>&lt;router-outlet&gt;</code> directive in your template to display routed components. Navigation can be triggered programmatically or using the <code>routerLink</code> directive in templates. Angular's router supports features like route guards, lazy loading, and parameterized routes, making it a powerful tool for building single-page applications.</p>
+    blogHtml: `<p>Routing allows you to navigate between different views or components in your Angular application. The Angular Router maps URL paths to components, enabling deep linking and navigation. To set up routing, import <code>RouterModule</code> and define your routes in the <code>app-routing.module.ts</code>. Use the <code>&lt;router-outlet&gt;</code> directive in your template to display routed components. Navigation can be triggered programmatically or using the <code>routerLink</code> directive in templates. Angular's router supports features like route guards, lazy loading, and parameterized routes, making it a powerful tool for building single-page applications.</p>
 <ul>
   <li>Define routes in RouterModule</li>
   <li>Use &lt;router-outlet&gt; for routed views</li>
@@ -94,8 +89,7 @@ let blogs = [
   {
     id: 6,
     title: "Angular Forms: Template vs Reactive",
-    blogHtml: `<h2>Angular Forms: Template vs Reactive</h2>
-<p>Angular provides two approaches for handling forms: template-driven and reactive forms. Template-driven forms are easy to use and suitable for simple scenarios, while reactive forms offer more control and scalability for complex forms. Template-driven forms use directives in the template, while reactive forms are defined in the component class using <code>FormGroup</code> and <code>FormControl</code>. Both approaches support validation, but reactive forms make it easier to implement custom validators and dynamic form controls. Choose the approach that best fits your application's needs.</p>
+    blogHtml: `<p>Angular provides two approaches for handling forms: template-driven and reactive forms. Template-driven forms are easy to use and suitable for simple scenarios, while reactive forms offer more control and scalability for complex forms. Template-driven forms use directives in the template, while reactive forms are defined in the component class using <code>FormGroup</code> and <code>FormControl</code>. Both approaches support validation, but reactive forms make it easier to implement custom validators and dynamic form controls. Choose the approach that best fits your application's needs.</p>
 <ul>
   <li>Template-driven forms (ngModel)</li>
   <li>Reactive forms (FormGroup, FormControl)</li>
@@ -108,8 +102,7 @@ let blogs = [
   {
     id: 7,
     title: "State Management in Angular",
-    blogHtml: `<h2>State Management in Angular</h2>
-<p>Managing state is crucial for complex Angular applications. Angular provides several options for state management, including services, RxJS, and third-party libraries like NgRx. Services can be used to share state between components, while RxJS observables enable reactive programming. NgRx is a popular library that implements the Redux pattern, providing a single source of truth for your application's state. Choosing the right state management solution depends on your app's complexity and requirements.</p>
+    blogHtml: `<p>Managing state is crucial for complex Angular applications. Angular provides several options for state management, including services, RxJS, and third-party libraries like NgRx. Services can be used to share state between components, while RxJS observables enable reactive programming. NgRx is a popular library that implements the Redux pattern, providing a single source of truth for your application's state. Choosing the right state management solution depends on your app's complexity and requirements.</p>
 <ul>
   <li>Use services for shared state</li>
   <li>Leverage RxJS for reactive state</li>
@@ -122,8 +115,7 @@ let blogs = [
   {
     id: 8,
     title: "Consuming REST APIs in Angular",
-    blogHtml: `<h2>Consuming REST APIs in Angular</h2>
-<p>Angular's <code>HttpClient</code> module makes it easy to communicate with RESTful APIs. Import <code>HttpClientModule</code> in your app module and inject <code>HttpClient</code> into your services. Use methods like <code>get</code>, <code>post</code>, <code>put</code>, and <code>delete</code> to interact with your backend. Handle responses using RxJS observables and operators like <code>map</code> and <code>catchError</code>. Always handle errors gracefully and provide feedback to users. Organize your API calls in services to keep your components clean and focused.</p>
+    blogHtml: `<p>Angular's <code>HttpClient</code> module makes it easy to communicate with RESTful APIs. Import <code>HttpClientModule</code> in your app module and inject <code>HttpClient</code> into your services. Use methods like <code>get</code>, <code>post</code>, <code>put</code>, and <code>delete</code> to interact with your backend. Handle responses using RxJS observables and operators like <code>map</code> and <code>catchError</code>. Always handle errors gracefully and provide feedback to users. Organize your API calls in services to keep your components clean and focused.</p>
 <ul>
   <li>Import HttpClientModule</li>
   <li>Inject HttpClient in services</li>
@@ -136,8 +128,7 @@ let blogs = [
   {
     id: 9,
     title: "Angular Pipes: Transforming Data",
-    blogHtml: `<h2>Angular Pipes: Transforming Data</h2>
-<p>Pipes in Angular are used to transform data in templates. Built-in pipes include <code>DatePipe</code>, <code>UpperCasePipe</code>, <code>LowerCasePipe</code>, and <code>CurrencyPipe</code>. You can also create custom pipes to implement your own data transformations. Pipes are easy to use: simply add the pipe symbol (<code>|</code>) followed by the pipe name in your template. For example, <code>{{ birthday | date:'longDate' }}</code> formats a date. Pipes help keep your templates clean and readable.</p>
+    blogHtml: `<p>Pipes in Angular are used to transform data in templates. Built-in pipes include <code>DatePipe</code>, <code>UpperCasePipe</code>, <code>LowerCasePipe</code>, and <code>CurrencyPipe</code>. You can also create custom pipes to implement your own data transformations. Pipes are easy to use: simply add the pipe symbol (<code>|</code>) followed by the pipe name in your template. For example, <code>{{ birthday | date:'longDate' }}</code> formats a date. Pipes help keep your templates clean and readable.</p>
 <ul>
   <li>Built-in pipes (date, uppercase, lowercase, currency)</li>
   <li>Custom pipes</li>
@@ -150,8 +141,7 @@ let blogs = [
   {
     id: 10,
     title: "Optimizing Angular Performance",
-    blogHtml: `<h2>Optimizing Angular Performance</h2>
-<p>Performance is critical for modern web applications. Angular provides several tools and techniques to optimize performance, including Ahead-of-Time (AOT) compilation, lazy loading, and change detection strategies. Use AOT to compile your app at build time, reducing load times. Implement lazy loading to load modules only when needed. Use <code>OnPush</code> change detection to minimize unnecessary checks. Profile your app with browser developer tools and Angular DevTools to identify bottlenecks. Optimize your code and assets to ensure a smooth user experience.</p>
+    blogHtml: `<p>Performance is critical for modern web applications. Angular provides several tools and techniques to optimize performance, including Ahead-of-Time (AOT) compilation, lazy loading, and change detection strategies. Use AOT to compile your app at build time, reducing load times. Implement lazy loading to load modules only when needed. Use <code>OnPush</code> change detection to minimize unnecessary checks. Profile your app with browser developer tools and Angular DevTools to identify bottlenecks. Optimize your code and assets to ensure a smooth user experience.</p>
 <ul>
   <li>Use AOT compilation</li>
   <li>Implement lazy loading</li>
@@ -164,8 +154,7 @@ let blogs = [
   {
     id: 11,
     title: "Unit Testing in Angular",
-    blogHtml: `<h2>Unit Testing in Angular</h2>
-<p>Testing is an essential part of software development. Angular supports unit testing with Jasmine and Karma. Write tests for your components, services, and pipes to ensure they work as expected. Use the Angular CLI to run tests with <code>ng test</code>. Mock dependencies and use spies to isolate units of code. Aim for high test coverage to catch bugs early and improve code quality. Testing also makes refactoring safer and more efficient.</p>
+    blogHtml: `<p>Testing is an essential part of software development. Angular supports unit testing with Jasmine and Karma. Write tests for your components, services, and pipes to ensure they work as expected. Use the Angular CLI to run tests with <code>ng test</code>. Mock dependencies and use spies to isolate units of code. Aim for high test coverage to catch bugs early and improve code quality. Testing also makes refactoring safer and more efficient.</p>
 <ul>
   <li>Write tests for components and services</li>
   <li>Use Jasmine and Karma</li>
@@ -178,8 +167,7 @@ let blogs = [
   {
     id: 12,
     title: "Angular Animations",
-    blogHtml: `<h2>Angular Animations</h2>
-<p>Animations can greatly enhance the user experience in your Angular applications. Angular provides a powerful animation API based on CSS and JavaScript. Define animations in your component metadata using the <code>animations</code> property. Use triggers, states, and transitions to control animations. Angular animations are built on top of the Web Animations API, providing smooth and performant effects. Use animations to provide feedback, guide users, and make your app more engaging.</p>
+    blogHtml: `<p>Animations can greatly enhance the user experience in your Angular applications. Angular provides a powerful animation API based on CSS and JavaScript. Define animations in your component metadata using the <code>animations</code> property. Use triggers, states, and transitions to control animations. Angular animations are built on top of the Web Animations API, providing smooth and performant effects. Use animations to provide feedback, guide users, and make your app more engaging.</p>
 <ul>
   <li>Define animations in component metadata</li>
   <li>Use triggers, states, and transitions</li>
@@ -192,8 +180,7 @@ let blogs = [
   {
     id: 13,
     title: "Lazy Loading Modules in Angular",
-    blogHtml: `<h2>Lazy Loading Modules in Angular</h2>
-<p>Lazy loading is a technique that loads modules only when they are needed, reducing the initial load time of your Angular application. Configure lazy loading in your routing module using the <code>loadChildren</code> property. Organize your app into feature modules and load them on demand. Lazy loading improves performance, especially for large applications with many routes. Monitor your app's bundle size and optimize your code to take full advantage of lazy loading.</p>
+    blogHtml: `<p>Lazy loading is a technique that loads modules only when they are needed, reducing the initial load time of your Angular application. Configure lazy loading in your routing module using the <code>loadChildren</code> property. Organize your app into feature modules and load them on demand. Lazy loading improves performance, especially for large applications with many routes. Monitor your app's bundle size and optimize your code to take full advantage of lazy loading.</p>
 <ul>
   <li>Configure lazy loading in routing</li>
   <li>Organize app into feature modules</li>
@@ -206,8 +193,7 @@ let blogs = [
   {
     id: 14,
     title: "Angular CLI Tips and Tricks",
-    blogHtml: `<h2>Angular CLI Tips and Tricks</h2>
-<p>The Angular CLI is a powerful tool that streamlines development. Use commands like <code>ng generate</code> to scaffold components, services, and modules. Use <code>ng build --prod</code> to build your app for production. The CLI also supports testing, linting, and deployment. Customize your project with the <code>angular.json</code> configuration file. Explore CLI options to boost your productivity and maintain a clean codebase.</p>
+    blogHtml: `<p>The Angular CLI is a powerful tool that streamlines development. Use commands like <code>ng generate</code> to scaffold components, services, and modules. Use <code>ng build --prod</code> to build your app for production. The CLI also supports testing, linting, and deployment. Customize your project with the <code>angular.json</code> configuration file. Explore CLI options to boost your productivity and maintain a clean codebase.</p>
 <ul>
   <li>Use ng generate for scaffolding</li>
   <li>Build for production with ng build --prod</li>
@@ -220,8 +206,7 @@ let blogs = [
   {
     id: 15,
     title: "Deploying Angular Apps",
-    blogHtml: `<h2>Deploying Angular Apps</h2>
-<p>Deployment is the final step in the development process. Build your Angular app for production using <code>ng build --prod</code>. This command creates an optimized bundle in the <code>dist/</code> folder. You can deploy your app to various platforms, including Firebase Hosting, Netlify, Vercel, or your own server. Configure environment variables for different deployment targets. Monitor your app after deployment to ensure it runs smoothly and fix any issues that arise. Proper deployment practices ensure your users have a seamless experience.</p>
+    blogHtml: `<p>Deployment is the final step in the development process. Build your Angular app for production using <code>ng build --prod</code>. This command creates an optimized bundle in the <code>dist/</code> folder. You can deploy your app to various platforms, including Firebase Hosting, Netlify, Vercel, or your own server. Configure environment variables for different deployment targets. Monitor your app after deployment to ensure it runs smoothly and fix any issues that arise. Proper deployment practices ensure your users have a seamless experience.</p>
 <ul>
   <li>Build for production</li>
   <li>Deploy to popular platforms</li>

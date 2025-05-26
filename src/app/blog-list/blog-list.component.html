@@ -1,25 +1,11 @@
 <div class="blog-list">
   <h2>Blog Posts</h2>
   <ul>
-    <li>
+    <li *ngFor="let blog of blogs">
       <button>
-        <h3>Understanding Angular Directives</h3>
-        <p>Learn the basics of Angular directives and how to use them in your projects.</p>
-        <small>Published: May 10, 2025</small>
-      </button>
-    </li>
-    <li>
-      <button>
-        <h3>Getting Started with Angular Routing</h3>
-        <p>A beginner's guide to setting up and using routing in Angular applications.</p>
-        <small>Published: May 15, 2025</small>
-      </button>
-    </li>
-    <li>
-      <button>
-        <h3>Top 5 Angular Performance Tips</h3>
-        <p>Boost your Angular app's performance with these essential tips.</p>
-        <small>Published: May 20, 2025</small>
+        <h3>{{ blog.title }}</h3>
+        <p [innerHTML]="blog.blogHtml.substring(0, 120)"></p>
+        <small>Published: {{ blog.date | date:'mediumDate' }}</small>
       </button>
     </li>
   </ul>
