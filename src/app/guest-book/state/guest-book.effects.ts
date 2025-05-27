@@ -16,7 +16,7 @@ export class GuestBookEffects {
     return this.actions$.pipe(
       ofType(GuestBookPageActions.pageOpened),
       concatLatestFrom(() => this.store.select(selectGuestBookEntriesLoaded)),
-      filter((_, loaded) => !loaded),
+      filter(([, loaded]) => !loaded),
       exhaustMap(() =>
         this.guestBookService.getEntries().pipe(
           map((entries) =>

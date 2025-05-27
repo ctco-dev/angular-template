@@ -28,7 +28,6 @@ export const guestBookFeature = createFeature({
     initialState,
     on(
       GuestBookPageActions.pageOpened,
-      GuestBookPageActions.pageOpened,
       (state): GuestBookState => ({
         ...state,
         loading: !state.loaded,
