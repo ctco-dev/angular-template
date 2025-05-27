@@ -1,4 +1,4 @@
-<p>guest-book-list works!</p>
+<h3>Guest book entries:</h3>
 <div *ngIf="guestBookEntries?.length! > 0; else emptyElement">
 @for (guestBookEntry of guestBookEntries; track guestBookEntry) {
   <mat-card class="post-card-short" appearance="outlined" >

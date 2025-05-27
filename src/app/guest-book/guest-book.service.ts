@@ -26,6 +26,7 @@ export class GuestBookService {
     let newEntry = {
       ...guestBookEntry,
       id: Date.now().toString(),
+      creationDate: new Date(),
     };
     return of(this.localStorageService
       .setItem(this.typePrefix, newEntry.id, newEntry) as GuestBookEntry)
