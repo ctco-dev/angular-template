@@ -6,8 +6,8 @@ import { provideEffects } from '@ngrx/effects';
 import { PostsEffects } from './posts/state/posts.effects';
 import { UsersEffects } from './users/state/users.effects';
 import { usersFeature } from './users/state/users.reducer';
-import { GuestBookPageComponent } from './guestBook/guest-book-page/guest-book-page.component';
-import { GuestBookService } from './guestBook/guest-book.service';
+import { GuestBookService } from './guest-book/guest-book.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 export const appRoutes: Routes = [
   {
@@ -24,9 +24,10 @@ export const appRoutes: Routes = [
   {
     path: 'guest-book',
     loadChildren: () =>
-      import('./guestBook/guest-book.routes').then((mod) => mod.routes),
+      import('./guest-book/guest-book.routes').then((mod) => mod.routes),
     providers: [
-      GuestBookService
+      GuestBookService,
+      LocalStorageService
     ],
   },
   //{ path: '' }

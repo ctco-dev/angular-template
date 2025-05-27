@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, OnInit } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
 import { PostsListComponent } from '../posts-list/posts-list.component';
 import { NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,7 @@ import {
   selectPostsLoading,
 } from '../state/posts.selectors';
 import { PostsPageActions } from '../state/posts.actions';
-import { selectUsers, selectUserEntities, selectUserLoading } from 'src/app/users/state/users.selectors';
+import { selectUserEntities, selectUserLoading } from 'src/app/users/state/users.selectors';
 
 @Component({
   selector: 'app-posts-page',
