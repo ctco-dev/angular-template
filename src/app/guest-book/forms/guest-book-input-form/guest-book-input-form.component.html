@@ -1,0 +1,23 @@
+<p>guest-book-input-form works!</p>
+<form [formGroup]="guestBookForm">
+  <div formGroupName="author">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput required formControlName="name"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput required formControlName="username"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>E-mail</mat-label>
+    <input matInput required formControlName="email"/>
+  </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-form-field>
+    <mat-label>Message</mat-label>
+    <input matInput required formControlName="message"/>
+  </mat-form-field>
+</form>
+

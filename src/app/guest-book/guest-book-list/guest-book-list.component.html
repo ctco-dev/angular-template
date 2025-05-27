@@ -1,1 +1,15 @@
 <p>guest-book-list works!</p>
+<div *ngIf="guestBookEntries?.length! > 0; else emptyElement">
+@for (guestBookEntry of guestBookEntries; track guestBookEntry) {
+  <mat-card class="post-card-short" appearance="outlined" >
+    <mat-card-header>
+      <!-- <mat-card-title>{{ post.title }}</mat-card-title>
+      <mat-card-subtitle>{{ users ? users[post.userId!.toString()]?.username : '' }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ guestBookEntry.message }}</p>
+    </mat-card-content>
+  </mat-card>
+}
+</div>
+<ng-template #emptyElement>No guest book entries</ng-template>

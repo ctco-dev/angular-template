@@ -8,6 +8,8 @@ import { UsersEffects } from './users/state/users.effects';
 import { usersFeature } from './users/state/users.reducer';
 import { GuestBookService } from './guest-book/guest-book.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { guestBookFeature } from './guest-book/state/guest-book-entry.reducer';
+import { GuestBookEffects } from './guest-book/state/guest-book-entry.effects';
 
 export const appRoutes: Routes = [
   {
@@ -27,7 +29,9 @@ export const appRoutes: Routes = [
       import('./guest-book/guest-book.routes').then((mod) => mod.routes),
     providers: [
       GuestBookService,
-      LocalStorageService
+      LocalStorageService,
+      provideState(guestBookFeature),
+      provideEffects(GuestBookEffects),
     ],
   },
   //{ path: '' }

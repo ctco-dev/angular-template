@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Add guest book entry</h2>
+<mat-dialog-content class="mat-typography">
+  <app-guest-book-input-form>
+  </app-guest-book-input-form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="addNew()" cdkFocusInitial>Add</button>
+</mat-dialog-actions>
