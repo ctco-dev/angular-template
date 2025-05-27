@@ -3,7 +3,7 @@
 
   <!-- Entries List -->
   <ul class="entries">
-    <li *ngFor="let entry of guestMessages">
+    <li *ngFor="let entry of guestMessages$ | async">
       <strong>{{ entry.name }}</strong> ({{ entry.email }})<br>
       <span>{{ entry.message }}</span>
     </li>

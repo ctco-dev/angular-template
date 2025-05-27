@@ -255,6 +255,31 @@ let comments = [
   }
 ];
 
+// Initialize guest book comments
+let guestComments = [
+  {
+    id: 1,
+    name: "Emily Carter",
+    message: "This blog is fantastic! I learned a lot from the articles.",
+    email: "emily.carter@example.com",
+    date: new Date("2025-05-20")
+  },
+  {
+    id: 2,
+    name: "Michael Lee",
+    message: "Great resource for Angular beginners. Thanks for sharing!",
+    email: "michael.lee@example.com",
+    date: new Date("2025-05-21")
+  },
+  {
+    id: 3,
+    name: "Sophia Turner",
+    message: "I appreciate the detailed explanations and examples.",
+    email: "sophia.turner@example.com",
+    date: new Date("2025-05-22")
+  }
+];
+
 // 1. Get all blogs
 app.get('/api/blogs', (req, res) => {
   res.json(blogs);
@@ -322,6 +347,39 @@ app.delete('/api/blogs/:blogId/comments/:commentId', (req, res) => {
     return res.status(404).json({ error: 'Comment not found' });
   }
   comments.splice(index, 1);
+  res.status(204).send();
+});
+
+// Get all guest comments
+app.get('/api/guest-comments', (req, res) => {
+  res.json(guestComments);
+});
+
+// Add a new guest comment
+app.post('/api/guest-comments', (req, res) => {
+  const { name, message, email, date } = req.body;
+  if (!name || !message || !email || !date) {
+    return res.status(400).json({ error: 'Missing fields' });
+  }
+  const newGuestComment = {
+    id: guestComments.length ? guestComments[guestComments.length - 1].id + 1 : 1,
+    name,
+    message,
+    email,
+    date: new Date(date)
+  };
+  guestComments.push(newGuestComment);
+  res.status(201).json(newGuestComment);
+});
+
+// Delete a guest comment by id
+app.delete('/api/guest-comments/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const index = guestComments.findIndex(c => c.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'Guest comment not found' });
+  }
+  guestComments.splice(index, 1);
   res.status(204).send();
 });
 
