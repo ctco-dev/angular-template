@@ -7,18 +7,18 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class GuestBookService {
-
+  private readonly typePrefix = 'guestBook'
   constructor(private localStorageService: LocalStorageService) { }
 
   getAll(): Observable<GuestBookEntry[]> {
     return of(this.localStorageService
-      .getAllItems<GuestBookEntry>())
+      .getAllItems<GuestBookEntry>(this.typePrefix))
       .pipe();
   }
 
   getById(id: number) {
     return of<GuestBookEntry>(this.localStorageService
-      .getItem<GuestBookEntry>(`${id}`) as GuestBookEntry)
+      .getItem<GuestBookEntry>(this.typePrefix, `${id}`) as GuestBookEntry)
       .pipe();
   }
 
@@ -28,7 +28,7 @@ export class GuestBookService {
       id: Date.now().toString(),
     };
     return of(this.localStorageService
-      .setItem(newEntry.id, newEntry) as GuestBookEntry)
+      .setItem(this.typePrefix, newEntry.id, newEntry) as GuestBookEntry)
       .pipe();
   }
 }

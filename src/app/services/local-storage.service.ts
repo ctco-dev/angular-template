@@ -6,13 +6,8 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   constructor() {}
 
-  private getEntryPrefix(obj: any): string {
-    return obj.constructor.name;
-  }
-
-  setItem<T>(key: string, value: T): T | null {
+  setItem<T>(typePrefix: string, key: string, value: T): T | null {
     try {
-      const typePrefix = this.getEntryPrefix(value);
       const jsonValue = JSON.stringify(value);
       localStorage.setItem(`${typePrefix}_${key}`, jsonValue);
       return value;
@@ -22,9 +17,8 @@ export class LocalStorageService {
     }
   }
 
-  getItem<T>(key: string): T | null {
+  getItem<T extends Object>(typePrefix: string, key: string): T | null {
     try {
-      const typePrefix = this.getEntryPrefix({} as T);
       const value = localStorage.getItem(`${typePrefix}_${key}`);
       return value ? JSON.parse(value) : null;
     } catch (error) {
@@ -33,13 +27,13 @@ export class LocalStorageService {
     }
   }
 
-  getAllItems<T>(): T[] {
+  getAllItems<T extends Object>(typePrefix: string): T[] {
     try {
-      const typePrefix = `${this.getEntryPrefix({} as T)}_`;
+      const fullTypePrefix = `${typePrefix}_`;
       let result: T[] = new Array<T>();
       const keys = Object.keys(localStorage);
       keys.forEach(key => {
-        if(key.startsWith(typePrefix)){
+        if(key.startsWith(fullTypePrefix)){
           result.push(JSON.parse(localStorage.getItem(key) ?? '') as T);
         }
       });
@@ -50,8 +44,7 @@ export class LocalStorageService {
     }
   }
 
-  removeItem<T>(key: string): void {
-    const typePrefix = this.getEntryPrefix({} as T);
+  removeItem<T extends Object>(typePrefix: string, key: string): void {
     localStorage.removeItem(`${typePrefix}_${key}`);
   }
 
