@@ -15,7 +15,11 @@ export class BlogPostsService {
     return this.httpClient.get<IBlogPost[]>(BASE_URL + "/posts")
   }
 
+  getBlogPostById(postId: number): Observable<IBlogPost> {
+    return this.httpClient.get<IBlogPost>(BASE_URL + "/posts" + postId)
+  }
+
   getBlogPostCommentsById(postId: number): Observable<IBlogPostComment[]> {
-    return this.httpClient.get<IBlogPostComment[]>(BASE_URL + "/posts/" + postId)
+    return this.httpClient.get<IBlogPostComment[]>(BASE_URL + "/posts/" + postId + "/comments")
   }
 }
