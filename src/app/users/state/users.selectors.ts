@@ -10,9 +10,6 @@ export const selectUsers = createSelector(
   reducer.selectUsers,
 );
 
-export const selectUserById = (id: number) =>
-  createSelector(selectUsersEntities, (entities) => entities[id]);
-
 export const selectUsersEntities = createSelector(
   selectUsersState,
   reducer.selectUsersEntities,

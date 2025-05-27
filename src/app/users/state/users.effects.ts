@@ -13,11 +13,11 @@ import { selectUsersLoaded } from './users.selectors';
 
 @Injectable()
 export class UsersEffects {
-  loadPosts$ = createEffect(() => {
+  loadUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PostsPageActions.pageOpened, PostPageActions.pageOpened),
       concatLatestFrom(() => this.store.select(selectUsersLoaded)),
-      filter((_, loaded) => !loaded),
+      filter(([, loaded]) => !loaded),
       exhaustMap(() =>
         this.usersService.getUsers().pipe(
           map((users) => UsersApiActions.usersLoadedSuccess({ users })),

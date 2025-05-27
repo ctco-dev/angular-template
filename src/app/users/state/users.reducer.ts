@@ -38,6 +38,7 @@ export const usersFeature = createFeature({
       adapter.addMany(users, {
         ...state,
         loading: false,
+        loaded: true,
       }),
     ),
     on(
