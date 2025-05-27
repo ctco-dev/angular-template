@@ -64,4 +64,8 @@ export class PostDetailsComponent implements OnInit {
     this.store.dispatch(PostsPageActions.loadPost());
     this.comments$ = this.postsService.getCommentsById(this.postId());
   }
+
+  commentIdent(index: number, item: Comment) {
+    return item ? item.id : undefined;
+  }
 }
