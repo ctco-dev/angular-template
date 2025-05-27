@@ -10,16 +10,20 @@
 
   <div class="comments-section">
     <h3>Comments</h3>
-    <div *ngIf="comments.length === 0" class="no-comments">No comments yet. Be the first to comment!</div>
-    <ul>
-      <li *ngFor="let comment of comments" class="comment">
-        <div class="comment-header">
-          <span class="comment-author">{{ comment.name }}</span>
-          <span class="comment-date">{{ comment.date | date:'short' }}</span>
-        </div>
-        <div class="comment-message">{{ comment.message }}</div>
-      </li>
-    </ul>
+    <ng-container *ngIf="comments$ | async as comments">
+      <div *ngIf="comments.length === 0" class="no-comments">
+        No comments yet. Be the first to comment!
+      </div>
+      <ul *ngIf="comments.length > 0">
+        <li *ngFor="let comment of comments" class="comment">
+          <div class="comment-header">
+            <span class="comment-author">{{ comment.name }}</span>
+            <span class="comment-date">{{ comment.date | date:'short' }}</span>
+          </div>
+          <div class="comment-message">{{ comment.message }}</div>
+        </li>
+      </ul>
+    </ng-container>
   </div>
 
   <div class="add-comment-section">
