@@ -1,5 +1,7 @@
 .navbar {
   background-color: var(--mat-sys-surface-tint);
+  corner-shape: round;
+  border-radius: 10px;
 }
 
 .mat-mdc-tab-nav-bar {
