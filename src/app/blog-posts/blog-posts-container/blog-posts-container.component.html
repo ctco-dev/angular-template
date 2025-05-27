@@ -6,8 +6,11 @@
         <img class="blogpost-card-img" src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
       </mat-card-title-group>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="blogpost-content">
       {{ blogpost.title }}
     </mat-card-content>
+    <mat-card-actions align="end">
+      <button [routerLink]="blogpost.id.toString()" mat-button>Show comments</button>
+    </mat-card-actions>
   </mat-card>
 }

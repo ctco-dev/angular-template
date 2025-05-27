@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {IBlogPost} from './blog-post.model'
+import {IBlogPost, IBlogPostComment} from './blog-post.model'
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BASE_URL} from "../../config";
@@ -13,5 +13,9 @@ export class BlogPostsService {
 
   getBlogPosts(): Observable<IBlogPost[]> {
     return this.httpClient.get<IBlogPost[]>(BASE_URL + "/posts")
+  }
+
+  getBlogPostCommentsById(postId: number): Observable<IBlogPostComment[]> {
+    return this.httpClient.get<IBlogPostComment[]>(BASE_URL + "/posts/" + postId)
   }
 }
