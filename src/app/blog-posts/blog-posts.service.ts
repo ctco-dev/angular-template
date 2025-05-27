@@ -1,16 +1,17 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {IBlogPost} from './blog-post.model'
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {BASE_URL} from "../../config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogPostsService {
 
-  getBlogPosts(): IBlogPost[] {
-    return [{
-      id: 1,
-      title: 'Blog Post 1',
-      content: 'Blog Post 1 content',
-    }];
+  private httpClient = inject(HttpClient);
+
+  getBlogPosts(): Observable<IBlogPost[]> {
+    return this.httpClient.get<IBlogPost[]>(BASE_URL + "/posts")
   }
 }

@@ -17,6 +17,8 @@ export class BlogPostsComponent {
   blogPosts: IBlogPost[] = [];
 
   constructor() {
-    this.blogPosts = this.blogPostsService.getBlogPosts();
+    this.blogPostsService.getBlogPosts().subscribe(blogPosts => {
+      this.blogPosts = blogPosts;
+    });
   }
 }
