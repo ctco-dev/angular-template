@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { User } from './user.model';
@@ -9,7 +8,6 @@ import { User } from './user.model';
 })
 export class UsersService {
   private usersUrl = 'https://jsonplaceholder.typicode.com/users';
-  constructor() {}
   private http = inject(HttpClient);
 
   getUsers(): Observable<User[]> {
