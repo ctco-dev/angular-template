@@ -1,23 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { PostsPageActions } from '../state/posts.actions';
 import { PostsPageComponent } from './posts-page.component';
 
 describe('PostsPageComponent', () => {
+  let store: MockStore;
   let component: PostsPageComponent;
   let fixture: ComponentFixture<PostsPageComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PostsPageComponent]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      imports: [PostsPageComponent],
+      providers: [provideMockStore()],
+    });
 
     fixture = TestBed.createComponent(PostsPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should dispatch page opened action on init', () => {
+    const dispatchSpy = spyOn(store, 'dispatch');
+    component.ngOnInit();
+
+    expect(dispatchSpy).toHaveBeenCalledOnceWith(PostsPageActions.pageOpened());
   });
 });

@@ -28,9 +28,11 @@ describe('UsersService', () => {
 
     DEFAULT_USERS = [
       {
+        id: 1,
         name: 'Test User 1',
       },
       {
+        id: 2,
         name: 'Test User 2',
       },
     ];

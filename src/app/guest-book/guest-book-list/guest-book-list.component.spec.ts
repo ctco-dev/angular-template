@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { GuestBookAuthor } from '../guest-book.model';
 import { GuestBookListComponent } from './guest-book-list.component';
 
 describe('GuestBookListComponent', () => {
@@ -7,17 +7,23 @@ describe('GuestBookListComponent', () => {
   let fixture: ComponentFixture<GuestBookListComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [GuestBookListComponent]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      imports: [GuestBookListComponent],
+    });
 
     fixture = TestBed.createComponent(GuestBookListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should emit authorClicked with the provided author on click', () => {
+    const author: GuestBookAuthor = {
+      name: 'Test User',
+      email: 'test@example.com',
+    };
+    spyOn(component.authorClicked, 'emit');
+
+    component.onClick(author);
+
+    expect(component.authorClicked.emit).toHaveBeenCalledWith(author);
   });
 });
