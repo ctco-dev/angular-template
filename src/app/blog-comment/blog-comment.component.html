@@ -1,5 +1,5 @@
 <div class="blog-comment-container">
-  <div class="blog-details" *ngIf="blog">
+  <div class="blog-details" *ngIf="blog$ | async as blog">
     <h2>{{ blog.title }}</h2>
     <div class="blog-meta">
       <span>By {{ blog.author }}</span>

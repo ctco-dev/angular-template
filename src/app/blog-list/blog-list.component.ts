@@ -12,15 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './blog-list.component.scss'
 })
 export class BlogListComponent {
-  blogs: IBlog[] = [];
-  constructor(private blogService: BlogService, private router: Router) {
-    this.blogService.getBlogs().subscribe((data: any) => {
-      this.blogs = data;
-    });
-  }
+  readonly blogs$ = this.blogService.blogs$;
+  constructor(private blogService: BlogService, private router: Router) { }
 
   onBlogSelected(blog: IBlog) {
-    console.log('Selected blog:', blog);
     this.router.navigate(['/blogs', blog.id], { state: { blog } });
   }
 

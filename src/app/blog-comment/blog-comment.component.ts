@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BlogService } from './blog.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-blog-comment',
@@ -12,9 +13,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './blog-comment.component.html',
   styleUrl: './blog-comment.component.scss'
 })
-export class BlogCommentComponent implements OnInit{
+export class BlogCommentComponent{
   blogId!: number;
-  blog: IBlog | undefined;
+  blog$ = this.route.paramMap.pipe(
+    switchMap(params => this.blogService.getBlog(Number(params.get('id'))))
+  );
   comments: IComment[] = [];
   newComment: IComment = {
     id: 0,
@@ -24,14 +27,7 @@ export class BlogCommentComponent implements OnInit{
     date: new Date()
   };
   constructor(private route: ActivatedRoute, private blogService: BlogService) {
-      this.route.paramMap.subscribe(params => {
-        this.blogId = Number(params.get('id'));
-      });
     }
-  ngOnInit(): void {
-    this.blogService.getBlog(this.blogId).subscribe((data: IBlog) => {
-      this.blog = data;});
-  }
 
   addComment() {
     if (this.newComment.name && this.newComment.email && this.newComment.message) {

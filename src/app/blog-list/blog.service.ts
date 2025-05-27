@@ -7,13 +7,7 @@ import { IBlog } from './blog.model';
   providedIn: 'root'
 })
 export class BlogService {
+  readonly blogs$ = this.http.get<IBlog[]>('/api/blogs');
 
   constructor(private http: HttpClient) { }
-  /**
-   * Fetches the list of blogs from the server.
-   * @returns An Observable that emits an array of IBlog objects.
-   */
-  getBlogs(): Observable<IBlog[]> {
-    return this.http.get<IBlog[]>('/api/blogs');
-  }
 }
