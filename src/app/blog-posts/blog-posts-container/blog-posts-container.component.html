@@ -1,5 +1,16 @@
 <div>
   @for (blogpost of blogposts; track blogpost.id) {
-    <div>Blog post id: {{ blogpost.id }}</div>
+    <mat-card class="blogpost-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ blogpost.title }}</mat-card-title>
+          <mat-card-subtitle>{{ blogpost.id }}</mat-card-subtitle>
+          <img mat-card-sm-image src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{ blogpost.content }}
+      </mat-card-content>
+    </mat-card>
   }
 </div>
