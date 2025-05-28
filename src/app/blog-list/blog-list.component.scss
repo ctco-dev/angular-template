@@ -38,3 +38,41 @@
 .blog-item small {
   color: #bfc2e6;
 }
+.bright-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0 0 0;
+  padding: 1rem 0;
+}
+
+.bright-pagination button {
+  background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.15);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.bright-pagination button:disabled {
+  background: #bfc2e6;
+  color: #eee;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.bright-pagination span {
+  color: #4e54c8;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(78, 84, 200, 0.08);
+}
