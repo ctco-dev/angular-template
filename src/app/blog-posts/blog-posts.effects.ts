@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {BlogPostsService} from './blog-posts.service';
 import {BlogPostActions} from './blog-posts.actions';
@@ -6,6 +6,9 @@ import {exhaustMap, map} from 'rxjs';
 
 @Injectable()
 export class BlogPostsEffects {
+  private actions$ = inject(Actions);
+  private blogPostService = inject(BlogPostsService);
+
   blogPosts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BlogPostActions["page-opened"]),
@@ -16,7 +19,4 @@ export class BlogPostsEffects {
       ),
     ),
   );
-
-  constructor(private actions$: Actions, private blogPostService: BlogPostsService) {
-  }
 }
