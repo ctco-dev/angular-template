@@ -1,25 +1,37 @@
 import {BlogPostActions} from './blog-posts.actions';
-import {IBlogPost} from "./blog-posts.model";
+import {IBlogPost, IBlogPostComment} from "./blog-posts.model";
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {createFeature, createReducer, on} from '@ngrx/store';
 
-export interface BlogPostStore extends EntityState<IBlogPost> {
+export interface BlogPostState extends EntityState<IBlogPost> {
   loadedPosts: IBlogPost[];
+  activeBlogPost: number | undefined;
+  blogPostComments: IBlogPostComment[];
 }
 
 const adapter = createEntityAdapter<IBlogPost>({});
 
-const initialState: BlogPostStore = adapter.getInitialState({
-  loadedPosts: []
+const initialState: BlogPostState = adapter.getInitialState({
+  loadedPosts: [],
+  activeBlogPost: undefined,
+  blogPostComments: []
 });
 
 export const blogPostsFeature = createFeature({
   name: 'blog-posts',
   reducer: createReducer(
     initialState,
-    on(BlogPostActions["blog-posts-fetched"], (currentState, {blogPosts}): BlogPostStore => ({
+    on(BlogPostActions["blog-post-opened"], (currentState, {blogPostId}): BlogPostState => ({
+      ...currentState,
+      activeBlogPost: blogPostId
+    })),
+    on(BlogPostActions["blog-posts-fetched"], (currentState, {blogPosts}): BlogPostState => ({
       ...currentState,
       loadedPosts: blogPosts
+    })),
+    on(BlogPostActions["blog-post-comments-fetched"], (currentState, {blogPostComments}): BlogPostState => ({
+      ...currentState,
+      blogPostComments: blogPostComments
     })),
   ),
 });

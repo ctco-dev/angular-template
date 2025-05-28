@@ -7,8 +7,10 @@ import {BlogPostsService} from "./blog-posts/blog-posts.service";
 import {BlogPostsEffects} from "./blog-posts/blog-posts.effects";
 import {provideEffects} from "@ngrx/effects";
 
+const blogPostProviders = [BlogPostsService, provideState(blogPostsFeature), provideEffects(BlogPostsEffects)];
+
 export const routes: Routes = [
   {path: '', redirectTo: '/blogposts', pathMatch: 'full'},
-  {path: 'blogposts', component: BlogPostsRootComponent, providers: [BlogPostsService, provideState(blogPostsFeature), provideEffects(BlogPostsEffects)]},
-  {path: 'blogposts/:id', component: BlogPostsCommentsComponent},
+  {path: 'blogposts', component: BlogPostsRootComponent, providers: blogPostProviders},
+  {path: 'blogposts/:id', component: BlogPostsCommentsComponent, providers: blogPostProviders},
 ];
