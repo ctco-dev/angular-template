@@ -2,13 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivatedRoute } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { selectUsersEntities } from 'src/app/users/state/users.selectors';
 import { User } from 'src/app/users/user.model';
 import { Post, PostComment } from '../posts.model';
 import { PostsService } from '../posts.service';
 import { PostPageActions } from '../state/posts.actions';
-import { selectPostById } from '../state/posts.selectors';
+import {
+  selectPostById,
+  selectPostsErrorMessage,
+} from '../state/posts.selectors';
 import { PostPageComponent } from './post-page.component';
 
 describe('PostPageComponent', () => {
@@ -44,6 +47,10 @@ describe('PostPageComponent', () => {
                 title: 'Post Title',
                 body: 'Post Body',
               } as Post,
+            },
+            {
+              selector: selectPostsErrorMessage,
+              value: '',
             },
             {
               selector: selectUsersEntities,
@@ -109,5 +116,15 @@ describe('PostPageComponent', () => {
     fixture.detectChanges();
 
     expect(component.postComments()).toEqual(comments);
+  });
+
+  it('should return empty array and set error message on posts comments error', () => {
+    const error = 'test error';
+    mockPostsService.getComments.and.returnValue(throwError(() => error));
+
+    fixture.detectChanges();
+
+    expect(component.postComments()).toEqual([]);
+    expect(component.commentsErrorMessage()).toEqual(error);
   });
 });

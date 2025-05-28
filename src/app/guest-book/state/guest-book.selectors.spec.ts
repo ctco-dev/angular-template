@@ -36,7 +36,8 @@ describe('Guest Book Selectors', () => {
     loading: false,
     loaded: false,
     saving: false,
-    errorMessage: 'Error Message',
+    loadErrorMessage: 'Error Message',
+    saveErrorMessage: '',
   };
 
   it('should select entries', () => {

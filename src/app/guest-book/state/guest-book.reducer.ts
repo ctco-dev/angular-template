@@ -9,8 +9,9 @@ import {
 export interface GuestBookState extends EntityState<GuestBookEntry> {
   loading: boolean;
   loaded: boolean;
+  loadErrorMessage: string;
   saving: boolean;
-  errorMessage: string;
+  saveErrorMessage: string;
 }
 
 const adapter = createEntityAdapter<GuestBookEntry>({});
@@ -18,8 +19,9 @@ const adapter = createEntityAdapter<GuestBookEntry>({});
 const initialState: GuestBookState = adapter.getInitialState({
   loading: false,
   loaded: false,
+  loadErrorMessage: '',
   saving: false,
-  errorMessage: '',
+  saveErrorMessage: '',
 });
 
 export const guestBookFeature = createFeature({
@@ -31,7 +33,7 @@ export const guestBookFeature = createFeature({
       (state): GuestBookState => ({
         ...state,
         loading: !state.loaded,
-        errorMessage: '',
+        loadErrorMessage: '',
       }),
     ),
     on(
@@ -39,6 +41,7 @@ export const guestBookFeature = createFeature({
       (state): GuestBookState => ({
         ...state,
         saving: true,
+        saveErrorMessage: '',
       }),
     ),
     on(
@@ -55,7 +58,7 @@ export const guestBookFeature = createFeature({
       (state, { message }): GuestBookState => ({
         ...state,
         loading: false,
-        errorMessage: message,
+        loadErrorMessage: message,
       }),
     ),
     on(
@@ -66,7 +69,14 @@ export const guestBookFeature = createFeature({
           saving: false,
         }),
     ),
-    // TODO: save error handling
+    on(
+      GuestBookApiActions.entrySavedFail,
+      (state, { message }): GuestBookState => ({
+        ...state,
+        loading: false,
+        saveErrorMessage: message,
+      }),
+    ),
   ),
 });
 

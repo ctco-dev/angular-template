@@ -12,7 +12,8 @@ describe('Guest Book Reducer', () => {
     loading: false,
     loaded: false,
     saving: false,
-    errorMessage: '',
+    loadErrorMessage: '',
+    saveErrorMessage: '',
   };
 
   const DEFAULT_ENTRY: GuestBookEntry = {
@@ -60,13 +61,13 @@ describe('Guest Book Reducer', () => {
       const action = GuestBookPageActions.pageOpened();
       const initialState: GuestBookState = {
         ...DEFAULT_STATE,
-        errorMessage: 'Error Message',
+        loadErrorMessage: 'Error Message',
         loaded: true,
       };
 
       const result = guestBookFeature.reducer(initialState, action);
 
-      expect(result.errorMessage).toEqual('');
+      expect(result.loadErrorMessage).toEqual('');
     });
   });
 
@@ -125,7 +126,7 @@ describe('Guest Book Reducer', () => {
       const expectedState: GuestBookState = {
         ...DEFAULT_STATE,
         loading: false,
-        errorMessage: error,
+        loadErrorMessage: error,
       };
 
       const result = guestBookFeature.reducer(initialState, action);
@@ -148,6 +149,26 @@ describe('Guest Book Reducer', () => {
         ids: [1],
         entities: { 1: DEFAULT_ENTRY },
         saving: false,
+      };
+
+      const result = guestBookFeature.reducer(initialState, action);
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+
+  describe('GuestBookApiActions.entrySavedFail', () => {
+    it('should set error message and loading to false', () => {
+      const error = 'Error Message';
+      const action = GuestBookApiActions.entrySavedFail({ message: error });
+      const initialState: GuestBookState = {
+        ...DEFAULT_STATE,
+        loading: true,
+      };
+      const expectedState: GuestBookState = {
+        ...DEFAULT_STATE,
+        loading: false,
+        saveErrorMessage: error,
       };
 
       const result = guestBookFeature.reducer(initialState, action);

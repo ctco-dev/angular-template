@@ -22,7 +22,7 @@ export const selectGuestBookEntriesLoaded = createSelector(
 
 export const selectGuestBookEntriesErrorMessage = createSelector(
   selectGuestBookState,
-  (state) => state.errorMessage,
+  (state) => state.loadErrorMessage,
 );
 
 export const selectGuestBookEntrySaving = createSelector(

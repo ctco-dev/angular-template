@@ -13,5 +13,4 @@ import { Post } from '../posts.model';
 export class PostsListComponent {
   posts = input<Post[]>([]);
   users = input<Record<string, User | undefined>>({});
-  errorMessage = input<string>('');
 }

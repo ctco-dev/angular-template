@@ -1,16 +1,19 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 import { selectUsersEntities } from 'src/app/users/state/users.selectors';
 import { PostCommentsComponent } from '../post-comments/post-comments.component';
 import { PostDetailsComponent } from '../post-details/post-details.component';
 import { PostsService } from '../posts.service';
 import { PostPageActions } from '../state/posts.actions';
-import { selectPostById } from '../state/posts.selectors';
+import {
+  selectPostById,
+  selectPostsErrorMessage,
+} from '../state/posts.selectors';
 
 @Component({
   selector: 'app-post-page',
@@ -29,6 +32,8 @@ export class PostPageComponent implements OnInit {
   private postsService = inject(PostsService);
 
   post = this.store.selectSignal(selectPostById);
+  postsErrorMessage = this.store.selectSignal(selectPostsErrorMessage);
+  commentsErrorMessage = signal('');
 
   private users = this.store.selectSignal(selectUsersEntities);
   user = computed(() => {
@@ -43,6 +48,10 @@ export class PostPageComponent implements OnInit {
     filter((p) => Boolean(p)),
     map((p) => p!.id),
     switchMap((id) => this.postsService.getComments(id)),
+    catchError((error) => {
+      this.commentsErrorMessage.set(error);
+      return of([]);
+    }),
   );
 
   postComments = toSignal(this.postComments$, { initialValue: [] });

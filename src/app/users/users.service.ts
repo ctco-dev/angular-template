@@ -1,6 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, from, map, Observable, throwError } from 'rxjs';
+import { catchError, from, map, Observable } from 'rxjs';
+import { handleError } from '../utils/http';
 import { User } from './user.model';
 
 @Injectable({
@@ -11,9 +12,7 @@ export class UsersService {
   private http = inject(HttpClient);
 
   getUsers(): Observable<User[]> {
-    return this.http
-      .get<User[]>(this.usersUrl)
-      .pipe(catchError(this.handleError));
+    return this.http.get<User[]>(this.usersUrl).pipe(catchError(handleError));
   }
 
   getAvatarUrl(email: string): Observable<string> {
@@ -37,10 +36,5 @@ export class UsersService {
       .join('');
 
     return hashHex;
-  }
-
-  private handleError({ status }: HttpErrorResponse) {
-    // TODO: unify error handling
-    return throwError(() => `${status}: An error occured.`);
   }
 }
