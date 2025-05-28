@@ -23,7 +23,3 @@ export const blogPostsFeature = createFeature({
     })),
   ),
 });
-
-const {selectAll} = adapter.getSelectors();
-
-export const selectPosts = selectAll;

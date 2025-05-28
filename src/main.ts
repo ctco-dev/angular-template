@@ -11,13 +11,13 @@ import {isDevMode} from "@angular/core";
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
+    provideRouter(routes),
+    provideEffects(),
+    provideStore(),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
     }),
-    provideRouter(routes),
-    provideStore(),
-    provideEffects(),
   ]
 })
   .catch(err => console.error(err));

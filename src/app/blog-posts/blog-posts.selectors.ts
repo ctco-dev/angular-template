@@ -5,4 +5,4 @@ const selectBlogPosts = createFeatureSelector<store.BlogPostStore>(
   store.blogPostsFeature.name,
 );
 
-export const selectAllBlogPosts = createSelector(selectBlogPosts, store.selectPosts);
+export const selectAllBlogPosts = createSelector(selectBlogPosts, (state) => state.loadedPosts);
