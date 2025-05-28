@@ -12,18 +12,22 @@ export class GravatarDirective implements OnInit {
   }
   private internalEmail?: string;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngOnInit(): void {
-    if (this.el && this.internalEmail) {
-      this.updateGravatar(this.internalEmail);
-    }
-    else if(this.el) {
-      this.renderer.setAttribute(
-        this.el.nativeElement,
-        "src",
-        `//www.gravatar.com/avatar/`
-      );
+    if (this.el) {
+      if (this.internalEmail) {
+        this.updateGravatar(this.internalEmail);
+      } else {
+        this.renderer.setAttribute(
+          this.el.nativeElement,
+          'src',
+          `//www.gravatar.com/avatar/`,
+        );
+      }
     }
   }
 
@@ -40,8 +44,8 @@ export class GravatarDirective implements OnInit {
 
     this.renderer.setAttribute(
       this.el.nativeElement,
-      "src",
-      `//www.gravatar.com/avatar/${emailHash}?d=wavatar`
+      'src',
+      `//www.gravatar.com/avatar/${emailHash}?d=monsterid&s=40`,
     );
   }
 }

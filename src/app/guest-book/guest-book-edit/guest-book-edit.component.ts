@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { GuestBookInputFormComponent } from '../forms/guest-book-input-form/guest-book-input-form.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { GuestBookEntry } from '../guest-book-entry.model';
 import { GuestBookPageActions } from '../state/guest-book-entry.actions';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-guest-book-edit',
@@ -14,17 +15,18 @@ import { GuestBookPageActions } from '../state/guest-book-entry.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestBookEditComponent {
-  @Output() add = new EventEmitter<GuestBookEntry>();
+  readonly dialogRef = inject(MatDialogRef<GuestBookEditComponent>);
+  doSubmit$ = new Subject<void>();
 
   constructor(private store: Store) {
   }
 
-  addNew(guestBookEntry: GuestBookEntry) {
+  save() {
+    this.doSubmit$.next();
+  }
 
-
-
-    console.log('Add new');
-    this.store.dispatch(GuestBookPageActions.addGuestBookEntry({ guestBookEntry:
-      { id: '', author: { name: 'name', username: 'username', email: 'username@email.com' }, message: 'Test new message to be added ' + Date.now().toString() }}))
+  onNewAdded(guestBookEntry: GuestBookEntry) {
+    this.store.dispatch(GuestBookPageActions.addGuestBookEntry({ guestBookEntry }));
+    this.dialogRef.close(true);
   }
 }
