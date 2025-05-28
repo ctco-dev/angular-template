@@ -1,6 +1,6 @@
-  <!-- Entries List -->
+<!-- Entries List -->
   <ul class="entries">
-    <li *ngFor="let entry of guestMessages$ | async">
+    <li *ngFor="let entry of guestMessagesSignal()">
       <img 
         #avatarImg
         [src]="'assets/avatars/' + (entry.avatar ? entry.avatar : 'user-m.png')" 
