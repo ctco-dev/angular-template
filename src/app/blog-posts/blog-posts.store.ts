@@ -6,7 +6,7 @@ import {createFeature, createReducer, on} from '@ngrx/store';
 export interface BlogPostState extends EntityState<IBlogPost> {
   loadedPosts: IBlogPost[];
   activeBlogPost: number | undefined;
-  blogPostComments: IBlogPostComment[];
+  blogPostComments: Map<number, IBlogPostComment[]>;
 }
 
 const adapter = createEntityAdapter<IBlogPost>({});
@@ -14,7 +14,7 @@ const adapter = createEntityAdapter<IBlogPost>({});
 const initialState: BlogPostState = adapter.getInitialState({
   loadedPosts: [],
   activeBlogPost: undefined,
-  blogPostComments: []
+  blogPostComments: new Map()
 });
 
 export const blogPostsFeature = createFeature({
@@ -29,9 +29,9 @@ export const blogPostsFeature = createFeature({
       ...currentState,
       loadedPosts: blogPosts
     })),
-    on(BlogPostActions["blog-post-comments-fetched"], (currentState, {blogPostComments}): BlogPostState => ({
+    on(BlogPostActions["blog-post-comments-fetched"], (currentState, {blogPostComments, id}): BlogPostState => ({
       ...currentState,
-      blogPostComments: blogPostComments
+      blogPostComments: currentState.blogPostComments.set(id, blogPostComments),
     })),
   ),
 });

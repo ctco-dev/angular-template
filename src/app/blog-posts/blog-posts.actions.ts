@@ -7,6 +7,6 @@ export const BlogPostActions = createActionGroup({
     'page-opened': emptyProps(),
     'blog-posts-fetched': props<{ blogPosts: IBlogPost[] }>(),
     'blog-post-opened': props<{ blogPostId: number }>(),
-    'blog-post-comments-fetched': props<{ blogPostComments: IBlogPostComment[] }>(),
+    'blog-post-comments-fetched': props<{ blogPostComments: IBlogPostComment[], id: number }>(),
   },
 });
