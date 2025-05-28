@@ -1,7 +1,15 @@
 <div class="blog-list">
-  <h2>Blog Posts</h2>
+  <!-- Sort Panel -->
+  <div class="blog-sort-panel">
+    <label for="orderBy" class="sort-label">Order by date:</label>
+    <select id="orderBy" [(ngModel)]="orderBy" class="sort-select">
+      <option value="desc">Newest First</option>
+      <option value="asc">Oldest First</option>
+    </select>
+  </div>
+
   <ul class="blog-list-grid">
-    <li *ngFor="let blog of blogsSignal().slice((currentPage()-1)*pageSize, currentPage()*pageSize)" class="blog-item-container">
+    <li *ngFor="let blog of sortedBlogs().slice((currentPage()-1)*pageSize, currentPage()*pageSize)" class="blog-item-container">
       <button (click)="onBlogSelected(blog)" class="blog-item">
         <h3>{{ blog.title }}</h3>
         <p [innerHTML]="blog.blogHtml.substring(0, 120)"></p>
@@ -10,7 +18,7 @@
     </li>
   </ul>
 
-  <div class="pagination bright-pagination" *ngIf="(blogsSignal().length || 0) > pageSize">
+  <div class="pagination bright-pagination" *ngIf="(sortedBlogs().length || 0) > pageSize">
     <button (click)="currentPage.set(currentPage() - 1)" [disabled]="currentPage() === 1">Prev</button>
     <span>Page {{currentPage()}} of {{totalPages()}}</span>
     <button (click)="currentPage.set(currentPage() + 1)" [disabled]="currentPage() === totalPages()">Next</button>
