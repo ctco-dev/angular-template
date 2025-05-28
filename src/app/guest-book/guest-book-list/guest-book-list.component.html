@@ -1,10 +1,11 @@
 <h3>Guest book entries:</h3>
 <div *ngIf="guestBookEntries?.length! > 0; else emptyElement">
-@for (guestBookEntry of guestBookEntries; track guestBookEntry) {
+@for (guestBookEntry of guestBookEntries; track guestBookEntry.id) {
   <mat-card class="post-card-short" appearance="outlined" >
     <mat-card-header>
       <!-- <mat-card-title>{{ post.title }}</mat-card-title>
       <mat-card-subtitle>{{ users ? users[post.userId!.toString()]?.username : '' }}</mat-card-subtitle> -->
+      <img appGravatar [email]="guestBookEntry.author!.email" class="rounded-circle shadow-sm">
     </mat-card-header>
     <mat-card-content>
       <p>{{ guestBookEntry.message }}</p>

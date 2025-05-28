@@ -16,12 +16,15 @@ import { GuestBookPageActions } from '../state/guest-book-entry.actions';
 export class GuestBookEditComponent {
   @Output() add = new EventEmitter<GuestBookEntry>();
 
-  constructor(private store: Store){
+  constructor(private store: Store) {
   }
 
-  addNew() {
+  addNew(guestBookEntry: GuestBookEntry) {
+
+
+
     console.log('Add new');
     this.store.dispatch(GuestBookPageActions.addGuestBookEntry({ guestBookEntry:
-      { id: '', author: { name: 'name', username: 'username', email: 'email' }, message: 'Test new message to be added ' + Date.now().toString() }}))
+      { id: '', author: { name: 'name', username: 'username', email: 'username@email.com' }, message: 'Test new message to be added ' + Date.now().toString() }}))
   }
 }

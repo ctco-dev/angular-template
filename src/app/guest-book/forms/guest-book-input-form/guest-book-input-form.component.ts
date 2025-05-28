@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output, output } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { GuestBookEntry } from '../../guest-book-entry.model';
 
 @Component({
   selector: 'app-guest-book-input-form',
@@ -12,12 +13,14 @@ import { MatInputModule } from '@angular/material/input';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestBookInputFormComponent {
+  @Output() add = new EventEmitter<GuestBookEntry>();
+
   guestBookForm = new FormGroup({
-    message: new FormControl('', [Validators.required, Validators.minLength(20)]),
+    message: new FormControl('', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]),
     author: new FormGroup({
-      name: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(150)]),
     })
   });
 
@@ -35,5 +38,26 @@ export class GuestBookInputFormComponent {
 
   public get message() {
     return this.guestBookForm.controls.message;
+  }
+
+  onSubmit() {
+    this.guestBookForm.markAllAsTouched();
+
+    if (this.guestBookForm.invalid) {
+      return;
+    }
+
+    const entry: GuestBookEntry = {
+      id: '',
+      message: this.guestBookForm.value.message ?? '',
+      author: {
+        name: this.guestBookForm.value.author?.name ?? '',
+        username: this.guestBookForm.value.author?.username ?? '',
+        email: this.guestBookForm.value.author?.email ?? '',
+      }
+    };
+
+    this.add.emit(entry);
+    this.guestBookForm.reset();
   }
 }

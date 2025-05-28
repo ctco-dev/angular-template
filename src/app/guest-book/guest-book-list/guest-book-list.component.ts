@@ -1,14 +1,16 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { GuestBookEntry } from '../guest-book-entry.model';
+import { GravatarDirective } from 'src/app/directives/gravatar.directive';
 
 @Component({
   selector: 'app-guest-book-list',
-  imports: [NgIf, MatCardModule, MatButtonModule],
+  imports: [NgIf, MatCardModule, MatButtonModule, GravatarDirective],
   templateUrl: './guest-book-list.component.html',
-  styleUrl: './guest-book-list.component.scss'
+  styleUrl: './guest-book-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestBookListComponent {
   @Input() guestBookEntries: GuestBookEntry[] | null = [];
