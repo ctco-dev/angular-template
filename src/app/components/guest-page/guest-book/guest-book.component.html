@@ -1,0 +1,18 @@
+<div class="guest-book-container">
+  <h1>Guest Book</h1>
+  
+  <app-guest-form 
+    (newEntry)="handleNewEntry($event)">
+  </app-guest-form>
+
+  <app-guest-entries 
+    [entries]="entries"
+    (showAuthorDetails)="handleShowAuthorDetails($event)">
+  </app-guest-entries>
+
+  <app-author-popup 
+    *ngIf="showPopup"
+    [entry]="selectedEntry"
+    (close)="handleClosePopup()">
+  </app-author-popup>
+</div> 

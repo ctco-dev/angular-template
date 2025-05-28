@@ -1,0 +1,10 @@
+<div class="popup-container">
+  <div class="popup-content">
+    <button type="button" (click)="closePopUp()"></button>
+    <img [src]="avatarUrl" alt="Author Avatar">
+    <div class="author-info" *ngIf="entry != undefined">
+      <h3>{{entry.name}}</h3>
+      <p>Email: {{entry.email}}</p>
+    </div>
+  </div>
+</div>

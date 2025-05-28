@@ -1,0 +1,12 @@
+<div class="entries-container">
+  <div *ngFor="let entry of entries" class="entry-card">
+    <div class="entry-header">
+      <span>{{entry.name}}: &nbsp;</span>
+      <small>{{entry.createdAt | date:'short'}}</small>
+    </div>
+    <div class="entry-content">
+      {{entry.message}}
+    </div>
+    <button (click)="onViewAuthor(entry)">View Author Info</button>
+  </div>
+</div>
