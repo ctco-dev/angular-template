@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {IBlogPost} from "../blog-post.model";
+import {IBlogPost} from "../blog-posts.model";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle, MatCardTitleGroup} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";

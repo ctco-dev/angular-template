@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {IBlogPost, IBlogPostComment} from './blog-post.model'
+import {IBlogPost, IBlogPostComment} from './blog-posts.model'
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BASE_URL} from "../../config";
