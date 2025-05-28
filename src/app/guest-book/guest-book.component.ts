@@ -14,6 +14,7 @@ import { startWith, Subject, switchMap } from 'rxjs';
 })
 export class GuestBookComponent {
   newEntry: IMessage;
+  selectedEntry: IMessage | null = null;
   private refreshGustMessages$ = new Subject<void>();
   guestMessages$ = this.refreshGustMessages$.pipe(
     startWith(null), // so it loads initially
@@ -26,6 +27,8 @@ export class GuestBookComponent {
       name: '',
       message: '',
       email: '',
+      avatar: 'user-m.png',
+      gender: 'male',
       date: new Date()
     };
   }
@@ -45,6 +48,8 @@ export class GuestBookComponent {
         name: '',
         message: '',
         email: '',
+        avatar: 'user-m.png',
+        gender: 'male',
         date: new Date()
       };
     }

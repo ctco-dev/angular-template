@@ -4,4 +4,6 @@ export interface IMessage {
     message: string;
     email: string;
     date: Date;
+    avatar: string;
+    gender: string;
     }

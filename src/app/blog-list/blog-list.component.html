@@ -1,6 +1,6 @@
 <div class="blog-list">
   <h2>Blog Posts</h2>
-  <ul>
+  <ul class="blog-list-grid">
     <li *ngFor="let blog of blogs$ | async" class="blog-item-container">
       <button (click)="onBlogSelected(blog)" class="blog-item">
         <h3>{{ blog.title }}</h3>
