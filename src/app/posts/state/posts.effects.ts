@@ -17,7 +17,7 @@ export class PostsEffects {
     return this.actions$.pipe(
       ofType(PostsPageActions.pageOpened, PostPageActions.pageOpened),
       concatLatestFrom(() => this.store.select(selectPostsLoaded)),
-      filter((_, loaded) => !loaded),
+      filter(([, loaded]) => !loaded),
       exhaustMap(() =>
         this.postsService.getPosts().pipe(
           map((posts) => PostsApiActions.postsLoadedSuccess({ posts })),

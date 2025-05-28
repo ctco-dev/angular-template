@@ -1,7 +1,11 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { Post } from '../posts.model';
-import { PostsApiActions, PostsPageActions } from './posts.actions';
+import {
+  PostPageActions,
+  PostsApiActions,
+  PostsPageActions,
+} from './posts.actions';
 
 export interface PostsState extends EntityState<Post> {
   loading: boolean;
@@ -23,7 +27,7 @@ export const postsFeature = createFeature({
     initialState,
     on(
       PostsPageActions.pageOpened,
-      PostsPageActions.pageOpened,
+      PostPageActions.pageOpened,
       (state): PostsState => ({
         ...state,
         loading: !state.loaded,
