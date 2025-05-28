@@ -1,5 +1,5 @@
 <div class="blog-comment-container">
-  <div class="blog-details" *ngIf="blog$ | async as blog">
+  <div class="blog-details" *ngIf="blogSignal() as blog">
     <h2>{{ blog.title }}</h2>
     <div class="blog-meta">
       <span>By {{ blog.author }}</span>
@@ -10,7 +10,7 @@
 
   <div class="comments-section">
     <h3>Comments</h3>
-    <ng-container *ngIf="comments$ | async as comments">
+    <ng-container *ngIf="commentsSignal() as comments">
       <div *ngIf="comments.length === 0" class="no-comments">
         No comments yet. Be the first to comment!
       </div>

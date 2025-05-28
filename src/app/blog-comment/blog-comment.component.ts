@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { IBlog } from '../blog-list/blog.model';
 import { IComment } from './comment.model';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from './blog.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { startWith, Subject, switchMap } from 'rxjs';
+import { map, switchMap, combineLatest } from 'rxjs';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-blog-comment',
@@ -13,19 +14,38 @@ import { startWith, Subject, switchMap } from 'rxjs';
   templateUrl: './blog-comment.component.html',
   styleUrl: './blog-comment.component.scss'
 })
-export class BlogCommentComponent{
-  blogId!: number; // Assuming blogId is set somewhere in the component
-  blog$ = this.route.paramMap.pipe(
-    switchMap(params => this.blogService.getBlog(Number(params.get('id'))))
+export class BlogCommentComponent {
+  // Signal for blogId from route
+  readonly blogIdSignal = toSignal(
+    this.route.paramMap.pipe(map(params => Number(params.get('id')))),
+    { initialValue: 0 }
   );
-  private refreshComments$ = new Subject<void>();
 
-comments$ = this.refreshComments$.pipe(
-  startWith(null), // so it loads initially
-  switchMap(() => this.route.paramMap.pipe(
-    switchMap(params => this.blogService.getComments(Number(params.get('id'))))
-  ))
-);
+  // Observable for blogId (for combineLatest)
+  private blogId$ = this.route.paramMap.pipe(map(params => Number(params.get('id'))));
+
+  // Signal to trigger refresh
+  private refreshComments = signal(0);
+
+  // Signal for blog
+  readonly blogSignal = toSignal(
+    this.route.paramMap.pipe(
+      switchMap(params => this.blogService.getBlog(Number(params.get('id'))))
+    ),
+    { initialValue: { id: 0, title: '', blogHtml: '', date: new Date(), author: '' } as IBlog }
+  );
+
+  // Observable for comments (refreshes on blogId or refresh)
+  private comments$ = combineLatest([
+    this.blogId$,
+    toObservable(this.refreshComments) // convert signal to observable
+  ]).pipe(
+    switchMap(([blogId]) => this.blogService.getComments(blogId))
+  );
+
+  // Signal for comments
+  readonly commentsSignal = toSignal(this.comments$, { initialValue: [] as IComment[] });
+
   newComment: IComment = {
     id: 0,
     name: '',
@@ -33,25 +53,16 @@ comments$ = this.refreshComments$.pipe(
     message: '',
     date: new Date()
   };
-  constructor(private route: ActivatedRoute, private blogService: BlogService) {
-      this.route.paramMap.subscribe(params => {
-    this.blogId = Number(params.get('id'));
-    // Now you can use blogId in your component
-    console.log('Blog ID from URL:', this.blogId);
-  });
-    }
+
+  constructor(private route: ActivatedRoute, private blogService: BlogService) {}
 
   addComment() {
     if (this.newComment.name && this.newComment.email && this.newComment.message) {
       this.newComment.date = new Date();
-      console.log('blog Id to sed:', this.blogId);
-      this.blogService.postComment(this.blogId, this.newComment).subscribe(comment => {
-        // Optionally, you can handle the response here
-        console.log('Comment added:', comment);
+      this.blogService.postComment(this.blogIdSignal(), this.newComment).subscribe(() => {
+        this.refreshComments.update(v => v + 1); // trigger refresh
+        this.newComment = { id: 0, name: '', email: '', message: '', date: new Date() };
       });
-        // Refresh the comments list
-    this.refreshComments$.next();
-      this.newComment = { id: 0, name: '', email: '', message: '', date: new Date() }; // Reset form
     } else {
       alert('Please fill in all fields.');
     }
