@@ -11,7 +11,7 @@ export const loadEntriesSuccess = createAction(
 // Add Entry
 export const addEntry = createAction(
   '[Guest Book] Add Entry',
-  props<{ entryData: Omit<GuestEntry, 'id' | 'createdAt'> }>()
+  props<{ entryData: GuestEntry }>()
 );
 export const addEntrySuccess = createAction(
   '[Guest Book] Add Entry Success',
