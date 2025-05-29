@@ -20,7 +20,7 @@
 </mat-card>
 
 @if (blogpost.comments) {
-  <div>
+  <div class="comments-container">
     @for (comment of blogpost.comments; track comment.id) {
       <app-blog-posts-comment [comment]="comment"></app-blog-posts-comment>
     }
