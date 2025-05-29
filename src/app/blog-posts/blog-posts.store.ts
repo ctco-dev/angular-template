@@ -1,37 +1,39 @@
 import {BlogPostActions} from './blog-posts.actions';
-import {IBlogPost, IBlogPostComment} from "./blog-posts.model";
+import {IBlogPost} from "./blog-posts.model";
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {createFeature, createReducer, on} from '@ngrx/store';
 
 export interface BlogPostState extends EntityState<IBlogPost> {
-  loadedPosts: IBlogPost[];
-  activeBlogPost: number | undefined;
-  blogPostComments: Map<number, IBlogPostComment[]>;
+  loadedPosts: IBlogPost[]
 }
 
 const adapter = createEntityAdapter<IBlogPost>({});
 
 const initialState: BlogPostState = adapter.getInitialState({
-  loadedPosts: [],
-  activeBlogPost: undefined,
-  blogPostComments: new Map()
+  loadedPosts: []
 });
 
 export const blogPostsFeature = createFeature({
   name: 'blog-posts',
   reducer: createReducer(
     initialState,
-    on(BlogPostActions["blog-post-opened"], (currentState, {blogPostId}): BlogPostState => ({
-      ...currentState,
-      activeBlogPost: blogPostId
-    })),
-    on(BlogPostActions["blog-posts-fetched"], (currentState, {blogPosts}): BlogPostState => ({
-      ...currentState,
-      loadedPosts: blogPosts
-    })),
-    on(BlogPostActions["blog-post-comments-fetched"], (currentState, {blogPostComments, id}): BlogPostState => ({
-      ...currentState,
-      blogPostComments: currentState.blogPostComments.set(id, blogPostComments),
-    })),
+    on(BlogPostActions["blog-posts-fetched"], (currentState, {blogPosts}): BlogPostState => ({...currentState, loadedPosts: blogPosts})),
+    on(BlogPostActions["blog-post-fetched"], (currentState, {blogPost}): BlogPostState => {
+      let loadedPosts = currentState.loadedPosts;
+      const index = loadedPosts.findIndex(post => post.id === blogPost.id);
+      if (index !== -1) {
+        loadedPosts[index] = blogPost;
+      } else {
+        loadedPosts = [...loadedPosts, blogPost];
+      }
+      return ({...currentState, loadedPosts});
+    }),
+    on(BlogPostActions["blog-post-comments-fetched"], (currentState, {blogPostId, blogPostComments}): BlogPostState => {
+      const loadedPosts = currentState.loadedPosts.map(post => {
+        if (post.id == blogPostId) return {...post, comments: blogPostComments}
+        return post;
+      });
+      return ({...currentState, loadedPosts});
+    }),
   ),
 });

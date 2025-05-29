@@ -11,5 +11,5 @@ import {RouterLink} from "@angular/router";
   styleUrl: './blog-posts-container.component.scss'
 })
 export class BlogPostsContainerComponent {
-  @Input() blogposts!: IBlogPost[];
+  @Input() blogpost!: IBlogPost;
 }

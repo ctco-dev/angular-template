@@ -1,16 +1,14 @@
-@for (blogpost of blogposts; track blogpost.id) {
-  <mat-card class="blogpost-card" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title>Post №{{ blogpost.id }}</mat-card-title>
-        <img class="blogpost-card-img" src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content class="blogpost-content">
-      {{ blogpost.title }}
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button [routerLink]="blogpost.id.toString()" mat-button>Show comments</button>
-    </mat-card-actions>
-  </mat-card>
-}
+<mat-card class="blogpost-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Post №{{ blogpost.id }}</mat-card-title>
+      <img class="blogpost-card-img" src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="blogpost-content">
+    {{ blogpost.title }}
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button [routerLink]="blogpost.id.toString()">Show comments</button>
+  </mat-card-actions>
+</mat-card>

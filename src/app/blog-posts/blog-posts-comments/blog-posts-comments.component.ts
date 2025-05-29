@@ -1,36 +1,30 @@
-import {Component, inject} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {HttpErrorResponse} from "@angular/common/module.d-CnjH8Dlt";
-import {BlogPostsService} from "../blog-posts.service";
+import {Component, inject, OnInit} from '@angular/core';
+import {BlogPostActions} from "../blog-posts.actions";
+import {Store} from "@ngrx/store";
+import {ActivatedRoute} from "@angular/router";
+import {selectBlogPostById} from "../blog-posts.selectors";
+import {BlogPostsContainerComponent} from "../blog-posts-container/blog-posts-container.component";
 
 @Component({
-  selector: 'app-blog-posts-container',
-  imports: [],
+  selector: 'app-blog-posts-comments',
+  imports: [
+    BlogPostsContainerComponent
+  ],
   templateUrl: './blog-posts-comments.component.html',
   styleUrl: './blog-posts-comments.component.scss'
 })
-export class BlogPostsCommentsComponent {
-  private snackbar = inject(MatSnackBar);
-  private blogPostsService: BlogPostsService = inject(BlogPostsService);
+export class BlogPostsCommentsComponent implements OnInit {
 
-  // @Input() blogPostId: number;
-  // blogPost: IBlogPost;
-  // blogPostComments: IBlogPostComment[];
+  private store = inject(Store);
+  private route = inject(ActivatedRoute);
+  private blogPostId!: number;
 
-  constructor() {
-    // this.blogPostsService.getBlogPostById(this.blogPostId).subscribe({
-    //   next: (blogPost: IBlogPost) => this.blogPost = blogPost,
-    //   error: (err: HttpErrorResponse) => this.showError(err)
-    // });
-    // this.blogPostsService.getBlogPostCommentsById(this.blogPostId).subscribe({
-    //   next: (blogPostComments: IBlogPostComment[]) => this.blogPostComments = blogPostComments,
-    //   error: (err: HttpErrorResponse) => this.showError(err)
-    // });
-  }
+  blogpost = this.store.selectSignal((state) => selectBlogPostById(state, {blogPostId: this.blogPostId}));
 
-  private showError(err: HttpErrorResponse) {
-    return this.snackbar.open(err.message, 'OK', {
-      duration: 5000
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.blogPostId = params['id'];
+      this.store.dispatch(BlogPostActions["blog-post-opened"]({blogPostId: this.blogPostId}))
     });
   }
 }

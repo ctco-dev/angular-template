@@ -1,1 +1,5 @@
-<app-blog-posts-container class="blogposts" [blogposts] = blogPosts()></app-blog-posts-container>
+<div class="blogposts">
+  @for (blogpost of blogPosts(); track blogpost.id) {
+    <app-blog-posts-container class="blogpost-card" [blogpost]=blogpost></app-blog-posts-container>
+  }
+</div>
