@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
-import { PostsPageComponent } from './posts-page.component';
+import { PostDetailsPageComponent } from './post-details-page.component';
 import { provideMockStore } from '@ngrx/store/testing';
+import { provideRouter } from '@angular/router'
 
-describe('PostsPageComponent', () => {
-    let component: PostsPageComponent;
-    let fixture: ComponentFixture<PostsPageComponent>;
+describe('PostDetailsPage', () => {
+    let component: PostDetailsPageComponent;
+    let fixture: ComponentFixture<PostDetailsPageComponent>;
 
     const initialState = {
         posts: {
@@ -18,10 +19,11 @@ describe('PostsPageComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                provideMockStore({initialState})
+                provideMockStore({initialState}),
+                provideRouter([])
             ]
         });
-        fixture = TestBed.createComponent(PostsPageComponent);
+        fixture = TestBed.createComponent(PostDetailsPageComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
