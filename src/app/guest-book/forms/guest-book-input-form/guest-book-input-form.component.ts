@@ -8,7 +8,7 @@ import { Observable, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-guest-book-input-form',
-  imports: [MatFormFieldModule, MatDividerModule, ReactiveFormsModule, MatInputModule ],
+  imports: [MatFormFieldModule, MatDividerModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './guest-book-input-form.component.html',
   styleUrl: './guest-book-input-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

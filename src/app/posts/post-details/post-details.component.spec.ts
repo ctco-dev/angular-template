@@ -3,38 +3,54 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PostDetailsComponent } from './post-details.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  selectPostById,
+  selectPostErrorMessage,
+  selectPostId,
+  selectPostsLoading,
+} from '../state/posts.selectors';
+import { selectUserEntities, selectUserLoading } from 'src/app/users/state/users.selectors';
+import { PostsService } from '../posts.service';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('PostDetailsComponent', () => {
   let component: PostDetailsComponent;
   let fixture: ComponentFixture<PostDetailsComponent>;
   let mockStore: MockStore;
+  let mockPostsService: PostsService;
 
   beforeEach(async () => {
+    mockPostsService = jasmine.createSpyObj<PostsService>('PostsService', ['getCommentsById']);
+
     await TestBed.configureTestingModule({
       imports: [PostDetailsComponent],
-      providers: [provideMockStore()],
+      providers: [provideMockStore(),
+        {
+          provide: PostsService,
+          useValue: mockPostsService
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({id: 1}),
+          }
+        }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
     mockStore = TestBed.inject(MockStore);
-    fixture = TestBed.createComponent(PostsPageComponent);
-    component = fixture.componentInstance;
+    mockStore.overrideSelector(selectPostId, Number(1));
 
-    collectionsSelector = mockStore.overrideSelector(
-      selectPosts,
-      [
-        {
-          id: 1,
-          body:'body1',
-          title:'title1',
-          userId: 2
-        },
-      ],
+    mockStore.overrideSelector(
+      selectPostById,
+      {
+        id: 1,
+        body:'body1',
+        title:'title1',
+        userId: 2
+      },
     );
 
     mockStore.overrideSelector(
@@ -52,6 +68,8 @@ describe('PostDetailsComponent', () => {
     mockStore.overrideSelector(selectPostsLoading, false);
     mockStore.overrideSelector(selectPostErrorMessage, '');
 
+    fixture = TestBed.createComponent(PostDetailsComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
