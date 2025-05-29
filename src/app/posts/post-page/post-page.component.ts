@@ -13,6 +13,7 @@ import { PostPageActions } from '../state/posts.actions';
 import {
   selectPostById,
   selectPostsErrorMessage,
+  selectPostsLoading,
 } from '../state/posts.selectors';
 
 @Component({
@@ -32,6 +33,7 @@ export class PostPageComponent implements OnInit {
   private postsService = inject(PostsService);
 
   post = this.store.selectSignal(selectPostById);
+  postsLoading = this.store.selectSignal(selectPostsLoading);
   postsErrorMessage = this.store.selectSignal(selectPostsErrorMessage);
   commentsErrorMessage = signal('');
 

@@ -4,6 +4,7 @@ import { provideState } from '@ngrx/store';
 import { GuestBookService } from './guest-book/guest-book.service';
 import { GuestBookEffects } from './guest-book/state/guest-book.effects';
 import { guestBookFeature } from './guest-book/state/guest-book.reducer';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PostsService } from './posts/posts.service';
 import { PostsEffects } from './posts/state/posts.effects';
 import { postsFeature } from './posts/state/posts.reducer';
@@ -32,5 +33,9 @@ export const appRoutes: Routes = [
       provideState(guestBookFeature),
       provideEffects(GuestBookEffects),
     ],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];

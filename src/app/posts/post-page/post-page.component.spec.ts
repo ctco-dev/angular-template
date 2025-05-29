@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActivatedRoute } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of, throwError } from 'rxjs';
@@ -11,6 +10,7 @@ import { PostPageActions } from '../state/posts.actions';
 import {
   selectPostById,
   selectPostsErrorMessage,
+  selectPostsLoading,
 } from '../state/posts.selectors';
 import { PostPageComponent } from './post-page.component';
 
@@ -47,6 +47,10 @@ describe('PostPageComponent', () => {
                 title: 'Post Title',
                 body: 'Post Body',
               } as Post,
+            },
+            {
+              selector: selectPostsLoading,
+              value: false,
             },
             {
               selector: selectPostsErrorMessage,
