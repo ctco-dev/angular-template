@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { GuestBookPageActions } from '../state/guest-book-entry.actions';
 import { selectGuestBookEntries, selectGuestBookErrorMessage, selectGuestBookLoading } from '../state/guest-book-entry.selectors';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { GuestBookEditComponent } from '../guest-book-edit/guest-book-edit.component';
 
 @Component({
