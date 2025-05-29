@@ -1,28 +1,37 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AvatarService } from '../../../services/avatar.service';
-import { GuestEntry } from 'src/app/models/guest-entry.model';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectSelectedEntry } from '../state/guest-book.selectors';
+import { closeAuthorPopup } from '../state/guest-book.actions';
+import { AvatarService } from '../services/avatar.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-author-popup',
     templateUrl: './author-popup.component.html',
-    imports: [CommonModule]
+    standalone: true,
+    imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule],
 })
-export class AuthorPopupComponent implements OnInit {
-    @Input() entry: GuestEntry | null | undefined;
-    @Output()
-    close: EventEmitter<number> = new EventEmitter<number>();
+export class AuthorPopupComponent {
+    entry$ = this.store.select(selectSelectedEntry);
     avatarUrl = '';
 
-    constructor(private avatarService: AvatarService) { }
-
-    ngOnInit() {
-        if (this.entry != undefined) {
-            this.avatarUrl = this.avatarService.getGravatarUrl(this.entry.email);
+    constructor(
+        private store: Store,
+        private avatarService: AvatarService
+    ) {
+        if (this.entry$ != undefined) {
+            this.entry$.subscribe(entry => {
+                if (entry) {
+                    this.avatarUrl = this.avatarService.getGravatarUrl(entry.email);
+                }
+            });
         }
     }
 
     closePopUp() {
-        this.close.emit(1);
+        this.store.dispatch(closeAuthorPopup());
     }
 }

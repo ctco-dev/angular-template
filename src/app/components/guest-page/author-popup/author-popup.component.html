@@ -1,10 +1,10 @@
-<div class="popup-container">
+<mat-dialog-content class="popup-container">
   <div class="popup-content">
-    <button type="button" (click)="closePopUp()"></button>
-    <img [src]="avatarUrl" alt="Author Avatar">
-    <div class="author-info" *ngIf="entry != undefined">
-      <h3>{{entry.name}}</h3>
-      <p>Email: {{entry.email}}</p>
+    <img [src]="avatarUrl" alt="Author Avatar" class="avatar">
+    
+    <div class="author-info" *ngIf="entry$ | async as entry">
+      <h2>{{entry.name }}</h2>
+      <p>{{entry.email}}</p>
     </div>
   </div>
-</div>
+</mat-dialog-content>

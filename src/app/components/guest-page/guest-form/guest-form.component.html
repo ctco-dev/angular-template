@@ -1,40 +1,35 @@
-<form [formGroup]="guestForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>Name:</label>
-    <input formControlName="name" />
-    <div *ngIf="guestForm.get('name')?.errors?.['required'] && 
-                 (guestForm.get('name')?.touched)">
+<form [formGroup]="guestForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="guestForm.get('name')?.hasError('required')">
       Name is required
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label>Email:</label>
-    <input formControlName="email" type="email" />
-    <div *ngIf="guestForm.get('email')?.errors?.['required'] && 
-                 (guestForm.get('email')?.touched)">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email">
+    <mat-error *ngIf="guestForm.get('email')?.hasError('required')">
       Email is required
-    </div>
-    <div *ngIf="guestForm.get('email')?.errors?.['email'] && 
-                 (guestForm.get('email')?.touched)">
+    </mat-error>
+    <mat-error *ngIf="guestForm.get('email')?.hasError('email')">
       Invalid email format
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label>Message:</label>
-    <textarea formControlName="message"></textarea>
-        <div *ngIf="guestForm.get('message')?.errors?.['required'] && 
-                 (guestForm.get('message')?.touched)">
+  <mat-form-field appearance="outline">
+    <mat-label>Message</mat-label>
+    <textarea matInput formControlName="message" rows="4"></textarea>
+    <mat-error *ngIf="guestForm.get('message')?.hasError('required')">
       Message is required
-    </div>
-    <div *ngIf="guestForm.get('message')?.errors?.['minLength'] && 
-                 (guestForm.get('message')?.touched)">
-      Message must be at least 20 characters long
-    </div>
-  </div>
+    </mat-error>
+    <mat-error *ngIf="guestForm.get('message')?.hasError('minlength')">
+      Message must be at least 20 characters
+    </mat-error>
+  </mat-form-field>
 
-  <button type="submit" [disabled]="!guestForm.valid">
-    Submit
+  <button mat-raised-button color="secondary" type="submit" [disabled]="!guestForm.valid">
+    Add new guest book entry
   </button>
 </form>

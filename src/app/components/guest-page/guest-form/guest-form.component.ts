@@ -1,34 +1,34 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { Store } from '@ngrx/store';
+import { addEntry } from '../state/guest-book.actions';
+import { GuestEntry } from 'src/app/components/guest-page/models/guest-entry.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { GuestEntry } from 'src/app/models/guest-entry.model';
 
 @Component({
   selector: 'app-guest-form',
   templateUrl: './guest-form.component.html',
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
 })
-
 export class GuestFormComponent {
-  @Output() newEntry = new EventEmitter<GuestEntry>();
-
   guestForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
-    message: new FormControl('', [
-      Validators.required,
-      Validators.minLength(20)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    message: new FormControl('', [Validators.required, Validators.minLength(20)]),
   });
+
+  constructor(private store: Store) {}
 
   onSubmit() {
     if (this.guestForm.valid) {
-      localStorage.setItem(new Date().toString(), JSON.stringify(this.guestForm.value));
-      this.newEntry.emit(this.guestForm.value as GuestEntry);
-      this.guestForm.setValue({name: "", email: "", message: ""});
+      this.store.dispatch(addEntry({ 
+        entryData: this.guestForm.value as GuestEntry
+      }));
+      this.guestForm.reset();
     }
   }
 }
