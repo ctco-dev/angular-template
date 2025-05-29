@@ -3,10 +3,11 @@ import {IBlogPost} from "../blog-posts.model";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle, MatCardTitleGroup} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {BlogPostsCommentComponent} from "../blog-posts-comment/blog-posts-comment.component";
 
 @Component({
   selector: 'app-blog-posts-container',
-  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardTitleGroup, MatCardContent, MatCardActions, MatButton, RouterLink, MatCardSubtitle],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardTitleGroup, MatCardContent, MatCardActions, MatButton, RouterLink, MatCardSubtitle, BlogPostsCommentComponent],
   templateUrl: './blog-posts-container.component.html',
   styleUrl: './blog-posts-container.component.scss'
 })

@@ -18,3 +18,11 @@
     </mat-card-actions>
   }
 </mat-card>
+
+@if (blogpost.comments) {
+  <div>
+    @for (comment of blogpost.comments; track comment.id) {
+      <app-blog-posts-comment [comment]="comment"></app-blog-posts-comment>
+    }
+  </div>
+}
