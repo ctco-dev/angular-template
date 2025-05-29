@@ -1,0 +1,17 @@
+<div class="posts-list">
+  <div class="post-item" *ngFor="let post of posts">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ post.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="post-content">
+        <p>{{ post.body }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button [routerLink]="['/post', post.id]">
+          Read More
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

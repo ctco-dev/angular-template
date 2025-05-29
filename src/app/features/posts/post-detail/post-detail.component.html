@@ -1,0 +1,50 @@
+<div class="back-container">
+  <button mat-flat-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+    Back
+  </button>
+</div>
+
+<div class="post-card-container">
+  <mat-card *ngIf="post">
+    <mat-card-header>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ post.body }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="comments-card-container" *ngIf="loadingComments() === false; else loadingElement">
+  <mat-card *ngIf="comments?.length; else noComments">
+    <mat-card-header class="comment-header">
+      <mat-card-title>Comments ({{ comments?.length }})</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngFor="let comment of comments">
+        <mat-card class="comment-card">
+          <div class="comment-content">
+            <mat-card-header>
+              <mat-card-title>
+                {{ comment.name }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                <span class="comment-email">{{ comment.email }}</span>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ comment.body }}</p>
+            </mat-card-content>
+          </div>
+        </mat-card>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #noComments>
+  <p>No comments yet.</p>
+</ng-template>
+
+<ng-template #loadingElement>Loading comments...</ng-template>

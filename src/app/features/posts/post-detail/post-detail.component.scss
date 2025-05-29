@@ -1,0 +1,27 @@
+.post-card-container {
+    margin-bottom: 32px;
+    font-size: medium;
+    white-space: pre-line;
+    padding-top: 16px;
+}
+
+.comments-card-container {
+    margin-top: 12px;
+    font-size: small;
+
+    .comment-content {
+        word-break: break-word;
+        white-space: pre-line;
+        background: none;
+    }
+
+    .comment-card {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .comment-header {
+        padding: 8px 16px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+}
