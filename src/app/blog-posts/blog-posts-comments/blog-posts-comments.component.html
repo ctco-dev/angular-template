@@ -1,5 +1,5 @@
 @if (blogpost()) {
-  <app-blog-posts-container [blogpost]=blogpost()!></app-blog-posts-container>
+  <app-blog-posts-container [expandedMode]="true" [blogpost]=blogpost()!></app-blog-posts-container>
 } @else {
   <div>No post with provided ID is available</div>
 }

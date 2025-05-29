@@ -5,10 +5,16 @@
       <img class="blogpost-card-img" src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
     </mat-card-title-group>
   </mat-card-header>
-  <mat-card-content class="blogpost-content">
+  <mat-card-subtitle class="blogpost-subtitle">
     {{ blogpost.title }}
-  </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-button [routerLink]="blogpost.id.toString()">Show comments</button>
-  </mat-card-actions>
+  </mat-card-subtitle>
+  @if (expandedMode) {
+    <mat-card-content class="blogpost-content">
+      {{ blogpost.body }}
+    </mat-card-content>
+  } @else {
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="blogpost.id.toString()">Show comments</button>
+    </mat-card-actions>
+  }
 </mat-card>
