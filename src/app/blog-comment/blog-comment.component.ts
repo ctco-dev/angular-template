@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BlogService } from './blog.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { map, switchMap, combineLatest } from 'rxjs';
+import { map, switchMap, combineLatest, catchError } from 'rxjs';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -24,9 +24,25 @@ export class BlogCommentComponent {
 
   private refreshComments = signal(0);
 
+  errorMessage: string | null = null;
+
   readonly blogSignal = toSignal(
     this.route.paramMap.pipe(
-      switchMap(params => this.blogService.getBlog(Number(params.get('id'))))
+      switchMap(params =>
+        this.blogService.getBlog(Number(params.get('id'))).pipe(
+          catchError(() => {
+            this.errorMessage = 'Failed to load blog. Redirecting...';
+            setTimeout(() => {
+              this.errorMessage = null;
+              window.location.href = '/blogs';
+            }, 2000);
+            // Return an empty blog object to keep types happy
+            return [
+              { id: 0, title: '', blogHtml: '', date: new Date(), author: '' } as IBlog
+            ];
+          })
+        )
+      )
     ),
     { initialValue: { id: 0, title: '', blogHtml: '', date: new Date(), author: '' } as IBlog }
   );
@@ -47,6 +63,8 @@ export class BlogCommentComponent {
     message: '',
     date: new Date()
   };
+
+
 
   constructor(private route: ActivatedRoute, private blogService: BlogService) {}
 
