@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 import { SiteHeaderComponent } from './site-header.component';
 
@@ -8,7 +9,10 @@ describe('SiteHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SiteHeaderComponent]
+      imports: [SiteHeaderComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: {}, params: {} } }
+      ]
     })
     .compileComponents();
 

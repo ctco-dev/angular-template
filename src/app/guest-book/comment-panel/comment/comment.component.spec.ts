@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CommentComponent } from './comment.component';
 
@@ -8,7 +10,10 @@ describe('CommentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommentComponent]
+      imports: [HttpClientTestingModule, CommentComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: {}, params: {} } }
+      ]
     })
     .compileComponents();
 
