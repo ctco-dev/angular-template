@@ -16,7 +16,6 @@ export class RegisterComponent {
 
   onRegister() {
     if (this.password === this.confirmPassword) {
-      // Registration logic here
       console.log('User registered:', this.email);
     } else {
       console.error('Passwords do not match');

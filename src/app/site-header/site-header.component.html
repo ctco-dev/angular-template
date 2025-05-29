@@ -9,7 +9,6 @@
     </span>
   </nav>
 
-  <!-- Login Popup -->
   <div class="login-popup-backdrop" *ngIf="showLoginPopup" (click)="showLoginPopup = false">
     <div class="login-popup" (click)="$event.stopPropagation()">
       <button class="close-btn" (click)="showLoginPopup = false">&times;</button>

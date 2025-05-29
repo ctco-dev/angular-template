@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 //   date: Date
 // }
 
-// Initialize 15 blogs with real HTML content (500-4000 symbols each)
 let blogs = [
   {
     id: 1,
@@ -226,8 +225,6 @@ let blogs = [
 //   email: string,
 //   date: Date
 // }
-
-// Initialize comments for blogs
 let comments = [
   {
     id: 1,
@@ -255,7 +252,6 @@ let comments = [
   }
 ];
 
-// Initialize guest book comments
 let guestComments = [
   {
     id: 1,

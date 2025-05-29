@@ -17,14 +17,12 @@ export class SiteHeaderComponent {
   readonly isSignedInSignal = signal(!!localStorage.getItem('token'));
 
   onSignIn() {
-    // Your sign-in logic here
     this.showLoginPopup = false;
   }
 
   logout() {
     localStorage.removeItem('token');
     this.isSignedInSignal.set(false);
-    // Optionally, navigate or reload
   }
 
 }

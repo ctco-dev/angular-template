@@ -15,19 +15,15 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
   styleUrl: './blog-comment.component.scss'
 })
 export class BlogCommentComponent {
-  // Signal for blogId from route
   readonly blogIdSignal = toSignal(
     this.route.paramMap.pipe(map(params => Number(params.get('id')))),
     { initialValue: 0 }
   );
 
-  // Observable for blogId (for combineLatest)
   private blogId$ = this.route.paramMap.pipe(map(params => Number(params.get('id'))));
 
-  // Signal to trigger refresh
   private refreshComments = signal(0);
 
-  // Signal for blog
   readonly blogSignal = toSignal(
     this.route.paramMap.pipe(
       switchMap(params => this.blogService.getBlog(Number(params.get('id'))))
@@ -35,15 +31,13 @@ export class BlogCommentComponent {
     { initialValue: { id: 0, title: '', blogHtml: '', date: new Date(), author: '' } as IBlog }
   );
 
-  // Observable for comments (refreshes on blogId or refresh)
   private comments$ = combineLatest([
     this.blogId$,
-    toObservable(this.refreshComments) // convert signal to observable
+    toObservable(this.refreshComments)
   ]).pipe(
     switchMap(([blogId]) => this.blogService.getComments(blogId))
   );
 
-  // Signal for comments
   readonly commentsSignal = toSignal(this.comments$, { initialValue: [] as IComment[] });
 
   newComment: IComment = {

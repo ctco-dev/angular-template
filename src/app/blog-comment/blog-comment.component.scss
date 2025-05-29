@@ -6,7 +6,7 @@
   box-shadow: 0 4px 24px rgba(78, 84, 200, 0.10);
   padding: 2rem 2.5rem;
   font-family: 'Segoe UI', Arial, sans-serif;
-  color: #fff; // changed to pure white
+  color: #fff; 
 }
 
 .blog-details h2 {
@@ -15,7 +15,7 @@
 }
 
 .blog-meta {
-  color: #e0e0e0; // lighter for better contrast
+  color: #e0e0e0; 
   font-size: 0.95rem;
   margin-bottom: 1.2rem;
   display: flex;
@@ -25,7 +25,7 @@
 .blog-content {
   margin-bottom: 2rem;
   line-height: 1.7;
-  color: #fff; // pure white for content
+  color: #fff; 
 }
 
 .comments-section {
@@ -40,7 +40,7 @@
 }
 
 .no-comments {
-  color: #ccc; // lighter for better contrast
+  color: #ccc;
   font-style: italic;
   margin-bottom: 1rem;
 }
@@ -79,7 +79,7 @@ ul {
   border-radius: 6px;
   font-size: 1rem;
   background: #23262f;
-  color: #fff; // pure white for input text
+  color: #fff;
   transition: border 0.2s;
 }
 
