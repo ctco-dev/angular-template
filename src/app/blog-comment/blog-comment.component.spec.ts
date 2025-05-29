@@ -16,7 +16,7 @@ describe('BlogCommentComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            paramMap: of({ get: () => '1' }) // <-- Mock as observable with a get method
+            paramMap: of({ get: () => '1' })
           }
         }
       ]

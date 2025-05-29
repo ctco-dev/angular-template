@@ -9,7 +9,7 @@ describe('BlogListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BlogListComponent] // <-- Add HttpClientTestingModule here
+      imports: [HttpClientTestingModule, BlogListComponent]
     })
     .compileComponents();
 
