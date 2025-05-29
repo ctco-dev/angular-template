@@ -30,19 +30,31 @@
     </div>
   </div>
 
-  <!-- Add Entry Form -->
-  <form #guestForm="ngForm" (ngSubmit)="addEntry()" autocomplete="off">
-    <div>
-      <label for="name">Name*</label>
-      <input id="name" name="name" [(ngModel)]="newEntry.name" required>
+  <form #guestForm="ngForm" (ngSubmit)="addEntry(guestForm)" autocomplete="off">
+  <div>
+    <label for="name">Name*</label>
+    <input id="name" name="name" [(ngModel)]="newEntry.name" required #nameInput="ngModel">
+    <div class="validation-message" *ngIf="nameInput.touched && nameInput.invalid">
+      <span *ngIf="nameInput.errors?.['required']">Name is required.</span>
     </div>
-    <div>
-      <label for="email">Email*</label>
-      <input id="email" name="email" type="email" [(ngModel)]="newEntry.email" required>
+  </div>
+  <div>
+    <label for="email">Email*</label>
+    <input id="email" name="email" type="email" [(ngModel)]="newEntry.email" required #emailInput="ngModel">
+    <div class="validation-message" *ngIf="emailInput.touched && emailInput.invalid">
+      <span *ngIf="emailInput.errors?.['required']">Email is required.</span>
+      <span *ngIf="emailInput.errors?.['email']">Please enter a valid email address.</span>
     </div>
-    <div>
-      <label for="message">Message*</label>
-      <textarea id="message" name="message" [(ngModel)]="newEntry.message" required minlength="20"></textarea>
+  </div>
+  <div>
+    <label for="message">Message*</label>
+    <textarea id="message" name="message" [(ngModel)]="newEntry.message" required minlength="20" #messageInput="ngModel"></textarea>
+    <div class="validation-message" *ngIf="messageInput.touched && messageInput.invalid">
+      <span *ngIf="messageInput.errors?.['required']">Message is required.</span>
+      <span *ngIf="messageInput.errors?.['minlength']">
+        Message must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).
+      </span>
     </div>
-    <button type="submit" [disabled]="guestForm.invalid">Add Entry</button>
-  </form>
+  </div>
+  <button type="submit" [disabled]="guestForm.invalid">Add Entry</button>
+</form>

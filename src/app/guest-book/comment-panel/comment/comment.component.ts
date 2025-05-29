@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { IMessage } from './message.model';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CommentsService } from './comments.service';
 import { startWith, Subject, switchMap } from 'rxjs';
@@ -39,7 +39,7 @@ export class CommentComponent {
     };
   }
 
-  addEntry() {
+  addEntry(form: NgForm) {
     if (this.newEntry.name && this.newEntry.message && this.newEntry.email) {
       this.newEntry.date = new Date();
       this.service.postMessage(this.newEntry).subscribe(entry => {
@@ -54,6 +54,7 @@ export class CommentComponent {
         gender: 'male',
         date: new Date()
       };
+      form.resetForm();
     }
   }
 }
