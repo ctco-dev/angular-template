@@ -1,0 +1,7 @@
+@if (loading()) {
+  <p>Loading...</p>
+} @else if (errorMessage()) {
+  <p>Error {{ errorMessage() }}</p>
+} @else {
+  <app-posts-list [posts]="posts()" [users]="users()" />
+}

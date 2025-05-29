@@ -1,0 +1,22 @@
+<div class="post-page">
+  <a class="posts-link" mat-button routerLink="/posts">
+    <mat-icon>arrow_back</mat-icon>
+    Posts
+  </a>
+
+  @if (postsLoading()) {
+    <p>Loading...</p>
+  } @else if (postsErrorMessage()) {
+    <p>Error {{ postsErrorMessage() }}</p>
+  } @else if (post()) {
+    <app-post-details [post]="post()!" [user]="user()" [showActions]="false" />
+
+    @if (commentsErrorMessage()) {
+      <p>Error {{ commentsErrorMessage() }}</p>
+    } @else {
+      <app-post-comments [comments]="postComments()" />
+    }
+  } @else {
+    <p>Post not found.</p>
+  }
+</div>

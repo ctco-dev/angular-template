@@ -1,0 +1,9 @@
+.post-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .posts-link {
+    max-width: fit-content;
+  }
+}

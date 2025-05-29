@@ -1,0 +1,27 @@
+.author {
+  display: flex;
+  align-items: end;
+
+  img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+  }
+
+  .contacts {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      padding: 0;
+      margin: 0;
+      line-height: normal;
+      font-size: 20px;
+    }
+
+    .email {
+      font-size: 14px;
+    }
+  }
+}
