@@ -4,7 +4,7 @@ import { IComment } from './comment.model';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from './blog.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { map, switchMap, combineLatest } from 'rxjs';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 
@@ -50,12 +50,13 @@ export class BlogCommentComponent {
 
   constructor(private route: ActivatedRoute, private blogService: BlogService) {}
 
-  addComment() {
+  addComment(form: NgForm) {
     if (this.newComment.name && this.newComment.email && this.newComment.message) {
       this.newComment.date = new Date();
       this.blogService.postComment(this.blogIdSignal(), this.newComment).subscribe(() => {
         this.refreshComments.update(v => v + 1); // trigger refresh
         this.newComment = { id: 0, name: '', email: '', message: '', date: new Date() };
+        form.resetForm();
       });
     } else {
       alert('Please fill in all fields.');

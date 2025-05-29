@@ -28,7 +28,7 @@
 
   <div class="add-comment-section">
     <h3>Add a Comment</h3>
-    <form #commentForm="ngForm" (ngSubmit)="addComment()">
+    <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
       <input
         type="text"
         name="name"
@@ -36,23 +36,44 @@
         placeholder="Your Name"
         required
         class="input"
+        #nameInput="ngModel"
       />
+      <div class="validation-message" *ngIf="nameInput.touched && nameInput.invalid">
+        <span *ngIf="nameInput.errors?.['required']">Name is required.</span>
+      </div>
+
       <input
         type="email"
         name="email"
         [(ngModel)]="newComment.email"
         placeholder="Your Email"
         required
+        email
         class="input"
+        #emailInput="ngModel"
       />
+      <div class="validation-message" *ngIf="emailInput.touched && emailInput.invalid">
+        <span *ngIf="emailInput.errors?.['required']">Email is required.</span>
+        <span *ngIf="emailInput.errors?.['email']">Please enter a valid email address.</span>
+      </div>
+
       <textarea
         name="message"
         [(ngModel)]="newComment.message"
         placeholder="Your Comment"
         required
+        minlength="20"
         class="textarea"
         rows="3"
+        #messageInput="ngModel"
       ></textarea>
+      <div class="validation-message" *ngIf="messageInput.touched && messageInput.invalid">
+        <span *ngIf="messageInput.errors?.['required']">Comment is required.</span>
+        <span *ngIf="messageInput.errors?.['minlength']">
+          Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).
+        </span>
+      </div>
+
       <button type="submit" [disabled]="!commentForm.form.valid" class="submit-btn">Post Comment</button>
     </form>
   </div>
