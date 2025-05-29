@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadEntries } from '../state/guest-book.actions';
 import { selectEntries, selectShowPopup, selectSelectedEntry } from '../state/guest-book.selectors';
@@ -12,7 +12,7 @@ import { AuthorPopupComponent } from '../author-popup/author-popup.component';
   selector: 'app-guest-book',
   templateUrl: './guest-book.component.html',
   standalone: true,
-  imports: [CommonModule, MatCardModule, GuestFormComponent, GuestEntriesComponent, AuthorPopupComponent],
+  imports: [CommonModule, MatCardModule, GuestFormComponent, GuestEntriesComponent],
 })
 export class GuestBookComponent {
   entries$ = this.store.select(selectEntries);

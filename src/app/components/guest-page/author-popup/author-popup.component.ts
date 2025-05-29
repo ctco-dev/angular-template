@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'app-author-popup',
     templateUrl: './author-popup.component.html',
+    styleUrls: ['./author-popup.component.scss'],
     standalone: true,
     imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule],
 })
