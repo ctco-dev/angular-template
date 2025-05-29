@@ -119,3 +119,39 @@ ul {
   font-weight: bold;
   text-align: center;
 }
+
+.rating-group {
+  margin: 1rem 0 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rating-label {
+  margin-bottom: 0.3rem;
+  color: #8f94fb;
+  font-weight: 500;
+}
+.stars {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.2rem;
+}
+.star-input {
+  display: none;
+}
+.star {
+  font-size: 2rem;
+  color: #bfc2e6;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+.star.filled,
+.star:hover,
+.star:hover ~ .star {
+  color: #ffd700;
+}
+.star-input:checked ~ label.star,
+.star-input:checked ~ label.star ~ label.star {
+  color: #ffd700;
+}

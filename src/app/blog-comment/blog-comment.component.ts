@@ -61,7 +61,8 @@ export class BlogCommentComponent {
     name: '',
     email: '',
     message: '',
-    date: new Date()
+    date: new Date(),
+    rating: undefined,
   };
 
 

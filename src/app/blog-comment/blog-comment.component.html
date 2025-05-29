@@ -78,6 +78,27 @@
         </span>
       </div>
 
+      <div class="rating-group">
+        <label class="rating-label">Your Rating:</label>
+        <div class="stars">
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <input
+              type="radio"
+              [id]="'star' + star"
+              name="rating"
+              [value]="star"
+              [(ngModel)]="newComment.rating"
+              class="star-input"
+            />
+            <label
+              [for]="'star' + star"
+              class="star"
+              [class.filled]="star <= (newComment.rating || 0)"
+              title="{{star}} star"
+            >&#9733;</label>
+          </ng-container>
+        </div>
+      </div>
       <button type="submit" [disabled]="!commentForm.form.valid" class="submit-btn">Post Comment</button>
     </form>
   </div>

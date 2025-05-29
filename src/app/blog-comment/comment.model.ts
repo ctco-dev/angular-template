@@ -4,4 +4,5 @@ export interface IComment {
     message: string;
     email: string;
     date: Date;
+    rating?: number;
     }
