@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PostsPageComponent } from './posts-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { PostsListComponent } from '../posts-list/posts-list.component';
@@ -13,6 +12,8 @@ import { PostsPageActions } from '../state/posts.actions';
 import { selectUserEntities, selectUserLoading } from 'src/app/users/state/users.selectors';
 import { User } from 'src/app/users/user.model';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('PostsPageComponent', () => {
   let component: PostsPageComponent;
@@ -26,7 +27,14 @@ describe('PostsPageComponent', () => {
         PostsPageComponent,
         PostsListComponent,
       ],
-      providers: [provideMockStore()],
+      providers: [provideMockStore(),
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({id: 1}),
+          }
+        }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
 
@@ -65,7 +73,7 @@ describe('PostsPageComponent', () => {
     //spyOn(mockGuestBookStore, 'dispatch').and.callFake(() => {});
   });
 
-  it('should render guest book entries', () => {
+  it('should render post entries', () => {
     expect(fixture.debugElement.queryAll(By.css('.container')).length).toBe(1);
   });
 });

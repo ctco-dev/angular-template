@@ -17,7 +17,6 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('./posts/posts.routes').then((mod) => mod.routes),
     providers: [
-      PostsService,
       provideState(postsFeature),
       provideState(usersFeature),
       provideEffects(PostsEffects, UsersEffects),
@@ -28,8 +27,6 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('./guest-book/guest-book.routes').then((mod) => mod.routes),
     providers: [
-      GuestBookService,
-      LocalStorageService,
       provideState(guestBookFeature),
       provideEffects(GuestBookEffects),
     ],
