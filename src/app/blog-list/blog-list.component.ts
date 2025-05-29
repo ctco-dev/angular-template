@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { BlogService } from './blog.service';
 import { IBlog } from './blog.model';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,13 @@ export class BlogListComponent {
 
   currentPage = signal(1);
 
-  orderBy = signal<'asc' | 'desc'>('desc');
+  orderBy = signal<'asc' | 'desc'>(
+    (localStorage.getItem('blogOrderBy') as 'asc' | 'desc') || 'desc'
+  );
+
+  readonly persistOrderBy = effect(() => {
+    localStorage.setItem('blogOrderBy', this.orderBy());
+  });
 
   sortedBlogs = computed(() => {
     const blogs = this.blogsSignal().slice();
