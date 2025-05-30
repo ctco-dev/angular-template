@@ -10,7 +10,9 @@ describe('BlogPostsRootComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         provideMockStore({
-          initialState: { blogposts: {loadedPosts: []} },
+          initialState: {
+            loadedPosts: []
+          }
         })
       ]
     })
