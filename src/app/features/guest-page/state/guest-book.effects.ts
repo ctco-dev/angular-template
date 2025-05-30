@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as GuestBookActions from './guest-book.actions';
-import { GuestEntry } from 'src/app/components/guest-page/models/guest-entry.model';
+import { GuestEntry } from 'src/app/features/guest-page/models/guest-entry.model';
 
 @Injectable()
 export class GuestBookEffects {

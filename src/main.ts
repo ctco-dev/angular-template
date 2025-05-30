@@ -6,10 +6,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
-import { postsReducer } from './app/components/blog-posts/state/posts.reducer';
-import { PostsEffects } from './app/components/blog-posts/state/posts.effects';
-import { guestBookReducer } from './app/components/guest-page/state/guest-book.reducer';
-import { GuestBookEffects } from './app/components/guest-page/state/guest-book.effects';
+import { postsReducer } from './app/features/blog-posts/state/posts.reducer';
+import { PostsEffects } from './app/features/blog-posts/state/posts.effects';
+import { guestBookReducer } from './app/features/guest-page/state/guest-book.reducer';
+import { GuestBookEffects } from './app/features/guest-page/state/guest-book.effects';
 
 bootstrapApplication(AppComponent, {
   providers: [

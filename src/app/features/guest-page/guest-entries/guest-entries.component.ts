@@ -5,7 +5,7 @@ import { showAuthorDetails } from '../state/guest-book.actions';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { GuestEntry } from 'src/app/components/guest-page/models/guest-entry.model';
+import { GuestEntry } from 'src/app/features/guest-page/models/guest-entry.model';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import {

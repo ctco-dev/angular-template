@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { addEntry } from '../state/guest-book.actions';
-import { GuestEntry } from 'src/app/components/guest-page/models/guest-entry.model';
+import { GuestEntry } from 'src/app/features/guest-page/models/guest-entry.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
