@@ -1,12 +1,16 @@
+@use "../../styles/colors.scss" as colors;
+@use "../../styles/fonts.scss" as fonts;
+@use "../../styles/spacing.scss" as spacing;
+
 .blog-comment-container {
   max-width: 700px;
-  margin: 2rem auto;
-  background: #181a20;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(78, 84, 200, 0.10);
-  padding: 2rem 2.5rem;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: #fff; 
+  margin: spacing.$margin-lg auto;
+  background: colors.$color-bg-main;
+  border-radius: spacing.$border-radius-lg;
+  box-shadow: 0 4px 24px colors.$color-shadow;
+  padding: spacing.$padding-lg spacing.$padding-lg * 1.25;
+  font-family: fonts.$font-main;
+  color: colors.$color-text-main;
 }
 
 .blog-details h2 {
@@ -15,7 +19,7 @@
 }
 
 .blog-meta {
-  color: #e0e0e0; 
+  color: #e0e0e0;
   font-size: 0.95rem;
   margin-bottom: 1.2rem;
   display: flex;
@@ -25,7 +29,7 @@
 .blog-content {
   margin-bottom: 2rem;
   line-height: 1.7;
-  color: #fff; 
+  color: #fff;
 }
 
 .comments-section {
@@ -71,7 +75,8 @@ ul {
   color: #fff;
 }
 
-.input, .textarea {
+.input,
+.textarea {
   width: 100%;
   padding: 0.7rem;
   margin-bottom: 0.8rem;
@@ -83,7 +88,8 @@ ul {
   transition: border 0.2s;
 }
 
-.input:focus, .textarea:focus {
+.input:focus,
+.textarea:focus {
   border-color: #4e54c8;
   outline: none;
 }
