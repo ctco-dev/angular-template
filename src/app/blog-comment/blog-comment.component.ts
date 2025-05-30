@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { map, switchMap, combineLatest, catchError } from 'rxjs';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-comment',
@@ -67,7 +68,10 @@ export class BlogCommentComponent {
 
 
 
-  constructor(private route: ActivatedRoute, private blogService: BlogService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private blogService: BlogService,
+    private sanitizer: DomSanitizer) {}
 
   addComment(form: NgForm) {
     if (this.newComment.name && this.newComment.email && this.newComment.message) {
@@ -80,5 +84,10 @@ export class BlogCommentComponent {
     } else {
       alert('Please fill in all fields.');
     }
+  }
+  
+
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

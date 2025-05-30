@@ -6,7 +6,7 @@
         <span>By {{ blog.author }}</span>
         <span class="date">{{ blog.date | date:'mediumDate' }}</span>
       </div>
-      <div class="blog-content" [innerHTML]="blog.blogHtml"></div>
+      <div class="blog-content" [innerHTML]="sanitizeHtml(blog.blogHtml)"></div>
     </div>
   }
 
