@@ -1,0 +1,11 @@
+<header class="site-header">
+  <nav class="nav-tabs">
+    <a class="tab" routerLink="/blogs" routerLinkActive="active">Blogs</a>
+    <a class="tab" routerLink="/guest-book" routerLinkActive="active">Guest Book</a>
+    <span class="auth-buttons">
+      <button *ngIf="!isSignedInSignal()" routerLink="/login" class="auth-btn">Login</button>
+      <button *ngIf="!isSignedInSignal()" routerLink="/register" class="auth-btn">Register</button>
+      <button *ngIf="isSignedInSignal()" (click)="logout()" class="auth-btn">Log out</button>
+    </span>
+  </nav>
+</header>

@@ -1,0 +1,129 @@
+<div class="blog-comment-container">
+  @if (blogSignal(); as blog) {
+    <div class="blog-details">
+      <h2>{{ blog.title }}</h2>
+      <div class="blog-meta">
+        <span>By {{ blog.author }}</span>
+        <span class="date">{{ blog.date | date:'mediumDate' }}</span>
+      </div>
+      <div class="blog-content" [innerHTML]="sanitizeHtml(blog.blogHtml)"></div>
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    @if (commentsSignal(); as comments) {
+      @if (comments.length === 0) {
+        <div class="no-comments">
+          No comments yet. Be the first to comment!
+        </div>
+      }
+      @if (comments.length > 0) {
+        <ul class="comment-list">
+          @for (comment of comments; track comment.id) {
+            <li class="comment">
+              <div class="comment-header">
+                <span class="comment-author">{{ comment.name }}</span>
+                <span class="comment-date">{{ comment.date | date:'short' }}</span>
+              </div>
+              <div class="comment-message">{{ comment.message }}</div>
+            </li>
+          }
+        </ul>
+      }
+    }
+  </div>
+
+  <div class="add-comment-section">
+    <h3>Add a Comment</h3>
+    <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="newComment.name"
+        placeholder="Your Name"
+        required
+        class="input"
+        #nameInput="ngModel"
+      />
+      @if (nameInput.touched && nameInput.invalid) {
+        <div class="validation-message">
+          @if (nameInput.errors?.['required']) {
+            <span>Name is required.</span>
+          }
+        </div>
+      }
+
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="newComment.email"
+        placeholder="Your Email"
+        required
+        email
+        class="input"
+        #emailInput="ngModel"
+      />
+      @if (emailInput.touched && emailInput.invalid) {
+        <div class="validation-message">
+          @if (emailInput.errors?.['required']) {
+            <span>Email is required.</span>
+          }
+          @if (emailInput.errors?.['email']) {
+            <span>Please enter a valid email address.</span>
+          }
+        </div>
+      }
+
+      <textarea
+        name="message"
+        [(ngModel)]="newComment.message"
+        placeholder="Your Comment"
+        required
+        minlength="20"
+        class="textarea"
+        rows="3"
+        #messageInput="ngModel"
+      ></textarea>
+      @if (messageInput.touched && messageInput.invalid) {
+        <div class="validation-message">
+          @if (messageInput.errors?.['required']) {
+            <span>Comment is required.</span>
+          }
+          @if (messageInput.errors?.['minlength']) {
+            <span>Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).</span>
+          }
+        </div>
+      }
+
+      <div class="rating-group">
+        <label class="rating-label">Your Rating:</label>
+        <div class="stars">
+          @for (star of [1,2,3,4,5]; track star) {
+            <input
+              type="radio"
+              [id]="'star' + star"
+              name="rating"
+              [value]="star"
+              [(ngModel)]="newComment.rating"
+              class="star-input"
+            />
+            <label
+              [for]="'star' + star"
+              class="star"
+              [class.filled]="star <= (newComment.rating || 0)"
+              title="{{star}} star"
+            >&#9733;</label>
+          }
+        </div>
+      </div>
+      <button type="submit" [disabled]="!commentForm.form.valid" class="submit-btn">Post Comment</button>
+    </form>
+  </div>
+</div>

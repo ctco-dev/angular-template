@@ -68,7 +68,8 @@
               "buildTarget": "angular-template:build:production"
             },
             "development": {
-              "buildTarget": "angular-template:build:development"
+              "buildTarget": "angular-template:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
