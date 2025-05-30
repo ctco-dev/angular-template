@@ -1,0 +1,24 @@
+<div class="card error-card" *ngIf="errorMessage() !== ''">
+  Error: {{ errorMessage() }}
+</div>
+
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Welcome to guest book</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>You are welcomed to leave you feedback in our guest book.</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="addNewDialog()">Add guest book entry</button>
+  </mat-card-actions>
+</mat-card>
+
+<div *ngIf="!loading(); else loadingElement">
+  <div class="container">
+    <app-guest-book-list
+    [guestBookEntries]="guestBookEntries()">
+    </app-guest-book-list>
+  </div>
+</div>
+<ng-template #loadingElement>Loading...</ng-template>

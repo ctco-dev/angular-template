@@ -1,0 +1,44 @@
+<form [formGroup]="guestBookForm" class="guestBookForm">
+  <h3>Author information:</h3>
+  <div formGroupName="author" class="authorForm">
+    <p>
+      <mat-form-field class="half-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        @if (name.hasError("required") || name.hasError("minlength") || name.hasError("maxlength")) {
+        <mat-error>Name is <strong>required</strong> and should have length 3-50</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+        @if (username.hasError("required") || username.hasError("minlength") || username.hasError("maxlength")) {
+        <mat-error>Username is <strong>required</strong> and should have length 3-20</mat-error>
+        }
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" />
+        @if (email.hasError("required")) {
+        <mat-error>E-mail is <strong>required</strong> and should have length 150</mat-error>
+        }
+        @if (email.hasError("email")) {
+        <mat-error>Please enter a valid email address</mat-error>
+        }
+      </mat-form-field>
+    </p>
+  </div>
+  <mat-divider></mat-divider>
+  <h3>Gues book entry:</h3>
+  <mat-form-field class="full-width">
+    <mat-label>Message</mat-label>
+    <textarea matInput formControlName="message" rows="3">
+    </textarea>
+    @if (message.hasError("minlength") || message.hasError("maxlength") || message.hasError("required")) {
+    <mat-error>Message is <strong>required</strong> and should have length 20-500</mat-error>
+    }
+  </mat-form-field>
+</form>
