@@ -1,23 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {BlogPostsRootComponent} from './blog-posts-root.component';
+import {provideMockStore} from "@ngrx/store/testing";
 
-import { BlogPostsRootComponent } from './blog-posts-root.component';
-
-describe('BlogPostsCommentsComponent', () => {
+describe('BlogPostsRootComponent', () => {
   let component: BlogPostsRootComponent;
   let fixture: ComponentFixture<BlogPostsRootComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BlogPostsRootComponent]
+    TestBed.configureTestingModule({
+      providers: [
+        provideMockStore({
+          initialState: { blogposts: {loadedPosts: []} },
+        })
+      ]
     })
-    .compileComponents();
 
     fixture = TestBed.createComponent(BlogPostsRootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create a component', () => {
     expect(component).toBeTruthy();
   });
 });
