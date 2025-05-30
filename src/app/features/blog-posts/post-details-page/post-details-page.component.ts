@@ -14,7 +14,6 @@ import { Post, Comment } from '../models/comment.model';
 
 @Component({
   selector: 'app-post-details-page',
-  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,

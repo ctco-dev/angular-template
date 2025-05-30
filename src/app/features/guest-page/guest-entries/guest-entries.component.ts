@@ -16,7 +16,6 @@ import { AuthorPopupComponent } from '../author-popup/author-popup.component';
 @Component({
   selector: 'app-guest-entries',
   templateUrl: './guest-entries.component.html',
-  standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, MatDividerModule, MatIconModule],
 })
 export class GuestEntriesComponent {

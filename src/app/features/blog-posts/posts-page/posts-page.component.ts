@@ -13,7 +13,6 @@ import { Post } from '../models/comment.model';
 
 @Component({
   selector: 'app-posts-page',
-  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,

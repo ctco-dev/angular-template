@@ -10,7 +10,6 @@ import { GuestEntriesComponent } from '../guest-entries/guest-entries.component'
 @Component({
   selector: 'app-guest-book',
   templateUrl: './guest-book.component.html',
-  standalone: true,
   imports: [CommonModule, MatCardModule, GuestFormComponent, GuestEntriesComponent],
 })
 export class GuestBookComponent {

@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-guest-form',
   templateUrl: './guest-form.component.html',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
 })
 export class GuestFormComponent {
