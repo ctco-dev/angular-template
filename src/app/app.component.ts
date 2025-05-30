@@ -9,7 +9,6 @@ import {RouterOutlet} from "@angular/router";
   imports: [MatTabLink, MatTabNavPanel, MatTabNav, RouterOutlet],
 })
 export class AppComponent {
-  title = 'BlogPosts.com';
-  links = ['Blog posts', 'Guest Book'];
+  links = ['Blog posts'];
   activeLink = this.links[0];
 }

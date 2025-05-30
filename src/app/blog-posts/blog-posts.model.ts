@@ -4,7 +4,7 @@ export interface IBlogPost {
   userId: number;
   title: string;
   body: string;
-  comments: IBlogPostComment[];
+  comments?: IBlogPostComment[];
 }
 
 export interface IBlogPostComment {
