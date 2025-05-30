@@ -14,18 +14,19 @@ import { Observable, of, Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestBookInputFormComponent implements OnInit, OnDestroy {
-  private doSubmitSubscription?: Subscription;
+  private doSubmitSubscriptions = new Subscription();
   @Output() added = new EventEmitter<GuestBookEntry>();
   @Input() doSubmit$: Observable<void> = of<void>();
 
   ngOnDestroy(): void {
-    if(this.doSubmitSubscription){
-      this.doSubmitSubscription.unsubscribe();
+    if(this.doSubmitSubscriptions){
+      this.doSubmitSubscriptions.unsubscribe();
     }
   }
 
   ngOnInit(): void {
-    this.doSubmitSubscription = this.doSubmit$.subscribe(this.onSubmit.bind(this));
+    this.doSubmitSubscriptions
+      .add(this.doSubmit$.subscribe(this.onSubmit.bind(this)));
   }
 
   guestBookForm = new FormGroup({

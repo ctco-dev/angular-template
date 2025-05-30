@@ -18,16 +18,14 @@ export class GravatarDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.el) {
-      if (this.internalEmail) {
-        this.updateGravatar(this.internalEmail);
-      } else {
-        this.renderer.setAttribute(
-          this.el.nativeElement,
-          'src',
-          `//www.gravatar.com/avatar/`,
-        );
-      }
+    if (this.internalEmail) {
+      this.updateGravatar(this.internalEmail);
+    } else {
+      this.renderer.setAttribute(
+        this.el.nativeElement,
+        'src',
+        `//www.gravatar.com/avatar/`,
+      );
     }
   }
 
