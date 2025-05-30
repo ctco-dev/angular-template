@@ -52,11 +52,13 @@
         class="input"
         #nameInput="ngModel"
       />
-      <div class="validation-message" @if (nameInput.touched && nameInput.invalid)>
-        @if (nameInput.errors?.['required']) {
-          <span>Name is required.</span>
-        }
-      </div>
+      @if (nameInput.touched && nameInput.invalid) {
+        <div class="validation-message">
+          @if (nameInput.errors?.['required']) {
+            <span>Name is required.</span>
+          }
+        </div>
+      }
 
       <input
         type="email"
@@ -68,14 +70,16 @@
         class="input"
         #emailInput="ngModel"
       />
-      <div class="validation-message" @if (emailInput.touched && emailInput.invalid)>
-        @if (emailInput.errors?.['required']) {
-          <span>Email is required.</span>
-        }
-        @if (emailInput.errors?.['email']) {
-          <span>Please enter a valid email address.</span>
-        }
-      </div>
+      @if (emailInput.touched && emailInput.invalid) {
+        <div class="validation-message">
+          @if (emailInput.errors?.['required']) {
+            <span>Email is required.</span>
+          }
+          @if (emailInput.errors?.['email']) {
+            <span>Please enter a valid email address.</span>
+          }
+        </div>
+      }
 
       <textarea
         name="message"
@@ -87,14 +91,16 @@
         rows="3"
         #messageInput="ngModel"
       ></textarea>
-      <div class="validation-message" @if (messageInput.touched && messageInput.invalid)>
-        @if (messageInput.errors?.['required']) {
-          <span>Comment is required.</span>
-        }
-        @if (messageInput.errors?.['minlength']) {
-          <span>Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).</span>
-        }
-      </div>
+      @if (messageInput.touched && messageInput.invalid) {
+        <div class="validation-message">
+          @if (messageInput.errors?.['required']) {
+            <span>Comment is required.</span>
+          }
+          @if (messageInput.errors?.['minlength']) {
+            <span>Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).</span>
+          }
+        </div>
+      }
 
       <div class="rating-group">
         <label class="rating-label">Your Rating:</label>
