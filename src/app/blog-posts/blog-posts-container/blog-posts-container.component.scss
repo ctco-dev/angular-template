@@ -1,0 +1,24 @@
+.blogpost-card {
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.blogpost-card-img {
+  max-width: 50px;
+}
+
+.blogpost-subtitle {
+  padding-left: 16px;
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.blogpost-content {
+  min-height: 36px;
+}
+
+.comments-container {
+  max-width: 1000px;
+}
