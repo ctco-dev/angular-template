@@ -8,6 +8,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-comment',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.scss'

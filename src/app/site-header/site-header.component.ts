@@ -7,7 +7,8 @@ import { RouterModule} from '@angular/router';
   selector: 'app-site-header',
   imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './site-header.component.html',
-  styleUrl: './site-header.component.scss'
+  styleUrl: './site-header.component.scss',
+  standalone: true,
 })
 export class SiteHeaderComponent {
   

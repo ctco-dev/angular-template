@@ -1,33 +1,43 @@
 <div class="blog-comment-container">
-  <div class="blog-details" *ngIf="blogSignal() as blog">
-    <h2>{{ blog.title }}</h2>
-    <div class="blog-meta">
-      <span>By {{ blog.author }}</span>
-      <span class="date">{{ blog.date | date:'mediumDate' }}</span>
+  @if (blogSignal(); as blog) {
+    <div class="blog-details">
+      <h2>{{ blog.title }}</h2>
+      <div class="blog-meta">
+        <span>By {{ blog.author }}</span>
+        <span class="date">{{ blog.date | date:'mediumDate' }}</span>
+      </div>
+      <div class="blog-content" [innerHTML]="blog.blogHtml"></div>
     </div>
-    <div class="blog-content" [innerHTML]="blog.blogHtml"></div>
-  </div>
+  }
 
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
 
   <div class="comments-section">
     <h3>Comments</h3>
-    <ng-container *ngIf="commentsSignal() as comments">
-      <div *ngIf="comments.length === 0" class="no-comments">
-        No comments yet. Be the first to comment!
-      </div>
-      <ul *ngIf="comments.length > 0">
-        <li *ngFor="let comment of comments" class="comment">
-          <div class="comment-header">
-            <span class="comment-author">{{ comment.name }}</span>
-            <span class="comment-date">{{ comment.date | date:'short' }}</span>
-          </div>
-          <div class="comment-message">{{ comment.message }}</div>
-        </li>
-      </ul>
-    </ng-container>
+    @if (commentsSignal(); as comments) {
+      @if (comments.length === 0) {
+        <div class="no-comments">
+          No comments yet. Be the first to comment!
+        </div>
+      }
+      @if (comments.length > 0) {
+        <ul class="comment-list">
+          @for (comment of comments; track comment.id) {
+            <li class="comment">
+              <div class="comment-header">
+                <span class="comment-author">{{ comment.name }}</span>
+                <span class="comment-date">{{ comment.date | date:'short' }}</span>
+              </div>
+              <div class="comment-message">{{ comment.message }}</div>
+            </li>
+          }
+        </ul>
+      }
+    }
   </div>
 
   <div class="add-comment-section">
@@ -42,8 +52,10 @@
         class="input"
         #nameInput="ngModel"
       />
-      <div class="validation-message" *ngIf="nameInput.touched && nameInput.invalid">
-        <span *ngIf="nameInput.errors?.['required']">Name is required.</span>
+      <div class="validation-message" @if (nameInput.touched && nameInput.invalid)>
+        @if (nameInput.errors?.['required']) {
+          <span>Name is required.</span>
+        }
       </div>
 
       <input
@@ -56,9 +68,13 @@
         class="input"
         #emailInput="ngModel"
       />
-      <div class="validation-message" *ngIf="emailInput.touched && emailInput.invalid">
-        <span *ngIf="emailInput.errors?.['required']">Email is required.</span>
-        <span *ngIf="emailInput.errors?.['email']">Please enter a valid email address.</span>
+      <div class="validation-message" @if (emailInput.touched && emailInput.invalid)>
+        @if (emailInput.errors?.['required']) {
+          <span>Email is required.</span>
+        }
+        @if (emailInput.errors?.['email']) {
+          <span>Please enter a valid email address.</span>
+        }
       </div>
 
       <textarea
@@ -71,17 +87,19 @@
         rows="3"
         #messageInput="ngModel"
       ></textarea>
-      <div class="validation-message" *ngIf="messageInput.touched && messageInput.invalid">
-        <span *ngIf="messageInput.errors?.['required']">Comment is required.</span>
-        <span *ngIf="messageInput.errors?.['minlength']">
-          Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).
-        </span>
+      <div class="validation-message" @if (messageInput.touched && messageInput.invalid)>
+        @if (messageInput.errors?.['required']) {
+          <span>Comment is required.</span>
+        }
+        @if (messageInput.errors?.['minlength']) {
+          <span>Comment must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).</span>
+        }
       </div>
 
       <div class="rating-group">
         <label class="rating-label">Your Rating:</label>
         <div class="stars">
-          <ng-container *ngFor="let star of [1,2,3,4,5]">
+          @for (star of [1,2,3,4,5]; track star) {
             <input
               type="radio"
               [id]="'star' + star"
@@ -96,7 +114,7 @@
               [class.filled]="star <= (newComment.rating || 0)"
               title="{{star}} star"
             >&#9733;</label>
-          </ng-container>
+          }
         </div>
       </div>
       <button type="submit" [disabled]="!commentForm.form.valid" class="submit-btn">Post Comment</button>
