@@ -50,6 +50,46 @@ This course gets you started with NgRx including a store, actions, reducers, eff
 
 This course gets you started with NgRx including a store, actions, reducers, effects, and selectors.
 
+## FAQ
+### General questions
+**Q: Should we test templates in TestBed?**  
+A: It depends on agreements between your project teammates. From my perspective, if your templates have a lot of logic inside (branching, diff templates based on conditions), it's worth to invest in testing with TestBed. But I would argue it should be used only occasionally as it can drawback your tests performance.
+ 
+**Q: For some reasons one participants project was generated as ngModules project not standalone components one?**  
+A: In case your project was generated with an old setup (NgModules, no Control Flow, no signals, etc), you can use the Angular migration schematics to migrate to new approaches. [Migrations • Overview • Angular](https://angular.dev/reference/migrations)
+ 
+**Q: Will we have something related to authentication?**  
+A: Angular doesn't provide out-of-the-box solutions for auth strategies. Usually 3rd party libs are used for it. Also, PluralSight has some courses related to the auth in Angular, so maybe it's worth to check them out.
+ 
+**Q: How to set env. variables in Docker?**  
+A: There is no "correct" answer for that. One of the approaches, which we are using in the project, is to pass your env variables to the docker container during command `docker run` and then inject them in your `window` object directly, by adding something like `window.env=Object.freeze({...})` to the top of the bundle file.
+
+### Practical task
+**Q: Inject vs Dependency**  
+A: It's just 2 approaches to accomplish the same thing. `inject()` is slightly better due to type interference, IMO. Please check out this article: https://alyshovtapdig.medium.com/inject-vs-constructor-in-angular-which-one-should-you-use-en-dbdf1070739c![image](https://github.com/user-attachments/assets/5758fdfe-bf26-4921-91fe-bcf89161b5fd)
+
+**Q: Use case of NGRX? Why to use it if it just too much code?**  
+A: NGRX, as any other state management, has steeping learning curve and setup, but after its very easy to scale, manage and evolve. For medium-large projects, it is a nice investment IMO. Of course, necessity of any state management should be carefully assessed by team members before investing time in it. Note: in the practical task it is for learning
+
+**Q: Can I fork CTCo project?**  
+A: Yes, you can. Just, please, keep in mind, that you shouldn't use any client devices for training!
+
+**Q: Where to find data for Guest Book?**  
+A: Guest Book is a free entry form, where users can write their impressions about your app – there is no preset data for it.
+
+**Q: So data will be stored in browser, per user?**  
+A: Yes, you can use any browser storage (local, session, indexdb)
+
+**Q: Should they use Bootstrap or regular CSS?**  
+Alex: In order to get familiar with CSS stuff, we encourage you to use regular CSS. Although, you can use some helper utilities from Angular Material\CDK (e.g. dialog windows).
+
+**Q: Folder structure, how to do it?**  
+Alex: Angular team has their suggestions on that matter, but it is always up to you project.
+
+**Q: How to preserve scroll when going back to the list of posts?**  
+Alex: One of the ways, is to save your scroll position somewhere (e.g. service, browser storage, etc), and then restore it when needed.![image](https://github.com/user-attachments/assets/10dd714a-a093-45ae-b66e-16e48123cecb)
+
+
 ## Books
 - https://exploringjs.com/js/book/index.html
 - https://www.amazon.com/dp/0596517742/wrrrldwideweb
