@@ -82,13 +82,13 @@ A: Guest Book is a free entry form, where users can write their impressions abou
 A: Yes, you can use any browser storage (local, session, indexdb)
 
 **Q: Should they use Bootstrap or regular CSS?**  
-Alex: In order to get familiar with CSS stuff, we encourage you to use regular CSS. Although, you can use some helper utilities from Angular Material\CDK (e.g. dialog windows).
+A: In order to get familiar with CSS stuff, we encourage you to use regular CSS. Although, you can use some helper utilities from Angular Material\CDK (e.g. dialog windows).
 
 **Q: Folder structure, how to do it?**  
-Alex: Angular team has their suggestions on that matter, but it is always up to you project.
+A: Angular team has their suggestions on that matter, but it is always up to you project.
 
 **Q: How to preserve scroll when going back to the list of posts?**  
-Alex: One of the ways, is to save your scroll position somewhere (e.g. service, browser storage, etc), and then restore it when needed.
+A: One of the ways, is to save your scroll position somewhere (e.g. service, browser storage, etc), and then restore it when needed.
 
 ## Books
 - https://exploringjs.com/js/book/index.html
