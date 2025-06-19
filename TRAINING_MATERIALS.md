@@ -65,6 +65,7 @@ A: Angular doesn't provide out-of-the-box solutions for auth strategies. Usually
 A: There is no "correct" answer for that. One of the approaches, which we are using in the project, is to pass your env variables to the docker container during command `docker run` and then inject them in your `window` object directly, by adding something like `window.env=Object.freeze({...})` to the top of the bundle file.
 
 ### Practical task
+
 **Q: Inject vs Dependency**  
 A: It's just 2 approaches to accomplish the same thing. `inject()` is slightly better due to type interference, IMO. Please check out this article: https://alyshovtapdig.medium.com/inject-vs-constructor-in-angular-which-one-should-you-use-en-dbdf1070739c![image](https://github.com/user-attachments/assets/5758fdfe-bf26-4921-91fe-bcf89161b5fd)
 
@@ -87,8 +88,7 @@ Alex: In order to get familiar with CSS stuff, we encourage you to use regular C
 Alex: Angular team has their suggestions on that matter, but it is always up to you project.
 
 **Q: How to preserve scroll when going back to the list of posts?**  
-Alex: One of the ways, is to save your scroll position somewhere (e.g. service, browser storage, etc), and then restore it when needed.![image](https://github.com/user-attachments/assets/10dd714a-a093-45ae-b66e-16e48123cecb)
-
+Alex: One of the ways, is to save your scroll position somewhere (e.g. service, browser storage, etc), and then restore it when needed.
 
 ## Books
 - https://exploringjs.com/js/book/index.html
