@@ -1,0 +1,28 @@
+<mat-card class="blogpost-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Post №{{ blogpost.id }}</mat-card-title>
+      <img class="blogpost-card-img" src="https://static.thenounproject.com/png/1453176-200.png" alt="image">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-subtitle class="blogpost-subtitle">
+    {{ blogpost.title }}
+  </mat-card-subtitle>
+  @if (expandedMode) {
+    <mat-card-content class="blogpost-content">
+      {{ blogpost.body }}
+    </mat-card-content>
+  } @else {
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="blogpost.id.toString()">Show comments</button>
+    </mat-card-actions>
+  }
+</mat-card>
+
+@if (blogpost.comments) {
+  <div class="comments-container">
+    @for (comment of blogpost.comments; track comment.id) {
+      <app-blog-posts-comment [comment]="comment"></app-blog-posts-comment>
+    }
+  </div>
+}

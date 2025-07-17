@@ -1,0 +1,5 @@
+<div class="blogposts">
+  @for (blogpost of blogPosts(); track blogpost.id) {
+    <app-blog-posts-container class="blogpost-card" [expandedMode]="false" [blogpost]=blogpost></app-blog-posts-container>
+  }
+</div>
