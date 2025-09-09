@@ -1,0 +1,19 @@
+<h3>Guest book entries:</h3>
+<div *ngIf="guestBookEntries?.length! > 0; else emptyElement">
+@for (guestBookEntry of guestBookEntries; track guestBookEntry.id) {
+  <mat-card class="guest-list-card" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img mat-card appGravatar [email]="guestBookEntry.author!.email" class="rounded-circle user-gravatar" />
+      </div>
+      <mat-card-title>{{ guestBookEntry.author.username }}</mat-card-title>
+      <mat-card-subtitle>{{ guestBookEntry.creationDate | date:'short' }}</mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ guestBookEntry.message }}</p>
+    </mat-card-content>
+  </mat-card>
+}
+</div>
+<ng-template #emptyElement>No guest book entries</ng-template>
