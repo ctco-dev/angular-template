@@ -1,0 +1,23 @@
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 16px;
+
+  .entry {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+
+      .author {
+        font-size: 14px;
+      }
+    }
+  }
+}

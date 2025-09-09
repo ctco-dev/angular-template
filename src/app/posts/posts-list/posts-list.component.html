@@ -1,0 +1,5 @@
+<div class="posts">
+  @for (post of posts(); track post.id) {
+    <app-post-details [post]="post" [user]="users()[post.userId]" />
+  }
+</div>
