@@ -1,0 +1,22 @@
+.article-card {
+  width: 300px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    height: 180px;    // choose whatever fits
+    object-fit: cover;
+  }
+
+  mat-card-content {
+    flex: 1;          // fills remaining space
+    overflow: hidden;
+  }
+
+:host ::ng-deep img[mat-card-image] {
+  padding: 0 16px;        // left & right padding
+  box-sizing: border-box; // ensures padding doesn't break width
+}
+
+}
