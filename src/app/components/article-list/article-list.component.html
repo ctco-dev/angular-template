@@ -1,0 +1,10 @@
+<p>article-list works!</p>
+<!-- ?@articles = {{articles()}} -->
+
+@if (!loading()){
+    @for (eachArticle of articles(); track $index) {
+        <app-card [article]="eachArticle"></app-card>
+    }
+}@else {
+    <mat-spinner></mat-spinner>
+}
