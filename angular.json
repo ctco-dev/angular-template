@@ -81,7 +81,7 @@
           }
         },
         "test": {
-          "builder": "@analogjs/vitest-angular:test",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
