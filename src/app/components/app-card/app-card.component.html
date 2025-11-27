@@ -1,0 +1,15 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ article()!.title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ article()!.picture }}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{ article()!.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-footer>
+    <p>Published on: {{ article()!.publishDate | date:'dd.MM.yyyy' }}</p>
+  </mat-card-footer>
+</mat-card>
