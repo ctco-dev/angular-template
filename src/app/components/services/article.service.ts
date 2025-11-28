@@ -16,28 +16,37 @@ export class ArticleService {
 
   getArticles() {
     this.loading.set(true);
+
     setTimeout(() => {
-      this.articles.set([
-        {
-          title: 'Article 1',
-          description: 'Description for article 1',
-          picture: 'https://via.placeholder.com/150',
-          publishDate: new Date()
-        },
-        {
-          title: 'Article 2',
-          description: 'Description for article 2',
-          picture: 'https://via.placeholder.com/150',
-          publishDate: new Date()
-        },
-        {
-          title: 'Article 3',
-          description: 'Description for article 3',
-          picture: 'https://via.placeholder.com/150',
-          publishDate: new Date()
-        }
-      ]);
-      this.loading.set(false);
+      try {
+        this.articles.set([
+          {
+            title: 'Article 1',
+            description: 'Description for article 1',
+            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
+            publishDate: new Date()
+          },
+          {
+            title: 'Article 2',
+            description: 'Description for article 2',
+            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
+            publishDate: new Date()
+          },
+          {
+            title: 'Article 3',
+            description: 'Description for article 3',
+            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
+            publishDate: new Date()
+          }
+        ]);
+        //throw new Error("Division by zero is not allowed");
+      } catch {
+        this.error.set('Failed to load articles');
+      } finally {
+        this.loading.set(false);
+      }
     }, 1500);
+
+
   }
 }

@@ -13,4 +13,5 @@ export class ArticleListComponent {
         private articleService = inject(ArticleService);
         protected articles = this.articleService.articles;
         protected loading = this.articleService.loading;
+        protected error = this.articleService.error;
 }
