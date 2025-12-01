@@ -1,0 +1,14 @@
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* center spinner inside list */
+.spinner-container {
+  width: 100%;              // take full row
+  min-height: 330px;        // equal to card height
+  display: flex;
+  justify-content: center;  // center horizontally
+  align-items: center;      // center vertically
+}

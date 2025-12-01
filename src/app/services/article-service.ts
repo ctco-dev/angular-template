@@ -19,16 +19,34 @@ export class ArticleService {
       try {
         const mockedData: Article[] = [
           {
-            title: 'Angular Material Tutorial',
-            description: 'Learn how to style components using Angular Material.',
+            title: 'Services in Angular',
+            description: 'Learn how to use services and mock data.',
             picture: 'https://picsum.photos/600/300',
-            publishDate: new Date('2024-11-21'),
+            publishDate: new Date('2025-11-26'),
           },
           {
             title: 'Signals in Angular',
             description: 'Understanding reactive signals in Angular 17.',
             picture: 'https://picsum.photos/600/301',
-            publishDate: new Date('2024-10-18'),
+            publishDate: new Date('2025-10-18'),
+          },
+            {
+            title: 'Reactive Programming',
+            description: 'Understanding reactive prohtamming in Angular 17.',
+            picture: 'https://picsum.photos/600/302',
+            publishDate: new Date('2025-10-20'),
+          },
+            {
+            title: 'Decimals in Angular',
+            description: 'Understanding decimals in Angular 17.',
+            picture: 'https://picsum.photos/600/303',
+            publishDate: new Date('2025-10-21'),
+          },
+            {
+            title: 'Homework in Angular',
+            description: 'How to use chat GPT.',
+            picture: 'https://picsum.photos/600/304',
+            publishDate: new Date('2025-10-22'),
           }
         ];
 

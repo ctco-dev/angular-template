@@ -3,10 +3,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Article } from './models/article';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticleListComponent } from "./article-list/article-list.component";
+import { MatCardModule } from "@angular/material/card";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ArticleCardComponent],
+  imports: [RouterOutlet, ArticleCardComponent, ArticleListComponent, MatCardModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

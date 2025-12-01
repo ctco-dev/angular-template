@@ -9,6 +9,8 @@ import { DatePipe } from '@angular/common';
   templateUrl: './article-card.component.html',
   styleUrl: './article-card.component.scss'
 })
+
+
 export class ArticleCardComponent {
   article = input<Article>();
 }
