@@ -47,7 +47,7 @@ describe('ArticleListComponent', () => {
   });
 
   it('should render article cards when articles loaded', fakeAsync(() => {
-    tick(1000); // finish mock loading
+    service.loading.set(false);
     fixture.detectChanges();
 
     const cards = fixture.debugElement.queryAll(By.css('app-article-card'));

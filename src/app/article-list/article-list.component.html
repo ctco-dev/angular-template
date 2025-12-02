@@ -1,21 +1,18 @@
 @if (service.loading()) {
-   <div class="spinner-container">
-    <mat-spinner diameter="70" color="primary"  strokeWidth="3"></mat-spinner>
-    </div>
-}
+  <div class="spinner-container">
+    <mat-spinner diameter="70" color="primary" strokeWidth="3"></mat-spinner>
+  </div>
 
-@else if (service.error()) {
+} @else if (service.error()) {
   <p class="error">{{ service.error() }}</p>
-}
 
-@else if (service.articles().length === 0) {
-  <p class="empty">No articles found.</p>
-}
+} @else {
 
-@else {
   <div class="article-list">
     @for (article of service.articles(); track article.title) {
       <app-article-card [article]="article" />
+    } @empty {
+      <p class="empty">No articles found.</p>
     }
   </div>
 }
