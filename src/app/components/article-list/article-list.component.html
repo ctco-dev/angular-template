@@ -1,14 +1,16 @@
-<p>article-list works!</p>
 <!-- ?@articles = {{articles()}} -->
 
 @if (loading()){
-   <mat-spinner></mat-spinner>
+<mat-spinner></mat-spinner>
 }
 @else if (error()) {
     <p class="error-message">Error: {{ error() }}</p>
 }
 @else {
-       @for (eachArticle of articles(); track $index) {
-          <app-card [article]="eachArticle"></app-card>
+    @for (eachArticle of articles(); track $index) {
+        <app-card [article]="eachArticle"></app-card>
+    }
+    @empty {
+        <p>No articles found.</p>
     }
 }
