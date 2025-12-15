@@ -2,11 +2,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppCardComponent } from "./components/app-card/app-card.component";
-import { Article } from './components/app-card/models/article';
+import { Article } from './components/models/article';
+import { ArticleListComponent } from "./components/article-list/article-list.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppCardComponent],
+  imports: [RouterOutlet, AppCardComponent, ArticleListComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -18,4 +19,5 @@ export class AppComponent {
     picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
     publishDate: new Date('2024-11-21'),
   };
+  
 }
