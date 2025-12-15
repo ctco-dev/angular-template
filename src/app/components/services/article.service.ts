@@ -1,6 +1,7 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Article } from '../models/article';
 import { HttpClient } from '@angular/common/http';
+import { filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +9,39 @@ import { HttpClient } from '@angular/common/http';
 export class ArticleService {
 
   public articles = signal<Article[]>([]);
+  public article: WritableSignal<Article | undefined> = signal<Article | undefined>(undefined);
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
   private readonly httpClient = inject(HttpClient);
 
   getArticles() {
     this.loading.set(true);
-    this.httpClient.get('/assets/articles.json').subscribe({
+    this.httpClient.get<Article[]>('/assets/articles.json').subscribe({
       next: (data: any) => {
         this.articles.set(data);
         this.error.set(null);
       },
       error: (err) => {
         this.error.set('Failed to load articles');
+      },
+      complete: () => {
+        this.loading.set(false);
+      }
+    });
+  }
+
+  getArticleById(id: number) {
+    this.loading.set(true);
+    this.httpClient.get<Article[]>('/assets/articles.json')
+    .pipe(
+      map(articles => articles.find(article => article.id === id)))
+   .subscribe({
+      next: (data) => {
+        this.article.set(data);
+        this.error.set(null);
+      },
+      error: (err) => {
+        this.error.set('Failed to load article');
       },
       complete: () => {
         this.loading.set(false);

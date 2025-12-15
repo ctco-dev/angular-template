@@ -8,12 +8,14 @@ import { By } from '@angular/platform-browser';
 
 const mockArticles: Article[] = [
   {
+    id: 1,
     title: 'Article 1',
     description: 'Description for article 1',
     picture: 'https://via.placeholder.com/150',
     publishDate: new Date(),
   },
   {
+    id: 2,
     title: 'Article 2',
     description: 'Description for article 2',
     picture: 'https://via.placeholder.com/150',
@@ -74,7 +76,7 @@ describe('ArticleListComponent', () => {
 
   it('should display a list of articles when articles are loaded', () => {
     // Set articles in the mock service
-     (articleService.articles as import('@angular/core').WritableSignal<Article[]>).set(mockArticles);
+    (articleService.articles as import('@angular/core').WritableSignal<Article[]>).set(mockArticles);
 
     fixture.detectChanges();
 
@@ -82,9 +84,9 @@ describe('ArticleListComponent', () => {
     expect(articleCards.length).toBe(mockArticles.length);
   });
 
-    it('should display a message when the article list is empty', () => {
+  it('should display a message when the article list is empty', () => {
     // Set articles in the mock service
-     (articleService.articles as import('@angular/core').WritableSignal<Article[]>).set([]);
+    (articleService.articles as import('@angular/core').WritableSignal<Article[]>).set([]);
 
     fixture.detectChanges();
 

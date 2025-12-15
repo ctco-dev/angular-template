@@ -8,7 +8,7 @@
 }
 @else {
     @for (eachArticle of articles(); track $index) {
-        <app-card [article]="eachArticle"></app-card>
+        <app-card [article]="eachArticle" (articleClicked)="viewDetails($event)"></app-card>
     }
     @empty {
         <p>No articles found.</p>
