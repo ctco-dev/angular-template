@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Angular Material Tutorial",
+    "description": "Learn how to style components using Angular Material.",
+    "picture": "https://picsum.photos/300/200",
+    "publishDate": "2024-11-21"
+  },
+  {
+    "id": 2,
+    "title": "Angular Material Tutorial",
+    "description": "Understanding reactive signals in Angular 17.",
+    "picture": "https://picsum.photos/600/301",
+    "publishDate": "2025-10-18"
+  },
+  {
+    "id": 3,
+    "title": "Reactive Programming",
+    "description": "Understanding reactive programming in Angular 17.",
+    "picture": "https://picsum.photos/600/302",
+    "publishDate": "2025-10-20"
+  },
+  {
+    "id": 4,
+    "title": "Decimals in Angular",
+    "description": "Understanding decimals in Angular 17.",
+    "picture": "https://picsum.photos/600/303",
+    "publishDate": "2025-10-21"
+  },
+  {
+    "id": 5,
+    "title": "Homework in Angular",
+    "description": "How to use ChatGPT.",
+    "picture": "https://picsum.photos/600/304",
+    "publishDate": "2025-10-22"
+  }
+           
+]

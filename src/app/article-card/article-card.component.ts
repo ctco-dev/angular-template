@@ -1,7 +1,8 @@
-import { Component, input  } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 import { Article } from '../models/article';
 import { MatCardModule } from '@angular/material/card';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-card',
@@ -12,5 +13,11 @@ import { DatePipe } from '@angular/common';
 
 
 export class ArticleCardComponent {
-  article = input<Article>();
+  @Input() article!: Article;
+
+   constructor(private router: Router) {}
+
+  goToDetails() {
+    this.router.navigate(['/article', this.article.id]);
+  }
 }

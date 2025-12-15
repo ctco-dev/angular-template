@@ -1,0 +1,19 @@
+<!-- <p>http-article-list works!</p> -->
+@if (loading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="70" color="primary" strokeWidth="3"></mat-spinner>
+  </div>
+
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+
+} @else {
+
+  <div class="article-list">
+    @for (article of articles(); track article.title) {
+      <app-article-card [article]="article" />
+    } @empty {
+      <p class="empty">No articles found.</p>
+    }
+  </div>
+}

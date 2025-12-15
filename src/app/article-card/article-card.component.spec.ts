@@ -1,11 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ArticleCardComponent } from './article-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DatePipe } from '@angular/common';
 
 describe('ArticleCardComponent', () => {
   let component: ArticleCardComponent;
   let fixture: ComponentFixture<ArticleCardComponent>;
 
   const mockArticle = {
+    id: 1,
     title: 'Test Title',
     description: 'Test Description',
     picture: 'test.jpg',
@@ -14,12 +17,11 @@ describe('ArticleCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleCardComponent]
+      imports: [ArticleCardComponent, RouterTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArticleCardComponent);
     component = fixture.componentInstance;
-
     fixture.componentRef.setInput('article', mockArticle);
 
     fixture.detectChanges();
@@ -46,9 +48,8 @@ describe('ArticleCardComponent', () => {
 
   it('should render the published date', () => {
     const dateEl = fixture.nativeElement.querySelector('small');
-
-    // Angular date pipe output for 2024-11-21
-    const expectedDate = 'Nov 21, 2024'; // locale-dependent
-    expect(dateEl.textContent?.trim()).toContain(expectedDate);
+    const pipe = new DatePipe('en-US');
+    const expectedDate = pipe.transform(mockArticle.publishDate, 'MMM d, y');
+    expect(dateEl.textContent?.trim()).toBe(`Published: ${expectedDate}`);
   });
 });

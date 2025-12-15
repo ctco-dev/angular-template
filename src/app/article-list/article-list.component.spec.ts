@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { ArticleListComponent } from './article-list.component';
 import { ArticleService } from '../services/article-service';
 import { By } from '@angular/platform-browser';

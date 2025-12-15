@@ -1,12 +1,11 @@
-@let artContent = article()!;
 
-<mat-card class="article-card">
-  <img mat-card-image [src]="artContent.picture" alt="Article image" />
+<mat-card class="article-card" (click)="goToDetails()">
+  <img mat-card-image [src]="article.picture" alt="Article image" />
  <mat-card-header >
-  <mat-card-title>{{ artContent.title }}</mat-card-title>
+  <mat-card-title>{{ article.title }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>{{ artContent.description }}</p>
-    <small>Published: {{ artContent.publishDate | date }}</small>
+    <p>{{ article.description }}</p>
+    <small>Published: {{ article.publishDate | date }}</small>
   </mat-card-content>
 </mat-card>
