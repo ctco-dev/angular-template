@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Article } from '../models/article';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,44 +10,21 @@ export class ArticleService {
   public articles = signal<Article[]>([]);
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
-
-  constructor() {
-    this.getArticles();
-  }
+  private readonly httpClient = inject(HttpClient);
 
   getArticles() {
     this.loading.set(true);
-
-    setTimeout(() => {
-      try {
-        this.articles.set([
-          {
-            title: 'Article 1',
-            description: 'Description for article 1',
-            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
-            publishDate: new Date()
-          },
-          {
-            title: 'Article 2',
-            description: 'Description for article 2',
-            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
-            publishDate: new Date()
-          },
-          {
-            title: 'Article 3',
-            description: 'Description for article 3',
-            picture: 'https://material.angular.dev/assets/img/examples/shiba2.jpg',
-            publishDate: new Date()
-          }
-        ]);
-        //throw new Error("Division by zero is not allowed");
-      } catch {
+    this.httpClient.get('/assets/articles.json').subscribe({
+      next: (data: any) => {
+        this.articles.set(data);
+        this.error.set(null);
+      },
+      error: (err) => {
         this.error.set('Failed to load articles');
-      } finally {
+      },
+      complete: () => {
         this.loading.set(false);
       }
-    }, 1500);
-
-
+    });
   }
 }
