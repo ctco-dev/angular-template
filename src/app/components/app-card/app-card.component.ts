@@ -14,8 +14,8 @@ export class AppCardComponent {
     article = input<Article>();
     articleClicked = output<number>();
 
-    protected cardSelected(){
-      this.articleClicked.emit(this.article()?.id!)
+    protected cardSelected() {
+      this.articleClicked.emit(this.article()?.id!);
     }
 }
 
