@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 export class ArticleDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private articleService = inject(ArticleService);
-  protected article: WritableSignal<Article | undefined> = this.articleService.article;
+  protected article = this.articleService.article;
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

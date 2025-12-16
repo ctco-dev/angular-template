@@ -9,7 +9,7 @@ import { filter, map } from 'rxjs';
 export class ArticleService {
 
   public articles = signal<Article[]>([]);
-  public article: WritableSignal<Article | undefined> = signal<Article | undefined>(undefined);
+  public article = signal<Article | null>(null);
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
   private readonly httpClient = inject(HttpClient);
@@ -37,7 +37,7 @@ export class ArticleService {
       map(articles => articles.find(article => article.id === id)))
    .subscribe({
       next: (data) => {
-        this.article.set(data);
+        this.article.set(data ?? null);
         this.error.set(null);
       },
       error: (err) => {
@@ -47,5 +47,6 @@ export class ArticleService {
         this.loading.set(false);
       }
     });
+
   }
 }
