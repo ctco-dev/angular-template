@@ -8,11 +8,12 @@ import { ArticleListComponent } from "./article-list/article-list.component";
 import { HttpArticleListComponent } from './http-article-list/http-article-list.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatButton } from "@angular/material/button";
+import { CreateArticleComponent } from "./create-article/create-article.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ArticleCardComponent, ArticleListComponent, MatCardModule, HttpArticleListComponent, MatButton, RouterLink],
+  imports: [CommonModule, RouterOutlet, ArticleCardComponent, ArticleListComponent, MatCardModule, HttpArticleListComponent, MatButton, RouterLink, CreateArticleComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

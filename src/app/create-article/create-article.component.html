@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- TITLE -->
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+
+    <mat-error *ngIf="form.controls.title.hasError('required')">
+      Title is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.title.hasError('minlength')">
+      Minimum 3 characters
+    </mat-error>
+    <mat-error *ngIf="form.controls.title.hasError('maxlength')">
+      Maximum 100 characters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- DESCRIPTION -->
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput rows="4" formControlName="description"></textarea>
+
+    <mat-error *ngIf="form.controls.description.hasError('required')">
+      Description is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.description.hasError('minlength')">
+      Minimum 10 characters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- PUBLISH DATE -->
+  <mat-form-field appearance="outline">
+    <mat-label>Publish date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="publishDate"
+      [min]="today"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+    <mat-error *ngIf="form.controls.publishDate.hasError('required')">
+      Publish date is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.publishDate.hasError('pastDate')">
+      Date must be today or in the future
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    Create Article
+  </button>
+
+</form>
