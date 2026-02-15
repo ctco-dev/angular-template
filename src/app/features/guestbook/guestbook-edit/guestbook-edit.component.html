@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Guest Book Entry</h2>
+<mat-dialog-content>
+    <form [formGroup]="guestBookForm" class="guest-post-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error *ngIf="guestBookForm.get('name')?.hasError('required')">
+                Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" required>
+            <mat-error *ngIf="guestBookForm.get('email')?.hasError('required')">
+                Email is required
+            </mat-error>
+            <mat-error *ngIf="guestBookForm.get('email')?.hasError('email')">
+                Please enter a valid email
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="message" rows="4" required></textarea>
+            <mat-error *ngIf="guestBookForm.get('message')?.hasError('required')">
+                Message is required
+            </mat-error>
+            <mat-error *ngIf="guestBookForm.get('message')?.hasError('minlength')">
+                Message must be at least 20 characters long
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<div class="guest-book-entry-button">
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="guestBookForm.invalid" (click)="onSubmit()">
+        Submit
+    </button>
+</mat-dialog-actions>
+</div>

@@ -1,0 +1,13 @@
+<h1 class="mat-h1">Posts</h1>
+
+<div *ngIf="(errorMessage() !== '')">
+  Error: {{ errorMessage() }}
+</div>
+
+<div *ngIf="loading() === false; else loadingElement">
+  <div>
+    <app-posts-list [posts]="posts()"></app-posts-list>
+  </div>
+</div>
+
+<ng-template #loadingElement>Loading...</ng-template>

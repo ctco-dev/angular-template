@@ -1,0 +1,18 @@
+<h1 class="mat-h1">Guest Book</h1>
+
+<div *ngIf="(errorMessage() !== '')">
+  Error: {{ errorMessage() }}
+</div>
+
+<div class="guest-book-add-entry">
+  <button mat-raised-button color="primary" (click)="openGuestBookDialog()">
+    Add Guest Book Entry
+  </button>
+</div>
+<div *ngIf="loading() === false; else loadingElement">
+  <div>
+    <app-guestbook-list [guestPosts]="guestPosts()"></app-guestbook-list>
+  </div>
+</div>
+
+<ng-template #loadingElement>Loading...</ng-template>

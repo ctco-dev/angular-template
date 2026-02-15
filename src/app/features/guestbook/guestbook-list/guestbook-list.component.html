@@ -1,0 +1,16 @@
+<div class="guest-posts-list">
+  <div class="guest-post-item" *ngFor="let gPost of guestPosts">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle 
+          class="clickable-author" 
+          (click)="openAuthorDialog(gPost.author)">
+          {{ gPost.author.name }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="guest-post-content">
+        <p>{{ gPost.message }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

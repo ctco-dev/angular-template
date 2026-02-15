@@ -1,0 +1,17 @@
+<h1 class="mat-h1">Post Details</h1>
+
+<div *ngIf="(errorMessage() !== '')">
+    Error: {{ errorMessage() }}
+</div>
+
+<div class="post-card-container" *ngIf="loading() === false; else loadingElement">
+    <ng-container *ngIf="post(); else postNotFound">
+        <app-posts-detail [post]="post()" [comments]="comments()">
+        </app-posts-detail>
+    </ng-container>
+</div>
+
+<ng-template #loadingElement>Loading...</ng-template>
+<ng-template #postNotFound>
+    <div>This post does not exist.</div>
+</ng-template>
