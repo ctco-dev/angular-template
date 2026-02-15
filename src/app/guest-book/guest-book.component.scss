@@ -1,0 +1,105 @@
+.guest-book {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #181a20;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(78, 84, 200, 0.10);
+  padding: 2rem 2.5rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #f1f1f1;
+}
+.guest-book h2 {
+  color: #8f94fb;
+}
+.entries {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.entries li {
+  background: #23262f;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(78, 84, 200, 0.05);
+  color: #f1f1f1;
+}
+.avatar {
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  object-fit: cover;
+  background: #eee;
+  transition: box-shadow 0.2s;
+}
+.avatar:hover {
+  box-shadow: 0 0 0 3px #8f94fb;
+}
+.avatar-popup {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,26,32,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.avatar-popup-content {
+  background: #23262f;
+  color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(78, 84, 200, 0.20);
+  min-width: 260px;
+  text-align: center;
+}
+.avatar-popup-content button {
+  margin-top: 1rem;
+  background: #8f94fb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.avatar-popup-content button:hover {
+  background: #4e54c8;
+}
+form div {
+  margin-bottom: 1rem;
+}
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #8f94fb;
+}
+input, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #353945;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #23262f;
+  color: #f1f1f1;
+  transition: border 0.2s;
+}
+input:focus, textarea:focus {
+  border-color: #8f94fb;
+  outline: none;
+}
+button[type="submit"] {
+  background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.08);
+}
+button[disabled] {
+  background: #bfc2e6;
+  cursor: not-allowed;
+}

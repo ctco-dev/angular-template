@@ -1,0 +1,114 @@
+.site-header {
+  background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.1);
+}
+
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.tab {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.tab:hover,
+.tab.active {
+  background: #fff;
+  color: #4e54c8;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.15);
+}
+.auth-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+.auth-btn {
+  background: #8f94fb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.auth-btn:hover {
+  background: #4e54c8;
+}
+.login-popup-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24, 26, 32, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.login-popup {
+  background: #181a20;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(78, 84, 200, 0.15);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  color: #fff;
+  min-width: 320px;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.form-group {
+  margin-bottom: 1.2rem;
+}
+.input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #353945;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #23262f;
+  color: #fff;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+.input:focus {
+  border-color: #4e54c8;
+  outline: none;
+}
+.sign-in-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.08);
+  display: block;
+  /* Ensures the button matches the input width */
+  margin-top: 0.5rem;
+}
+.sign-in-btn:disabled {
+  background: #bfc2e6;
+  cursor: not-allowed;
+}

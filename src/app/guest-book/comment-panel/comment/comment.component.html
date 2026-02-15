@@ -1,0 +1,60 @@
+
+  <ul class="entries">
+    <li *ngFor="let entry of guestMessagesSignal()">
+      <img 
+        #avatarImg
+        [src]="'assets/avatars/' + (entry.avatar ? entry.avatar : 'user-m.png')" 
+        (error)="avatarImg.src='assets/avatars/user-m.png'"
+        alt="Avatar"
+        class="avatar"
+        width="40" height="40"
+        (click)="selectedEntry = entry"
+        style="cursor:pointer"
+      />
+      <strong>{{ entry.name }}</strong> ({{ entry.email }})<br>
+      <span>{{ entry.message }}</span>
+    </li>
+  </ul>
+
+  <div 
+    class="avatar-popup" 
+    *ngIf="selectedEntry" 
+    (click)="selectedEntry = null"
+    tabindex="0"
+  >
+    <div class="avatar-popup-content" (click)="$event.stopPropagation()">
+      <h3>{{ selectedEntry.name }}</h3>
+      <p><strong>Email:</strong> {{ selectedEntry.email }}</p>
+      <p><strong>Gender:</strong> {{ selectedEntry.gender }}</p>
+      <button (click)="selectedEntry = null">Close</button>
+    </div>
+  </div>
+
+  <form #guestForm="ngForm" (ngSubmit)="addEntry(guestForm)" autocomplete="off">
+  <div>
+    <label for="name">Name*</label>
+    <input id="name" name="name" [(ngModel)]="newEntry.name" required #nameInput="ngModel">
+    <div class="validation-message" *ngIf="nameInput.touched && nameInput.invalid">
+      <span *ngIf="nameInput.errors?.['required']">Name is required.</span>
+    </div>
+  </div>
+  <div>
+    <label for="email">Email*</label>
+    <input id="email" name="email" type="email" [(ngModel)]="newEntry.email" required #emailInput="ngModel">
+    <div class="validation-message" *ngIf="emailInput.touched && emailInput.invalid">
+      <span *ngIf="emailInput.errors?.['required']">Email is required.</span>
+      <span *ngIf="emailInput.errors?.['email']">Please enter a valid email address.</span>
+    </div>
+  </div>
+  <div>
+    <label for="message">Message*</label>
+    <textarea id="message" name="message" [(ngModel)]="newEntry.message" required minlength="20" #messageInput="ngModel"></textarea>
+    <div class="validation-message" *ngIf="messageInput.touched && messageInput.invalid">
+      <span *ngIf="messageInput.errors?.['required']">Message is required.</span>
+      <span *ngIf="messageInput.errors?.['minlength']">
+        Message must be at least 20 characters (currently {{ messageInput.viewModel?.length || 0 }}).
+      </span>
+    </div>
+  </div>
+  <button type="submit" [disabled]="guestForm.invalid">Add Entry</button>
+</form>

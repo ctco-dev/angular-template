@@ -1,0 +1,110 @@
+.blog-list {
+  background: #181a20;
+  padding: 2rem;
+  border-radius: 12px;
+}
+.blog-list h2 {
+  color: #fff;
+}
+.blog-list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+.blog-item-container {
+  margin: 0;
+}
+.blog-item {
+  width: 100%;
+  text-align: left;
+  background: #23262f;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(30, 34, 60, 0.15);
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  color: #f1f1f1;
+}
+.blog-item:hover {
+  box-shadow: 0 4px 16px rgba(78, 84, 200, 0.18);
+  background: #2a2d3a;
+}
+.blog-item h3 {
+  color: #8f94fb;
+}
+.blog-item small {
+  color: #bfc2e6;
+}
+.bright-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0 0 0;
+  padding: 1rem 0;
+}
+
+.bright-pagination button {
+  background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.15);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.bright-pagination button:disabled {
+  background: #bfc2e6;
+  color: #eee;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.bright-pagination span {
+  color: #4e54c8;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(78, 84, 200, 0.08);
+}
+.pretty-sort-panel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: #23262f;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(78, 84, 200, 0.10);
+}
+
+.sort-label {
+  color: #8f94fb;
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-right: 0.5rem;
+}
+
+.sort-select {
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #353945;
+  background: #181a20;
+  color: #f1f1f1;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.sort-select:focus {
+  border-color: #8f94fb;
+  outline: none;
+}
