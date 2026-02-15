@@ -1,0 +1,14 @@
+<mat-dialog-content class="popup-container">
+  <div class="popup-content">
+    <img [src]="avatarUrl" alt="Author Avatar" class="avatar">
+    <div class="author-info" *ngIf="entry$ | async as entry">
+      <h2>{{entry.name }}</h2>
+      <p>{{entry.email}}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+<div class="button-container">
+  <mat-dialog-actions>
+    <button mat-raised-button cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+</div>

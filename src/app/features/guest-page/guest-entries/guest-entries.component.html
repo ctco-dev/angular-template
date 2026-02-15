@@ -1,0 +1,19 @@
+<div class="entries-container">
+  <mat-card *ngFor="let entry of entries$ |async" class="entry-card">
+    <mat-card-header>
+      <mat-card-title>{{entry.name}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <p>{{entry.message}}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="onViewAuthor(entry)">
+        View Author
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
